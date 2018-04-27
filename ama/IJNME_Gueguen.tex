@@ -37,7 +37,7 @@
 
 }
 
-\keywords{keyword1, keyword2, keyword3, keyword4}
+\keywords{acoustic, octree, archeology}
 
 \jnlcitation{\cname{%
 \author{R. Gueguen}, and
@@ -628,17 +628,60 @@ We can also add some absorption coefficient on the walls and take into account t
 
 \section{Developed softwares }\label{sec6}
 
+The room acoustic tool is available in two forms. 
+
+\subsection{Matlab library}
+First a Matlab library ... \\
+
+\subsection{Blender add-on}
+In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting rays or image-sources on the CAD software. It is also possible to listen an audio file convolved to to RIR to listen the reverberate sound.
+
+
+%\begin{figure}
+%	\includegraphics[width=\linewidth]{add-on}
+%	\caption{Add-on Blender}
+%\end{figure}
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\linewidth]{software}
+	\caption{Software architecture}
+\end{figure}
+
+
+
 \section{Application to the antic theatre of Orange}\label{sec7}
+
+The acoustic simulation can be done on the antic theater fo Orange. Because it is an open room the software automatically add a 100\% absorbant box around the building and we can calculate the image-sources and the RIR for different configuration of the theatre or different materials. Indeed, archeologists want to explore some architecture hypothesis from missing part of the theatre. A acoustical analysis can allow to understand better the influence of the position in the bleachers, the shape of the roof, the material of the \textit{orchestra} for exemple.With a 600~000 faces theatre (i.e including decoration elements of the stage wall) RIR at $RT_{60} $is generated in 20 minutes for one million rays (see fig. \ref{rir}). Each iteration is done in 25s so it really depends on the materials chosen. We can note that the more details of the mesh are refined the more we can simulate diffraction effect. Indeed, in high frequency, small detail elements will be able to reflect the rays in different directions which can resemble diffraction effects.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\linewidth]{rir}
+	\caption{Room impulse response of the antic theater of Orange}
+\end{figure}
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\linewidth]{theatre}
+	\caption{Images-sources projected on the theatre of Orange}
+\end{figure}
 
 
 \section{Conclusions}
+
+We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes little sensitive to the number of mesh elements, which is often limiting in this type of study. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections.
+
+However, there are many opportunities for improvement that remain under consideration for this type of software tool. Firstly, the sound signal could be heard in three dimensions thanks to binaural filters. These allow through an audio headset to transmit a different signal to each of the two ears in order to give the illusion of space and depth. This can be achieved by calculating the positioning of image sources in space. Steering control could then be performed using the keyboard or a headset with "Head Tracker". Secondly, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus allow a complete virtual tour of the building.
+
+From the point of view of the analysis results, there are many possible improvements at the graphical level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray throwing? 
+
+Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases and in particular of the use made in Orange at the origin of the theatre. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
 
 \section*{Acknowledgments}
 
 
 \subsection*{Author contributions}
-
-This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. This is an author contribution text. 
+ 
 
 \subsection*{Financial disclosure}
 
@@ -651,50 +694,50 @@ The authors declare no potential conflict of interests.
 
 \section*{Supporting information}
 
-The following supporting information is available as part of the online article:
-
-\noindent
-\textbf{Figure S1.}
-{500{\uns}hPa geopotential anomalies for GC2C calculated against the ERA Interim reanalysis. The period is 1989--2008.}
-
-\noindent
-\textbf{Figure S2.}
-{The SST anomalies for GC2C calculated against the observations (OIsst).}
+%The following supporting information is available as part of the online article:
+%
+%\noindent
+%\textbf{Figure S1.}
+%{500{\uns}hPa geopotential anomalies for GC2C calculated against the ERA Interim reanalysis. The period is 1989--2008.}
+%
+%\noindent
+%\textbf{Figure S2.}
+%{The SST anomalies for GC2C calculated against the observations (OIsst).}
 
 
 \appendix
 
 \section{Section title of first appendix\label{app1}}
 
-Use \verb+\begin{verbatim}...\end{verbatim}+ for program codes without math. Use \verb+\begin{alltt}...\end{alltt}+ for program codes with math. Based on the text provided inside the optional argument of \verb+\begin{code}[Psecode|Listing|Box|Code|+\hfill\break \verb+Specification|Procedure|Sourcecode|Program]...+ \verb+\end{code}+ tag corresponding boxed like floats are generated. Also note that \verb+\begin{code}[Code|Listing]...+ \verb+\end{code}+ tag with either Code or Listing text as optional argument text are set with computer modern typewriter font.  All other code environments are set with normal text font. Refer below example:
-
-\begin{lstlisting}[caption={Descriptive Caption Text},label=DescriptiveLabel]
-for i:=maxint to 0 do
-begin
-{ do nothing }
-end;
-Write('Case insensitive ');
-WritE('Pascal keywords.');
-\end{lstlisting}
-
-
-
-\subsection{Subsection title of first appendix\label{app1.1a}}
-
-\noindent\textbf{Unnumbered figure}
-
-
-\begin{center}
-\includegraphics[width=7pc,height=8pc,draft]{empty}
-\end{center}
-
-
-%== Figure 4 ==
-%% Example for figure inside appendix
-\begin{figure}[t]
-\centerline{\includegraphics[height=10pc,width=78mm,draft]{empty}}
-\caption{This is an example for appendix figure.\label{fig5}}
-\end{figure}
+%Use \verb+\begin{verbatim}...\end{verbatim}+ for program codes without math. Use \verb+\begin{alltt}...\end{alltt}+ for program codes with math. Based on the text provided inside the optional argument of \verb+\begin{code}[Psecode|Listing|Box|Code|+\hfill\break \verb+Specification|Procedure|Sourcecode|Program]...+ \verb+\end{code}+ tag corresponding boxed like floats are generated. Also note that \verb+\begin{code}[Code|Listing]...+ \verb+\end{code}+ tag with either Code or Listing text as optional argument text are set with computer modern typewriter font.  All other code environments are set with normal text font. Refer below example:
+%
+%\begin{lstlisting}[caption={Descriptive Caption Text},label=DescriptiveLabel]
+%for i:=maxint to 0 do
+%begin
+%{ do nothing }
+%end;
+%Write('Case insensitive ');
+%WritE('Pascal keywords.');
+%\end{lstlisting}
+%
+%
+%
+%\subsection{Subsection title of first appendix\label{app1.1a}}
+%
+%\noindent\textbf{Unnumbered figure}
+%
+%
+%\begin{center}
+%\includegraphics[width=7pc,height=8pc,draft]{empty}
+%\end{center}
+%
+%
+%%== Figure 4 ==
+%%% Example for figure inside appendix
+%\begin{figure}[t]
+%\centerline{\includegraphics[height=10pc,width=78mm,draft]{empty}}
+%\caption{This is an example for appendix figure.\label{fig5}}
+%\end{figure}
 
 
 \nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
