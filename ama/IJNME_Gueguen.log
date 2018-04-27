@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  24 APR 2018 20:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  27 APR 2018 16:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1096,73 +1096,141 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--121
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7> not available
 (Font)              Font shape `T1/stix/b/n' tried instead on input line 131.
 [2 <./flux.png> <./rays.png>]
-LaTeX Font Info:    Try loading font information for OMS+stix on input line 166
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <12> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 159.
+LaTeX Font Info:    Try loading font information for OMS+stix on input line 167
 .
-LaTeX Font Info:    No file OMSstix.fd. on input line 166.
+LaTeX Font Info:    No file OMSstix.fd. on input line 167.
 
 
 LaTeX Font Warning: Font shape `OMS/stix/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 166.
+(Font)              for symbol `textbullet' on input line 167.
 
-[3] <rayRefl.png, id=51, 458.71375pt x 355.3275pt>
+[3] <rayRefl.png, id=52, 458.71375pt x 355.3275pt>
 File: rayRefl.png Graphic file (type png)
  <use rayRefl.png>
-Package pdftex.def Info: rayRefl.png used on input line 299.
+Package pdftex.def Info: rayRefl.png used on input line 300.
 (pdftex.def)             Requested size: 203.00005pt x 157.25002pt.
- [4 <./rayRefl.png>] <schema_SI.png, id=63, 189.20688pt x 207.27437pt>
+ [4 <./rayRefl.png>] <schema_SI.png, id=65, 189.20688pt x 207.27437pt>
 File: schema_SI.png Graphic file (type png)
 
 <use schema_SI.png>
-Package pdftex.def Info: schema_SI.png used on input line 355.
+Package pdftex.def Info: schema_SI.png used on input line 358.
 (pdftex.def)             Requested size: 152.2539pt x 166.79384pt.
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <12> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 374.
  [5 <./schema_SI.png>]
-Overfull \hbox (13.0pt too wide) in paragraph at lines 400--400
+<octree.png, id=81, 1204.5pt x 691.58376pt>
+File: octree.png Graphic file (type png)
+ <use octree.png>
+Package pdftex.def Info: octree.png used on input line 394.
+(pdftex.def)             Requested size: 263.90625pt x 151.52628pt.
+
+<octreeSuzanne.png, id=82, 552.0625pt x 469.755pt>
+File: octreeSuzanne.png Graphic file (type png)
+ <use octreeSuzanne.png>
+Package pdftex.def Info: octreeSuzanne.png used on input line 399.
+(pdftex.def)             Requested size: 177.63084pt x 151.14897pt.
+
+[6 <./octree.png> <./octreeSuzanne.png>]
+<AABB.png, id=95, 367.87437pt x 297.61188pt>
+File: AABB.png Graphic file (type png)
+ <use AABB.png>
+Package pdftex.def Info: AABB.png used on input line 473.
+(pdftex.def)             Requested size: 203.00005pt x 164.23198pt.
+
+<AABB2.png, id=96, 366.36874pt x 298.11375pt>
+File: AABB2.png Graphic file (type png)
+ <use AABB2.png>
+Package pdftex.def Info: AABB2.png used on input line 479.
+(pdftex.def)             Requested size: 203.00005pt x 165.18216pt.
+ [7]
+<times.png, id=118, 801.99625pt x 412.54124pt>
+File: times.png Graphic file (type png)
+ <use times.png>
+Package pdftex.def Info: times.png used on input line 491.
+(pdftex.def)             Requested size: 406.00784pt x 208.851pt.
+
+<test1.png, id=121, 669.50125pt x 422.57875pt>
+File: test1.png Graphic file (type png)
+ <use test1.png>
+Package pdftex.def Info: test1.png used on input line 543.
+(pdftex.def)             Requested size: 304.50781pt x 192.20915pt.
+ [8 <./AABB.png> <./AABB2.png> <./times.png>] [9 <./test1.png>]
+<test2RIR.png, id=141, 414.54875pt x 309.155pt>
+File: test2RIR.png Graphic file (type png)
+ <use test2RIR.png>
+Package pdftex.def Info: test2RIR.png used on input line 567.
+(pdftex.def)             Requested size: 228.37698pt x 170.31409pt.
+
+<test2SI.png, id=142, 1001.7425pt x 880.28876pt>
+File: test2SI.png Graphic file (type png)
+ <use test2SI.png>
+Package pdftex.def Info: test2SI.png used on input line 573.
+(pdftex.def)             Requested size: 192.85547pt x 169.4729pt.
+
+<test2absair.png, id=145, 830.10126pt x 307.1475pt>
+File: test2absair.png Graphic file (type png)
+ <use test2absair.png>
+Package pdftex.def Info: test2absair.png used on input line 584.
+(pdftex.def)             Requested size: 304.50781pt x 112.66795pt.
+
+[10 <./test2RIR.png> <./test2SI.png> <./test2absair.png>]
+<test3_8.png, id=161, 579.16376pt x 233.87375pt>
+File: test3_8.png Graphic file (type png)
+ <use test3_8.png>
+Package pdftex.def Info: test3_8.png used on input line 616.
+(pdftex.def)             Requested size: 248.68164pt x 100.42099pt.
+
+<test3_9.png, id=162, 511.9125pt x 227.85126pt>
+File: test3_9.png Graphic file (type png)
+ <use test3_9.png>
+Package pdftex.def Info: test3_9.png used on input line 621.
+(pdftex.def)             Requested size: 248.68164pt x 110.6885pt.
+ [11 <./test3_8.png> <./test3_9.png>]
+Overfull \hbox (13.0pt too wide) in paragraph at lines 665--665
 [] [] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 404.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 669.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 404--405
+Underfull \hbox (badness 10000) in paragraph at lines 669--670
 \T1/stix/m/n/10.03749 for pro-gram codes with math. Based on the text pro-vided
  inside the optional argu-ment of
  []
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 406.
-[6] <empty.pdf, id=93, 114.43155pt x 86.162pt>
+nput line 671.
+<empty.pdf, id=175, 114.43155pt x 86.162pt>
 No file IJNME_Gueguen.bbl.
-[7]
+[12] [13]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 445.
-[8
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 710.
+[14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 445.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 710.
  (./IJNME_Gueguen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 445.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 445.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 710.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 710.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 445.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 710.
  ) 
 Here is how much of TeX's memory you used:
- 14491 strings out of 493014
- 203564 string characters out of 6133351
- 306457 words of memory out of 5000000
- 17708 multiletter control sequences out of 15000+600000
- 98572 words of font info for 119 fonts, out of 8000000 for 9000
+ 14626 strings out of 493014
+ 205324 string characters out of 6133351
+ 309948 words of memory out of 5000000
+ 17794 multiletter control sequences out of 15000+600000
+ 106874 words of font info for 122 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
- 43i,17n,42p,1101b,1628s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,17n,42p,1101b,881s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/stix/stix-t1.enc}</usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/lo
@@ -1176,10 +1244,10 @@ ocal/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on IJNME_Gueguen.pdf (8 pages, 435025 bytes).
+Output written on IJNME_Gueguen.pdf (14 pages, 1113126 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 178 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 331 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 95 named destinations out of 1000 (max. 500000)
+ 265 words of extra memory for PDF output out of 10000 (max. 10000000)
 

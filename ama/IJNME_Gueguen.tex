@@ -156,6 +156,7 @@ For large rooms, the total number of rays will be significant (typically N >$10^
 
 
 \section{Hybride Ray-Tracing / Image-Source methode}\label{sec3}
+\subsection{Ray-tracing}
 
 The method developed aims to propagate rays from a point source. A ray is define with the following equation (see fig .\ref{rays}) :
 \begin{equation}
@@ -315,6 +316,8 @@ with :
 \item $ d_{tot}$ : the total length of the ray.
 \end{itemize}
 
+\subsection{Image-sources}
+
 At each ray bounce, we check if the rays intersect the receiver-sphere. This test includes the following steps :
 First we check if the origine point $O$ of the ray is include in the R-center and r-radius receiver :
 \begin{equation}
@@ -339,15 +342,15 @@ To finish, we check if the ray intersect the receiver-sphere :
 \alpha  \leqslant \arcsin{\frac{r}{||\overrightarrow{OR}||}}
 \end{align}
 
-If the ray deos indeed intersect the receiver an image-source is generated. This is the image of the sound source relative to all the walls encountered by the ray. The image-source SI is located in space by back-propagation of the ray from its last origin point O :
+If the ray does indeed intersect the receiver, an image-source is generated (see fig. \ref{schema_SI}). This is the image of the sound source relative to all the walls encountered by the ray. The image-source $I_S$ is located in space by back-propagation of the ray from its last origin point O :
 
 \begin{equation}
-\overrightarrow{SI} = O - D.d_{tot},
+\overrightarrow{I_S O} = \overrightarrow{D}.d_{tot} \qquad \Rightarrow \qquad I_S = O - \overrightarrow{D}.d_{tot},
 \end{equation}
 where 
 \begin{itemize}
-\item $D$ is the last orientation vector of the ray,
-\item $d_{tot}$ is the total distance travelled by the ray from the original source to the point O .
+\item $\overrightarrow{D}$ is the last unitary orientation vector of the ray,
+\item $d_{tot}$ is the total distance travelled by the ray from the original source S to the point O.
 \end{itemize}
 
 \begin{figure}
@@ -357,9 +360,271 @@ where
 	\label{schema_SI}
 \end{figure}
 
+The positions of the image-sources allow to know the time it takes for the signal to arrive to the receiver :
+
+\begin{equation}
+t_{I_S} = \frac{||\overrightarrow{I_S O}|| + ||\overrightarrow{OR}||}{v}.
+\end{equation}
+with $v$ the sound speed in the medium (air : $v=340m/s$). The room impulse response can be generated for each octave band at a certain sampling frequency $f_s$ such as :
+
+\begin{align}
+E_{i} =  \sum{E_j},
+\end{align}
+with the integer part of the product $(t_j \times f_s) = i$ and with : 
+\begin{itemize}
+\item$E_{i}$ : the energy of the $i^{th}$ sample,
+\item$E_j$ and $t_j$ : respectively the energy and travel time of the $j^{th}$ image-source.
+\end{itemize}
+
+
 \section{Algorithm's optimisation}\label{sec4}
+\subsection{Presentation}
+
+The algorithm has iteration loops with different complexities. There are three main steps which depend on the number of mesh elements $M$ and the number of rays emitted $N$ :\begin{itemize}
+\item the mesh loading,
+\item the intersection between rays and faces,
+\item the image-sources creation.
+\end{itemize}
+
+The mesh loading depends only on the number of elements and is done only once at the beginning of the algorithm. The image-sources creation depends only on the number of rays and is done until the stop threshold is reached. The most critical stage is the intersection of the rays and the faces because each ray has to be tested with each element and the loop is repeated until the stop threshold is reached. The complexity of this operation is quadratic in $O(N\times M)$. For a significant number of mesh elements ($>100~000$ for the Orange theater) and a lot of rays (necessary to make the measurement accurate) the calculation time is very long which makes the tests tedious. To alleviate this problem we have developed a fast algorithm based on a "Divid and conquer" approach based on Octree spatial cutting.
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.52\textwidth}
+	\includegraphics[width=\linewidth]{octree}
+	\caption{Illustration of the Octree principle.}
+	\label{octree}
+	\end{subfigure}
+	\begin{subfigure}{0.35\textwidth}
+		\includegraphics[width=\linewidth]{octreeSuzanne}
+		\caption{Octree around an arbitrary mesh}
+		\label{octreeSuzanne}
+	\end{subfigure}
+	\caption{Illustration of an Octree.}
+	%\label{octree}
+\end{figure}
+
+The general principle consists in creating a cubic box called a "mother box" containing all the mesh elements, i.e. all the triangular faces. This mother box is then subdivided to create eight "daughter boxes" of identical size which themselves will be subdivided into eight daughter boxes, etc. (see fig. \ref{octree}). Recursively, each element contained in a mother box will be stored in the daughter box that contains it. In this way, you descend into the tree structure until you reach a stop condition. Typically, the Octree stops when no more daughter boxes contain more than $n$ items. The boxes are therefore refined in the same way as the mesh (see fig. \ref{octreeSuzanne}) since empty boxes do not generate daughter boxes.
+
+If we name \textit{item} a ray or a triangular face of the mesh and \textit{operation} the storage in a box, we can calculate the number of \textit{operations} a have only one \textit{item} per box. We place ourselves in the case where the \textit{items} are distributed in a uniform way in space. At level-0 all the $N$ \textit{items} are in the root-box. At level-1 we test each daughter box with each \textit{item} and we have $8N$ \textit{operations}. At the next level each daughter box become a mother box and we can apply the same calculation to obtain
+\begin{center}
+$8\times 8\times \frac{N}{8}$ = $8N$ \textit{operations}.
+\end{center}
+because each mother box only count $\frac{N}{8}$ \textit{items}. At level-p we will need  
+%
+\begin{equation} \label{operation}
+8^p\frac{N}{8^{p-1}} = 8N \ \textit{operations}.
+\end{equation}
+%
+and the total number of \textit{operations} is $p\times 8N$.
+
+Moreover we said that their is only one \textit{item} per box, so there are as many boxes as there are \textit{items}. We can write :
+%
+\begin{align}  \label{nbEtage}
+8^p &= N \nonumber, \\
+p.\ln{8} &= \ln{N} \nonumber, \\
+p &= \frac{1}{\ln{8}}\ln{N}.
+\end{align}
+%
+The total number of operation is then :
+\begin{equation}
+C = p.8N = \frac{8N}{\ln8}\ln{N}.
+\end{equation}
+%
+Within the algorithm, instead of testing all rays with all faces, we test N times one ray with one face. The number of linear operations is :
+\begin{equation}
+C_{tot} =  \frac{8N}{\ln8}\ln{N} + N.
+\end{equation}
+which is faster than $N^2$ for $N>>1$.
+
+In practice we will be able to stop the Octree before arriving at only one element per box. Typically, if we stop the Octree at $n$ elements per box the total number of operation become :
+\begin{equation}
+C_{tot} = \frac{8N}{\ln8}\ln{N} - \frac{\ln n }{\ln8}8N + n^2.
+\end{equation}
+so $n$ needs to be very small in front of $N$ to preserve the performance.
+
+Note that when the distribution of items is not uniform the demonstration is more complicated but the calculation times remain substantially similar.
+
+\subsection{Implementation}
+
+
+To store the triangular faces in the box we test if the center of the face belongs to the box. One each center has been store in the leaves of the Octree (i.e the last boxes of the branches) we resize the leaves to embody the whole faces they contains. To test if a ray cross a box we use an algorithm conceived for Axis-Aligned-Bounding-Box. This kind of box can be defined by six plans $\left[ X_{min}, X_{max}, Y_{min}, Y_{max}, Z_{min}, Z_{max} \right] $. If the ray equation is :
+\begin{equation}
+f(t) = D \times t + O
+\end{equation}
+with :
+\begin{itemize}
+\item $D$ : the orientation vector of the whose coordinates are $(D_x ; D_y ; D_z)$,
+\item $O$ : the origin point of the ray whose coordinates are $(O_x ; O_y ; O_z)$,
+\end{itemize}
+we can express the intersection point by this following system :
+\begin{align}
+X_{min} &= x_0 \times D_x - O_x 	& \Rightarrow 	& &	 x_0 = \frac{X_{min} - O_x}{D_x}, \\
+X_{max} &= x_1 \times D_x - O_x 	& \Rightarrow 	& &	x_1 = \frac{X_{max} - O_x}{D_x}, \\
+Y_{min} &= y_0 \times D_y - O_y 	& \Rightarrow	& &	y_0 = \frac{Y_{min} - O_y}{D_y}, \\
+Y_{max} &= y_1 \times D_y - O_y 	& \Rightarrow	& &	y_1 = \frac{Y_{max} - O_y}{D_y}, \\
+Z_{min} &= z_0 \times D_z - O_z	& \Rightarrow 	& &	z_0 = \frac{Z_{min} - O_z}{D_z}, \\
+Z_{max} &= z_1 \times D_z - O_z 	& \Rightarrow 	& &	z_1 = \frac{Z_{max} - O_z}{D_z}. 
+\end{align}
+%
+\begin{figure}
+\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{AABB}
+		\caption{Ray/box intersection in 2D}
+		\label{AABB}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{AABB2}
+		\caption{No intersection}
+		\label{AABB2}
+	\end{subfigure}
+	\caption{Illustrations of the ray/box intersection in 2D}
+\end{figure}
+%
+We understand from the figures \ref{AABB} and \ref{AABB2} that we will be able to determine if a ray intersects a box by comparing the coordinates of the points of intersection with the planes. Notably, if $x_0 > y_1$ or $y_0 > x_1$ the radius will not intersect the box (see fig. \ref{AABB2}). Otherwise, the same principle will apply on $z$. There will then be no intersection if $max(x_0 ; y_0) > z_1$ or $ z_0 > min(x_1 ; y_1)$. Note that if the ray is directed in the opposite direction, the $\alpha_0$ and $\alpha_1$ have to be inverted ($\alpha$ corresponding to the coordinates $x,y,z$).
+
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.8\linewidth]{times}
+	\caption{Computation time for one iteration and $N = M$ (log scale)}
+	\label{times}
+\end{figure}
+
+\begin{table}
+\centering
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Number of faces and rays & Time \textbf{without} Octree (s) & Time \textbf{with} Octree (s)\\
+		  \hline
+		  \hline
+		   $2^{10}$ (=1~024) & 0,26 &	0,2 \\
+		   \hline
+		$2^{11}$ (=2~048)  & 0,4	& 0,2 \\
+		   \hline
+		$2^{12}$ (=4~096) & 0,91	& 0,25\\
+		   \hline
+		$2^{13}$ (=8~192) & 3,05 &	0,3\\
+		   \hline
+		$2^{14}$ (=16~384) & 11,44	&0,33\\
+		   \hline
+		$2^{15}$ (=32~768) & 46,02	&0,55 \\
+		     \hline
+		    $2^{16}$ (=65~536) & 181,61	& 0,77\\
+		   \hline
+		$2^{17}$ (=131~072) & 725,17	& 1,85\\
+		\hline
+		$2^{18}$ (=262~144) & 2927,9 & 2,76 \\
+		\hline
+		$2^{19}$ (=524~288) & X & 8,36 \\
+		\hline
+		$2^{20}$ (=1~048~576) & X & 13,78 \\
+		\hline
+		%$2^{21}$ (=2~097~152) & X & 45,83 \\
+		%\hline
+	 \end{tabular}
+	\caption{Computation time for one iteration and $N = M$}
+	\label{tabComplexite}
+\end{table}
+
+As we can see in the figure \ref{times} the complexity of the algorithm is almost linear by using the Octree method. This allows to treat large meshes with millions of rays by maintaining a low computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 rays and faces the computation time is divided by 1000. 
 
 \section{Validation}\label{sec5}
+
+In order to validate our approach and our method we compare the experimental results with theoretical results. 
+
+\subsection{Quadratic decrease}
+First, to validate the quadratic decrease of the energy we observe the room impulse response of a cubic room whose all walls are 100\% absorbant except the walls on the x-axis. This particular room reflect a free space simulation where the distance between the source and the receiver is regularly increased. Furthermore, since the rays spread on the x-axis and -x-axis and return in phase, the number of rays received is twice the number of rays in free space.
+%
+\begin{figure}
+\centering
+	\includegraphics[width=0.6\linewidth]{test1}
+	\caption{RIR for 3 millions of rays (blue) sampled at 100Hz and $f(x)=\frac{2}{x^2}$ (red)}
+	\label{test1}
+\end{figure}
+%
+The room impulse response follow the $f(x)=\frac{2}{x^2}$ which is the expected behavior. In free space, the number of rays collected expresse the surfaces ratio and the quadratic decrease :
+\begin{equation}
+\frac{n}{N} = \frac{\int_s dS}{\int_{\sigma} dS} = \frac{\pi r^2}{4\pi d^2},
+\end{equation}
+avec :
+\begin{itemize}
+\item$n$ : the number of rays collected,
+\item$N$ : the total number of rays,
+\item$s$ : the constant surface of the receiver collecting rays (disk),
+\item$\sigma$ : the emission sphere surface,
+\item$r$ : the constant radius of the receiver,
+\item$d$ : the emission sphere radius (i.e the distance between the source and the receiver).
+\end{itemize}
+
+\subsection {Energy conservation}
+The second test allows to simulate the conservation of the energy. We use a 100\% reflecting sphere (2m radius) pretty well refined (300~000 faces) and position the source and the receiver in the center. So, at each iteration all the rays refocus in the center of the sphere and then are captured by the receiver.
+\begin{figure}
+\centering
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\linewidth]{test2RIR}
+		\caption{RIR for a 100\% reflecting sphere - 12 iterations}
+		\label{test2RIR}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}{0.38\textwidth}
+		\includegraphics[width=\linewidth]{test2SI}
+		\caption{Position of the images-sources - 4 iterations}
+		\label{test2SI}
+	\end{subfigure}
+	\caption{100\% reflecting sphere}
+\end{figure}
+%
+We observe the expected result as the room impulse response is a Dirac comb (see fig. \ref{test2RIR}) and the image-sources are positioned on spheres whose the radius doubles at each iteration (see fig. \ref{test2SI}).
+%
+\begin{figure}
+\centering
+	\includegraphics[width=0.6\linewidth]{test2absair}
+	\caption{RIR for a 100\% reflecting sphere with air absorption - 30 iterations}
+	\label{test2absair}
+\end{figure}
+%
+By adding the air absorption we can observe that the highest frequencies decrease faster than the lowest which reflect the nature behavior.
+
+\subsection{Shoe box case}
+To finalize the validation algorithm we compare the results of a shoe box type room with an analytic computation. The image-sources can be positioned in space with the following formula :
+\begin{align}
+P_{is} = i \times D + P_s \times (-1)^i,
+\end{align}
+with : 
+\begin{itemize}
+\item$i \in (-n, n)$ and $n \in \mathbb{N}$,
+\item$P_{is}$ : the image-source position coordinate on X, Y or Z,
+\item$P_s$ : the source position coordinate on X, Y or Z,
+\item$D$ : the room dimension on X, Y or Z.
+\end{itemize}
+The energy of each image-source is $\frac{1}{d^2}$ where $d$ is the distance between the image-source avec the receiver. If we compare the position of these theoretical image-sources with the image-sources obtained with the algorithm we gat the exact same result to the float precision ($10^{-6}m$). Concerning the energy, we compare two kind of errors : the relative error such as :
+\begin{align}
+\epsilon_{rel} = \frac{|E_{exp}-E_{theo}|}{E_{theo}}.
+\end{align}
+and the infinity norm error with express the fact that the further away the image-source is from the receiver the less important the error will be for the final result.
+\begin{align}
+\epsilon_{\infty} = \frac{|E_{exp}-E_{theo}|}{\max(E_{theo})}.
+\end{align}
+We can also add some absorption coefficient on the walls and take into account the air absorption. We can see in the figure \ref{test3_8} that the relative error of the energy image-source per image-source remains always below 5\% and in the figure \ref{test3_9} that the infinity norm error is below $0,3\%$ for all frequencies.
+
+\begin{figure}
+\centering
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{test3_8}
+		\caption{Relative error}
+		\label{test3_8}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{test3_9}
+		\caption{Infinity norm error}
+		\label{test3_9}
+	\end{subfigure}
+	\caption{Error for each image-sources with walls and air absorption - 1~000~000 rays}
+\end{figure}
+
 
 \section{Developed softwares }\label{sec6}
 
