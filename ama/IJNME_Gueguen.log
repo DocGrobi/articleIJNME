@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  27 APR 2018 18:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  3 MAY 2018 12:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -865,6 +865,165 @@ Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
 \c@subfigure=\count305
 \c@subtable=\count306
 )
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+Package: glossaries 2016/04/30 v4.23 (NLCT)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2016/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks46
+\XKV@tempa@toks=\toks47
+)
+\XKV@depth=\count307
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
+Package: mfirstuc 2015/12/17 v2.02 (NLCT)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count308
+)
+\@glsmfirst=\toks48
+\@glsmrest=\toks49
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/xfor/xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/datatool/datatool-base.sty
+Package: datatool-base 2016/01/18 v2.25 (NLCT)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/substr/substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count309
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/datatool/datatool-fp.sty
+Package: datatool-fp 2016/01/18 v2.25 (NLCT)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count310
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count311
+\FP@xia=\count312
+\FP@xib=\count313
+\FP@xfa=\count314
+\FP@xfb=\count315
+\FP@rega=\count316
+\FP@regb=\count317
+\FP@regs=\count318
+\FP@times=\count319
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count320
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks50
+\@dtl@tmpcount=\count321
+\dtl@tmplength=\skip97
+\dtl@sortresult=\count322
+\@dtl@numgrpsepcount=\count323
+\@dtl@datatype=\count324
+\dtl@codeA=\count325
+\dtl@codeB=\count326
+\@dtl@foreach@level=\count327
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries-compat
+ible-307.sty
+Package: glossaries-compatible-307 2016/04/30 v4.23 (NLCT)
+)
+\gls@level=\count328
+\@gls@tmpb=\toks51
+\gls@tmplen=\skip98
+\glskeylisttok=\toks52
+\glslabeltok=\toks53
+\glsshorttok=\toks54
+\glslongtok=\toks55
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-hypern
+av.sty
+Package: glossary-hypernav 2016/04/30 v4.23 (NLCT)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
+ty
+Package: glossary-list 2016/04/30 v4.23 (NLCT)
+\glslistdottedwidth=\skip99
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
+ty
+Package: glossary-long 2016/04/30 v4.23 (NLCT)
+\glsdescwidth=\skip100
+\glspagelistwidth=\skip101
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-super.
+sty
+Package: glossary-super 2016/04/30 v4.23 (NLCT)
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2004/02/20 v4.1e the supertabular environment
+\c@tracingst=\count329
+\ST@wd=\dimen261
+\ST@rightskip=\skip102
+\ST@leftskip=\skip103
+\ST@parfillskip=\skip104
+\ST@pageleft=\dimen262
+\ST@headht=\dimen263
+\ST@tailht=\dimen264
+\ST@pagesofar=\dimen265
+\ST@pboxht=\dimen266
+\ST@lineht=\dimen267
+\ST@stretchht=\dimen268
+\ST@prevht=\dimen269
+\ST@toadd=\dimen270
+\ST@dimen=\dimen271
+\ST@pbox=\box83
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
+ty
+Package: glossary-tree 2016/04/30 v4.23 (NLCT)
+\glstreeindent=\skip105
+))
+\glswrite=\write4
+\glo@main@file=\write5
+\openout5 = `IJNME_Gueguen.glo'.
+
+Package glossaries Info: Writing glossary file IJNME_Gueguen.glo on input line 
+14.
+
 
 LaTeX Warning: Unused global option(s):
     [AMA,STIX1COL].
@@ -872,54 +1031,54 @@ LaTeX Warning: Unused global option(s):
 (./IJNME_Gueguen.aux)
 \openout1 = `IJNME_Gueguen.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 13.
-LaTeX Font Info:    Try loading font information for LS1+stix on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 16.
+LaTeX Font Info:    Try loading font information for LS1+stix on input line 16.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 13.
-LaTeX Font Info:    Try loading font information for LS2+stix on input line 13.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 16.
+LaTeX Font Info:    Try loading font information for LS2+stix on input line 16.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Try loading font information for T1+stix on input line 13.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Try loading font information for T1+stix on input line 16.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/t1stix.fd
 File: t1stix.fd 2015/04/17 v1.1.2-latex STIX T1 font definitions
 )
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count307
-\scratchdimen=\dimen261
-\scratchbox=\box83
-\nofMPsegments=\count308
-\nofMParguments=\count309
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count310
-\MPscratchDim=\dimen262
-\MPnumerator=\count311
-\makeMPintoPDFobject=\count312
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count330
+\scratchdimen=\dimen272
+\scratchbox=\box84
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen273
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks57
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -938,10 +1097,11 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: supertabular package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box84
-Package hyperref Info: Link coloring OFF on input line 13.
+\AtBeginShipoutBox=\box85
+Package hyperref Info: Link coloring OFF on input line 16.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -949,11 +1109,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count313
+\c@section@level=\count336
 )
-LaTeX Info: Redefining \ref on input line 13.
-LaTeX Info: Redefining \pageref on input line 13.
-LaTeX Info: Redefining \nameref on input line 13.
+LaTeX Info: Redefining \ref on input line 16.
+LaTeX Info: Redefining \pageref on input line 16.
+LaTeX Info: Redefining \nameref on input line 16.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -991,81 +1151,70 @@ LaTeX Info: Redefining \nameref on input line 13.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count314
+\c@lstlisting=\count337
+(./IJNME_Gueguen.glsdefs)
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <9> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 54.
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <18> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 54.
 LaTeX Font Info:    Try loading font information for LS1+stixscr on input line 
-48.
+54.
+
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
-LaTeX Font Info:    Try loading font information for LS2+stixex on input line 4
-8.
+LaTeX Font Info:    Try loading font information for LS2+stixex on input line 5
+4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
 LaTeX Font Info:    Try loading font information for LS1+stixfrak on input line
- 48.
+ 54.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
-LaTeX Font Info:    Try loading font information for LS1+stixbb on input line 4
-8.
+LaTeX Font Info:    Try loading font information for LS1+stixbb on input line 5
+4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Try loading font information for LS2+stixcal on input line 
-48.
+54.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
-LaTeX Font Info:    Try loading font information for LS1+stixsf on input line 4
-8.
+LaTeX Font Info:    Try loading font information for LS1+stixsf on input line 5
+4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
-LaTeX Font Info:    Try loading font information for LS2+stixtt on input line 4
-8.
+LaTeX Font Info:    Try loading font information for LS2+stixtt on input line 5
+4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <8> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 54.
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <10> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 54.
 
-Overfull \vbox (4.5pt too high) detected at line 48
- []
-
-
-Overfull \hbox (346.99213pt too wide) in paragraph at lines 48--48
+Overfull \hbox (346.99213pt too wide) in paragraph at lines 54--54
 [][] | || []|[][] 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 48
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 54
 .
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7.0262> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 59.
-
-Package natbib Warning: Citation `vitruve' on page 1 undefined on input line 59
-.
-
-
-Overfull \vbox (4.65329pt too high) has occurred while \output is active []
-
 
 Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 
@@ -1074,202 +1223,210 @@ Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 
 \openout3 = `IJNME_Gueguen.pag'.
 
-]
-<flux.png, id=18, 401.5pt x 401.5pt>
-File: flux.png Graphic file (type png)
- <use flux.png>
-Package pdftex.def Info: flux.png used on input line 97.
-(pdftex.def)             Requested size: 177.63084pt x 177.63463pt.
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <10.03749> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 98.
+\openout4 = `IJNME_Gueguen.ist'.
 
-<rays.png, id=20, 533.995pt x 381.425pt>
+]
+<rays.png, id=18, 469.755pt x 375.4025pt>
 File: rays.png Graphic file (type png)
  <use rays.png>
-Package pdftex.def Info: rays.png used on input line 102.
-(pdftex.def)             Requested size: 304.50781pt x 217.51344pt.
+Package pdftex.def Info: rays.png used on input line 101.
+(pdftex.def)             Requested size: 253.75394pt x 202.78307pt.
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <10.03749> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 102.
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--121
+<schema_SI.png, id=20, 189.20688pt x 207.27437pt>
+File: schema_SI.png Graphic file (type png)
+ <use schema_SI.png>
+Package pdftex.def Info: schema_SI.png used on input line 110.
+(pdftex.def)             Requested size: 203.00005pt x 222.38545pt.
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 121.
+ [2 <./rays.png> <./schema_SI.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 131.
-[2 <./flux.png> <./rays.png>]
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <12> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 159.
-LaTeX Font Info:    Try loading font information for OMS+stix on input line 167
-.
-LaTeX Font Info:    No file OMSstix.fd. on input line 167.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 162.
 
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<let>-command' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\NAT@ctype' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\z@' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\let' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\let' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\new@ifnextchar' on input line 162.
+
+LaTeX Font Info:    Try loading font information for OMS+stix on input line 170
+.
+LaTeX Font Info:    No file OMSstix.fd. on input line 170.
 
 LaTeX Font Warning: Font shape `OMS/stix/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 167.
+(Font)              for symbol `textbullet' on input line 170.
 
-[3] <rayRefl.png, id=52, 458.71375pt x 355.3275pt>
-File: rayRefl.png Graphic file (type png)
- <use rayRefl.png>
-Package pdftex.def Info: rayRefl.png used on input line 300.
-(pdftex.def)             Requested size: 203.00005pt x 157.25002pt.
- [4 <./rayRefl.png>] <schema_SI.png, id=65, 189.20688pt x 207.27437pt>
-File: schema_SI.png Graphic file (type png)
-
-<use schema_SI.png>
-Package pdftex.def Info: schema_SI.png used on input line 358.
-(pdftex.def)             Requested size: 152.2539pt x 166.79384pt.
- [5 <./schema_SI.png>]
-<octree.png, id=81, 1204.5pt x 691.58376pt>
+[3] [4] [5] <octree.png, id=96, 1204.5pt x 691.58376pt>
 File: octree.png Graphic file (type png)
  <use octree.png>
-Package pdftex.def Info: octree.png used on input line 394.
+Package pdftex.def Info: octree.png used on input line 353.
 (pdftex.def)             Requested size: 263.90625pt x 151.52628pt.
 
-<octreeSuzanne.png, id=82, 552.0625pt x 469.755pt>
+<octreeSuzanne.png, id=97, 552.0625pt x 469.755pt>
 File: octreeSuzanne.png Graphic file (type png)
  <use octreeSuzanne.png>
-Package pdftex.def Info: octreeSuzanne.png used on input line 399.
+Package pdftex.def Info: octreeSuzanne.png used on input line 358.
 (pdftex.def)             Requested size: 177.63084pt x 151.14897pt.
 
 [6 <./octree.png> <./octreeSuzanne.png>]
-<AABB.png, id=95, 367.87437pt x 297.61188pt>
-File: AABB.png Graphic file (type png)
- <use AABB.png>
-Package pdftex.def Info: AABB.png used on input line 473.
-(pdftex.def)             Requested size: 203.00005pt x 164.23198pt.
-
-<AABB2.png, id=96, 366.36874pt x 298.11375pt>
-File: AABB2.png Graphic file (type png)
- <use AABB2.png>
-Package pdftex.def Info: AABB2.png used on input line 479.
-(pdftex.def)             Requested size: 203.00005pt x 165.18216pt.
- [7]
-<times.png, id=118, 801.99625pt x 412.54124pt>
+<times.png, id=114, 801.99625pt x 412.54124pt>
 File: times.png Graphic file (type png)
  <use times.png>
-Package pdftex.def Info: times.png used on input line 491.
+Package pdftex.def Info: times.png used on input line 453.
 (pdftex.def)             Requested size: 406.00784pt x 208.851pt.
 
-<test1.png, id=121, 669.50125pt x 422.57875pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7 <./times.png>] <test1.png, id=128, 669.50125pt x 422.57875pt>
 File: test1.png Graphic file (type png)
- <use test1.png>
-Package pdftex.def Info: test1.png used on input line 543.
+
+<use test1.png>
+Package pdftex.def Info: test1.png used on input line 506.
 (pdftex.def)             Requested size: 304.50781pt x 192.20915pt.
- [8 <./AABB.png> <./AABB2.png> <./times.png>] [9 <./test1.png>]
-<test2RIR.png, id=141, 414.54875pt x 309.155pt>
+ [8 <./test1.png>]
+<test2RIR.png, id=139, 414.54875pt x 309.155pt>
 File: test2RIR.png Graphic file (type png)
  <use test2RIR.png>
-Package pdftex.def Info: test2RIR.png used on input line 567.
+Package pdftex.def Info: test2RIR.png used on input line 530.
 (pdftex.def)             Requested size: 228.37698pt x 170.31409pt.
 
-<test2SI.png, id=142, 1001.7425pt x 880.28876pt>
+<test2SI.png, id=140, 1001.7425pt x 880.28876pt>
 File: test2SI.png Graphic file (type png)
  <use test2SI.png>
-Package pdftex.def Info: test2SI.png used on input line 573.
+Package pdftex.def Info: test2SI.png used on input line 536.
 (pdftex.def)             Requested size: 192.85547pt x 169.4729pt.
 
-<test2absair.png, id=145, 830.10126pt x 307.1475pt>
+<test2absair.png, id=143, 830.10126pt x 307.1475pt>
 File: test2absair.png Graphic file (type png)
  <use test2absair.png>
-Package pdftex.def Info: test2absair.png used on input line 584.
+Package pdftex.def Info: test2absair.png used on input line 547.
 (pdftex.def)             Requested size: 304.50781pt x 112.66795pt.
 
-[10 <./test2RIR.png> <./test2SI.png> <./test2absair.png>]
-<test3_8.png, id=161, 579.16376pt x 233.87375pt>
+[9 <./test2RIR.png> <./test2SI.png> <./test2absair.png>]
+<test3_8.png, id=159, 579.16376pt x 233.87375pt>
 File: test3_8.png Graphic file (type png)
  <use test3_8.png>
-Package pdftex.def Info: test3_8.png used on input line 616.
+Package pdftex.def Info: test3_8.png used on input line 579.
 (pdftex.def)             Requested size: 248.68164pt x 100.42099pt.
 
-<test3_9.png, id=162, 511.9125pt x 227.85126pt>
+<test3_9.png, id=160, 511.9125pt x 227.85126pt>
 File: test3_9.png Graphic file (type png)
  <use test3_9.png>
-Package pdftex.def Info: test3_9.png used on input line 621.
+Package pdftex.def Info: test3_9.png used on input line 584.
 (pdftex.def)             Requested size: 248.68164pt x 110.6885pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 634--635
+ [10 <./test3_8.png> <./test3_9.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
 
  []
 
-<software.png, id=163, 565.11125pt x 187.70125pt>
+<software.png, id=174, 565.11125pt x 187.70125pt>
 File: software.png Graphic file (type png)
  <use software.png>
-Package pdftex.def Info: software.png used on input line 647.
-(pdftex.def)             Requested size: 355.25395pt x 118.00037pt.
+Package pdftex.def Info: software.png used on input line 612.
+(pdftex.def)             Requested size: 253.75394pt x 84.28148pt.
 
-
-LaTeX Warning: Reference `rir' on page 11 undefined on input line 655.
-
-[11 <./test3_8.png> <./test3_9.png>]
-<rir.png, id=176, 627.34375pt x 230.8625pt>
+<add-on.png, id=175, 828.09375pt x 459.7175pt>
+File: add-on.png Graphic file (type png)
+ <use add-on.png>
+Package pdftex.def Info: add-on.png used on input line 618.
+(pdftex.def)             Requested size: 406.00784pt x 225.39682pt.
+ [11 <./software.png> <./add-on.png>] <rir.png, id=188, 627.34375pt x 230.8625p
+t>
 File: rir.png Graphic file (type png)
- <use rir.png>
-Package pdftex.def Info: rir.png used on input line 659.
-(pdftex.def)             Requested size: 355.25395pt x 130.73697pt.
 
-<theatre.png, id=177, 613.29124pt x 423.5825pt>
+<use rir.png>
+Package pdftex.def Info: rir.png used on input line 628.
+(pdftex.def)             Requested size: 355.25395pt x 130.73697pt.
+ <theatre.png, id=191, 613.29124pt x 423.5825pt>
 File: theatre.png Graphic file (type png)
- <use theatre.png>
-Package pdftex.def Info: theatre.png used on input line 665.
+
+<use theatre.png>
+Package pdftex.def Info: theatre.png used on input line 637.
 (pdftex.def)             Requested size: 355.25395pt x 245.36131pt.
- [12 <./software.png> <./rir.png>]
-Overfull \hbox (3.00244pt too wide) in paragraph at lines 708--708
- [] 
+ [12 <./rir.png> <./theatre.png>]
+Overfull \hbox (13.0pt too wide) in paragraph at lines 677--677
+[] [] 
  []
 
-No file IJNME_Gueguen.bbl.
-[13 <./theatre.png>] [14] <empty.pdf, id=200, 114.43155pt x 86.162pt>
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 750.
+
+Underfull \hbox (badness 10000) in paragraph at lines 690--690
+[]|\T1/stix/m/n/10.03749 Concrete block,
+ []
 
 
-(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]|\T1/stix/m/n/10.03749 Hollow wooden
+ []
 
-Package natbib Warning: There were undefined citations.
+(./IJNME_Gueguen.bbl [13]) [14]
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 753.
-[15
+Package glossaries Warning: No \printglossary or \printglossaries found.
+(Remove \makeglossaries if you don't want any glossaries.)
+This document will not have a glossary.
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 753.
- (./IJNME_Gueguen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 753.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 753.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 749.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 749.
+(./IJNME_Gueguen.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 749.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 749.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 753.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 749.
  ) 
 Here is how much of TeX's memory you used:
- 14638 strings out of 493014
- 205478 string characters out of 6133351
- 309948 words of memory out of 5000000
- 17806 multiletter control sequences out of 15000+600000
- 106874 words of font info for 122 fonts, out of 8000000 for 9000
+ 18346 strings out of 493014
+ 262323 string characters out of 6133351
+ 422340 words of memory out of 5000000
+ 21414 multiletter control sequences out of 15000+600000
+ 102185 words of font info for 120 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
- 43i,17n,40p,1101b,544s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/stix/stix-t1.enc}</usr/loca
-l/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></us
-r/local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb
-></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></
-usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb></usr
-/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/loca
-l/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on IJNME_Gueguen.pdf (15 pages, 1645755 bytes).
+ 46i,17n,77p,1941b,656s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/stix/stix-t1.enc}</usr/lo
+cal/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/
+local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></
+usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.p
+fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/
+local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/
+texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
+Output written on IJNME_Gueguen.pdf (14 pages, 1781039 bytes).
 PDF statistics:
- 340 PDF objects out of 1000 (max. 8388607)
- 272 compressed objects within 3 object streams
+ 335 PDF objects out of 1000 (max. 8388607)
+ 276 compressed objects within 3 object streams
  92 named destinations out of 1000 (max. 500000)
- 288 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 252 words of extra memory for PDF output out of 10000 (max. 10000000)
 

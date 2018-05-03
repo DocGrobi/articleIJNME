@@ -1,0 +1,54 @@
+\begin{thebibliography}{10}
+
+\bibitem{sabine}
+Sabine Wallace~C. {\it Architectural Acoustics}.
+\newblock Reprints of the American Architect; 1900.
+
+\bibitem{vitruve}
+Maufras M.~Ch.-L.. {\it Vitruve : De l'architecture}.
+\newblock Panckoucke; 1847.
+
+\bibitem{theseRobin}
+Gueguen Robin. Virtualisation visuelle et auditive du th{\'e}{\^a}tre antique
+  d'Orange.
+\newblock PhD thesisSorbonne Universit{\'e}2018.
+
+\bibitem{jouhaneau}
+Jouhaneau Jacques. {\it Acoustique des salles et sonorisation} Acoustique
+  appliqu{\'e}e, vol. 3: .
+\newblock Conservatoire national des arts et m{\'e}tiers; 1997.
+
+\bibitem{cfa}
+Congr{\`e}s Fran{\c c}ais d'AcoustiqueGypsiLab, un nouvel outil d'auralisation
+  par lancer de rayon2018.
+
+\bibitem{raytracing}
+Kulowski Andrzej. {\it Algorithmic representation of the ray tracing
+  technique}.
+\newblock Applied Acoustics; 1985.
+
+\bibitem{fibonacci}
+Keinert Benjamin, Innmann Matthias, Sanger Michael, Stamminger Marc. Spherical
+  Fibonacci Mapping.  {\it ACM Transactions on Graphics. }2015;34.
+
+\bibitem{moller}
+M{\"o}ller Tomas, Trumbore Ben. Fast, minimum storage ray-triangle
+  intersection.  {\it Journal of Graphics Tools. }1997;2(1):21-28.
+
+\bibitem{greengard}
+Grenngard L., Rokhlin V.. A Fast Algorithm for Particle Simulations.  {\it
+  Journal of computational physics. }1987;73(2):325-348.
+
+\bibitem{AABB}
+Williams Amy, Barrus Steve, Morley R.Keith, Shirley Peter. An Efficient and
+  Robust Ray--Box Intersection Algorithm.  {\it ACM SIGGRAPH. }2005;(9).
+
+\bibitem{mcgovern}
+McGovern Stephen. Fast image method for impulse response calculations of
+  box-shaped rooms.  {\it Applied Acoustics. }2009;70(1).
+
+\bibitem{gypsilab}
+GypsiLab, un nouvel outil de calcul FEM/BEM pour l'acoustique num{\'e}rique.(Le
+  Havres)Actes du Congr{\`e}s Fran{\c c}ais d'Acoustique2018.
+
+\end{thebibliography}

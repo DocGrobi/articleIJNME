@@ -1,0 +1,120 @@
+\ifglsentryexists{CAD}{}%
+{%
+\gls@defglossaryentry{CAD}%
+{%
+name={CAD},%
+sort={CAD},%
+type={main},%
+first={Computer-Aided Design\glsspace (CAD)},%
+firstplural={Computer-Aided Designs\glsspace (CADs)},%
+text={CAD},%
+plural={CADs},%
+description={Computer-Aided Design},%
+descriptionplural={Computer-Aided Design\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Computer-Aided Design},%
+longplural={Computer-Aided Designs},%
+short={CAD},%
+shortplural={CADs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{rir}{}%
+{%
+\gls@defglossaryentry{rir}%
+{%
+name={RIR},%
+sort={RIR},%
+type={main},%
+first={\protect \textit {Room Impulse response}\glsspace (RIR)},%
+firstplural={\protect \textit {Room Impulse response}s\glsspace (RIRs)},%
+text={RIR},%
+plural={RIRs},%
+description={\emph {Room Impulse response}},%
+descriptionplural={\emph {Room Impulse response}\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit {Room Impulse response}},%
+longplural={\protect \textit {Room Impulse response}s},%
+short={RIR},%
+shortplural={RIRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{RT60}{}%
+{%
+\gls@defglossaryentry{RT60}%
+{%
+name={$RT_{60}$},%
+sort={$RT_{60}$},%
+type={main},%
+first={\protect \textit {Reveberation Time at $-60dB$}\glsspace ($RT_{60}$)},%
+firstplural={\protect \textit {Reveberation Time at $-60dB$}s\glsspace ($RT_{60}$s)},%
+text={$RT_{60}$},%
+plural={$RT_{60}$s},%
+description={\emph {Reveberation Time at $-60dB$}},%
+descriptionplural={\emph {Reveberation Time at $-60dB$}\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit {Reveberation Time at $-60dB$}},%
+longplural={\protect \textit {Reveberation Time at $-60dB$}s},%
+short={$RT_{60}$},%
+shortplural={$RT_{60}$s},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{orchestra}{}%
+{%
+\gls@defglossaryentry{orchestra}%
+{%
+name={\textit {orchestra}},%
+sort={\textit {orchestra}},%
+type={main},%
+first={\protect \textit {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}\glsspace (\protect \textit {orchestra})},%
+firstplural={\protect \textit {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}s\glsspace (\protect \textit {orchestra}s)},%
+text={\protect \textit {orchestra}},%
+plural={\protect \textit {orchestra}s},%
+description={\emph {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}},%
+descriptionplural={\emph {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}},%
+longplural={\protect \textit {Semicircular (Roman) or circular (Greek) space between the stage and the first tier}s},%
+short={\protect \textit {orchestra}},%
+shortplural={\protect \textit {orchestra}s},%
+counter={page},%
+parent={},%
+%
+}%
+}%
