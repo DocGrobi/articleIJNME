@@ -75,7 +75,7 @@ After reminders on acoustical energy propagation represented by ray-tracing, thi
 
 
 \section{Acoustical energy modelization}\label{sec2}
-
+\subsection{Continuous domain equation}
 
 By modelling a point sound source as a localized pulse in space, the associated acoustical energy E(t) propagates \cite{jouhaneau} over time on a spherical surface $S(t)$, such that :
 %
@@ -95,58 +95,95 @@ After integration on the spherical surface $S(t)$, the infinitesimal acoustic in
 || \overrightarrow{I}(t) || &= \frac{1}{4\pi d(t)^2} \qquad \forall t > 0,
 \end{align}
 %
-reflecting the intensity decreases as the square of the distance to the source d(t). Integrating on a portion $\sigma(t)$ of the complete sphere $S(t)$, the energy is then carried by the solid angle $\Omega_{\sigma}$ :
+reflecting that intensity decreases as the square of the distance to the source d(t). Integrating on a portion $\sigma(t)$ of the complete sphere $S(t)$, the energy is then carried by the solid angle $\Omega_{\sigma}$ :
 %
-\begin{equation} \label{eq_energie}
+\begin{equation}
 E_{\sigma}(t) = E_0 \int_{\sigma(t)}  \frac{1}{4\pi  d(t)^2} ds = \frac{E_0}{4\pi}  \Omega_{\sigma}.
+\label{eq_4}
 \end{equation}
 %
-This last equation reflects that the energy of a solid angle is constant over time and corresponds to a portion of the initial energy~$E_0$. Subdividing $S(t)$ in $N$ portions $\sigma_i(t)$, the total energy is the sum of elementary energies carried by solid angles $\Omega_i$, such as : 
+This last equation shows that the energy of a solid angle is constant over time and corresponds to a portion of the initial energy~$E_0$. Thus, subdividing $S(t)$ in $N$ portions $\sigma_i(t)$, the total energy can be decomposed as a sum of elementary energies, carried by solid angles $\Omega_i$, such as : 
 %
 \begin{equation}
 E(t) = \sum_{i=1}^N E_i(t) = \frac{E_0}{4\pi}  \sum_{i=1}^N \Omega_i  \qquad \forall t > 0.
+\label{eq_5}
 \end{equation}
-Ones can notice that $(\Omega_i)_{i\in[1,N] }$ is a directional basis, representing energy propagation by constant elements. 
+Ones can notice that $(\Omega_i)_{i\in[1,N] }$ is a directional basis, representing energy propagation by piecewise constant elements. Furthermore, for greater clarity, we definitively set in the following $E_0 = 1$.
 
-To numerically represent the energy propagation E_i, we introduce a ray objects composed by :
-- The source coordinate (vecteur x_i)
-- A direction vector (vector u_i)
-- The energy value (Omega_i)
+\subsection{Discrete model}
 
+To numerically represent the energy propagation, we have to discretize basis $(\Omega_i)_{i\in[1,N] }$ in (eq.~\ref{eq_5}). For this purpose, we define a \textit{ray} object composed by :
+\begin{itemize}
+\item An origin coordinate $x_i$,
+\item A direction vector $u_i$,
+\item An energy value $E_i$.
+\end{itemize}
 
-represent each solid angle $ \Omega_i$ by a vector $\overrightarrow{u}_i$, called "ray", and which gives the direction of propagation of the energy $E_i(t)$ over time. Thus, to measure the acoustic energy E(R; t) at a given point in space, we can consider a r-radius measuring sphere S(R; r), centered in R. We can then add the contributions of the n rays that intersect this sphere to calculate the acoustic energy at point x :
+For example, with an omnidirectional source, \textit{rays} are given by :
+\begin{itemize}
+\item The source coordinate ($x_i = x_s,~\forall i\in[1,N]$),
+\item A unit sphere uniform sampling (e.g.~icosahedre subdivision, Fibonacci's rule \cite{fibonacci}, etc.),
+\item An uniform energy repartition ($E_i = \frac{4\pi}{N},~\forall i\in[1,N]$).
+\end{itemize}
+
+To complete this approach, we have to define a discrete measure of energy propagation. To this end, we consider a $r$-radius measurement sphere $S(x_m, r)$, centered on $x_m$.  We can then add the contributions of the n rays that intersect this sphere to calculate the acoustic energy $E_m$ at point $x_m$ :
 
 \begin{equation}
-E(t) = \frac{E_0}{4\pi}\Omega_{S(R,r)} = \frac{E_0}{4\pi}  \sum_{i=1}^n \Omega_i,
+E_m \approx  \frac{1}{4\pi}  \sum_{i=1}^n E_i.
 \end{equation}
+In the particular case of an omnidirectionnal source, we have : 
+\begin{equation}
+E_m \approx  \frac{n}{N},
+\end{equation}
+which means that the measured energy $E_m$ is statistically represented by the ratio of the countered \textit{rays} to the total number of \textit{rays}.
 
-However, to be able to statistically assimilate a set of n rays to a continuous portion of a sphere, it must be ensured that n is significant. We use omnidirectional sources, so we can write:
-\begin{equation}
-	\Omega_i = \frac{4\pi}{N}.
-\end{equation}
-%
-and, by using the formula of a solid angle in a cone, if we consider d, the distance between the source and the receiver sphere S(R; r) (see fig. \ref{rays}), we obtain :
-\begin{equation}
-	\Omega_{S(R,r)} = 4\pi \frac{n}{N} = 2\pi \left(1- \frac{\sqrt{d^2-r^2}}{d}\right).
-\end{equation}
-%
-By fixing n (the number minimum of rays to be caught) and r (the receiver radius) we can get the maximum length of the rays before the measurement become statistically inaccurate  \cite{cfa} :
+\begin{figure}[t]
+\centering
+	\includegraphics[width=0.6\linewidth]{schema_rayon}
+	\caption{Representation of a $r$-radius measurement sphere centered in $x_m$, receiving energy from a sound source in $x_s$.}
+	\label{schema_rayon}
+\end{figure}
 
-\begin{equation} \label{dmax}
-	d_{max} =  \frac{N.r}{2n\sqrt{\frac{N}{n}-1}}.
-\end{equation}
-%
-For large rooms, the total number of rays will be significant (typically N >$10^6$ and n >100) to preserve an accurate measure. Thus, for $N>>n$ the equation \ref{dmax} can be reduced to :
+Moreover, applying the continuous model (eq.~\ref{eq_4}), the measured energy is given by :
 \begin{equation}
-	d_{max} \approx  \frac{r}{2}\sqrt{\frac{N}{n}}.
+E_m = \frac{1}{4\pi}  \Omega_m,
 \end{equation}
+where $\Omega_m$ is a solid angle of a cone of revolution (see fig. \ref{schema_rayon}), such as :
+\begin{equation}
+\Omega_m = 2\pi(1-\cos{\alpha}).
+\end{equation}
+Following the figure \ref{schema_rayon} :
+\begin{equation}
+\Omega_m = 2\pi \left( 1 - \sqrt{1-\frac{r^2}{d^2}} \right)
+\end{equation}
+and considering $\frac{r}{d} \ll 1$, 
+\begin{equation}
+\Omega_m = \pi \frac{r^2}{d^2}.
+\end{equation}
+At the end, 
+\begin{equation}
+E_m \approx  \frac{n}{N} \approx  \frac{\pi r^2}{4\pi d^2}.
+\label{eq_12}
+\end{equation}
+To ensure the existence of this last approximation, at least one \textit{ray} have to be measured ($n\geq1$). Thus, fixing a measurement radius r, approximation (\ref{eq_12}) gives a maximum validity range of the discrete model :  
+\begin{equation}
+	d \leq \frac{r}{2}\sqrt{\frac{N}{n}}.
+\end{equation}
+In addition, figure \ref{energie} shows how this modelization fills with distance between source and measures. The accuracy of the measurement depends strongly on the number of  \textit{rays} counted, then, the more $n$ increases, the more accurate will be the measurement. Nevertheless, in practice, values for a short distance between the source and the measurement sphere represent direct sound and first reflections, whereas long distances describe the diffuse field. Under this assumption, we can consider this model acceptable for $n\geq1$. 
+
+\begin{figure}[t]
+\centering
+	\includegraphics[width=0.8\linewidth]{energie.png}
+	\caption{Measured energy (dB) in function of distance between $x_s$ and $x_m$ in meter for $r = 0.36$m and $N = 10^6$. Blue crosses stand for the statistical measure $f(r) = \frac{n(r)}{N}$ and red ligne the analytic function $f(r) = \frac{\pi r^2}{4\pi d^2}$.}
+	\label{energie}
+\end{figure}
 
 %
 \begin{figure}[b]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{rays}
-		\caption{Representation of rays mesure by a receiver.}
+		\caption{Representation of \textit{rays} mesure by a receiver. }
 		\label{rays}
 	\end{subfigure}	
 	\qquad
@@ -164,6 +201,30 @@ For large rooms, the total number of rays will be significant (typically N >$10^
 
 
 
+\subsection{Presence of an obstacle}
+
+
+\subsection{Image-sources}
+
+
+
+
+\section{Implementation}
+\subsection{Standard algorithm}
+\subsection{Tree-base acceleration}
+
+\section{Numerical validation}
+\subsection{Shoes box (modele complet)}
+\subsection{Energy conservation (sphere reflechissante)}
+
+\section{Application to Orange theater}
+
+\section{Conclusion}
+
+
+
+
+
 \section{Hybride Ray-Tracing / Image-Source methode}\label{sec3}
 \subsection{Ray-tracing \cite{raytracing}}
 
@@ -177,27 +238,7 @@ where :
 \item $\overrightarrow{D}$ is the unitary orientation vecteur.
 \end{itemize}
 
-To generate $N$ uniform rays, we use a Fibonacci sphere \cite{fibonacci}. We note $\Gamma$ the golden ratio such as :
-\begin{equation}
-\Gamma = \frac{1 + \sqrt{5}}{2}. \\
-\end{equation}
-%
-The spherical coordinates are given by :
-\begin{equation}
-  \left \{
-   \begin{array}{r c l}
-\theta &=& \frac{2 \pi \times n}{\Gamma}  \pmod{2\pi},  \\
-\phi &=& \arcsin{\left(\frac{2n}{N-1}-1\right)}, 
-   \end{array}
-   \right .
-\end{equation}
-%
-with : 
-\begin{itemize}
-\item $N$ : the total number of rays,
-\item $n \in[0, 1, 2, \ ... \ ,N-1]$ : the index of the ray.
-\end{itemize}
-%
+
 Once convert into cartesian coordinates and normalized we can test the intersection with the triangles of the mesh. The mesh elements have to be triangle with normales directed towards the inside of the room. By using the Moller-Trumbore fast algorithm \cite{moller}, for  each ray we can find the points T intersecting triangles, such as :
 
 \begin{equation} \label{eq_2moller}
@@ -265,7 +306,7 @@ with :
 
 Once we know the elements met be each ray we can update their energies. Each triangle carries an an absorption coefficient $\alpha_i$ for every octave band from 62,5Hz to 8kHz (so 8 bands) (see exemple on table \ref{exempleOdeon}). Moreover, we take into account the atmospheric attenuation. The energy of a ray is :
 \begin{equation}
-E_{i} =  \frac{E_0}{N} \times \prod_{j=0}^{k}{(1-\alpha_{i,j})} \times e^{-m_i . d_{tot}},
+E_{i} =  \frac{1}{N} \times \prod_{j=0}^{k}{(1-\alpha_{i,j})} \times e^{-m_i . d_{tot}},
 \end{equation}
 with : 
 \begin{itemize}
