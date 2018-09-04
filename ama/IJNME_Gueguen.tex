@@ -115,7 +115,7 @@ Ones can notice that $(\Omega_i)_{i\in[1,N] }$ is a directional basis, represent
 To numerically represent the energy propagation, we have to discretize basis $(\Omega_i)_{i\in[1,N] }$ in (eq.~\ref{eq_5}). For this purpose, we define a \textit{ray} object composed by :
 \begin{itemize}
 \item An origin coordinate $x_i$,
-\item A direction vector $u_i$,
+\item A direction vector $\overrightarrow{u_i}$,
 \item An energy value $E_i$.
 \end{itemize}
 
@@ -169,7 +169,7 @@ To ensure the existence of this last approximation, at least one \textit{ray} ha
 \begin{equation}
 	d \leq \frac{r}{2}\sqrt{\frac{N}{n}}.
 \end{equation}
-In addition, figure \ref{energie} shows how this modelization fills with distance between source and measures. The accuracy of the measurement depends strongly on the number of  \textit{rays} counted, then, the more $n$ increases, the more accurate will be the measurement. Nevertheless, in practice, values for a short distance between the source and the measurement sphere represent direct sound and first reflections, whereas long distances describe the diffuse field. Under this assumption, we can consider this model acceptable for $n\geq1$. 
+In addition, figure \ref{energie} shows how this modelization fills with distance between source and measures. The accuracy of the measurement depends strongly on the number of  \textit{rays} counted, then, the more $n$ increases, the more accurate will be the measurement. Nevertheless, in practice, values for a short distance between the source and the measurement sphere represent direct sound and first reflections, whereas long distances describe the diffuse field. Under this assumption, we can consider this model acceptable for all $n\geq1$. 
 
 \begin{figure}[t]
 \centering
@@ -202,12 +202,64 @@ In addition, figure \ref{energie} shows how this modelization fills with distanc
 
 
 \subsection{Presence of an obstacle}
+For the case of acoustic propagation in presence of an obstacle, we choose to only consider specular reflections (Snell-Descartes laws). Indeed, this approximation is suitable when surfaces are large in comparaison to wavelengths, because diffraction effects can be neglected \cite{jouhaneau}. For a room, this condition is reached if :
+\begin{equation}
+ka \gg 1, 
+\end{equation}
+with $k$ the wave number and $a$ the characteristical diameter of the room \cite{hautes_freq}. This approach is currently used by room acoustic softwares (e.g. \textit{Odeon} \cite{odeon}, \textit{Grasshopper} \cite{grasshopper}, etc.) regarding to audible frequency range (62,5 to 15000Hz). In particular, as the Theater of Orange has a characteristical diameter about 50 meters, the high frequency approximation is reached. 
+
+Following the discrete model, when an incident \textit{ray} collides a flat surface, a reflected \textit{ray} is generated from the collision point. Noting $\overrightarrow{u_i}$ the direction vector of the incident  \textit{ray}, the reflected direction vector $\overrightarrow{u_r}$ is defined by :
+\begin{equation}
+\overrightarrow{u_r} = (\overrightarrow{u_i} \cdot \overrightarrow{T})\overrightarrow{T} - (\overrightarrow{u_i} \cdot \overrightarrow{n})\overrightarrow{n},
+\end{equation}
+with $\overrightarrow{T}$ the tangent basis and $\overrightarrow{n}$ the normal vector of the surface. Moreover, the energy of the reflected \textit{ray} is obtained by :
+\begin{equation}
+E_r(f) = E_i(f)(1 - \alpha(f)),
+\end{equation}
+with $\alpha(f)$  the absorption coefficient of the surface, function of the frequency $f$. Practically, the absorption coefficients are often given per octave bands and can be found in various databases. In Gypsilab and ..., both use the open access \textit{Odeon} database \cite{odeon} defined on eight octave bands (see table \ref{tab_coeff_abs}). 
+
+Finally, considering wall absorption, energy measured statistically (eq. \ref{eq_12}) is extended by :
+\begin{equation}
+E_m(f) \approx  \frac{n}{N}(1 - \alpha(f)),
+\end{equation}
+generalizable to :
+\begin{equation}
+E_m(f) \approx  \frac{n}{N}\prod_{j=1}^{m}(1 - \alpha_j(f)),
+\end{equation}
+in the case of $m$ reflexions.
+
+\begin{table}
+%\footnotesize
+\centering
+	\begin{tabular}{| c | m{2.5cm} | *{8}{c|}}
+		\hline
+		Reference & Material name & 62,5Hz & 125Hz & 250Hz & 500Hz & 1kHz & 2kHz & 4kHz & 8kHz \\
+		  \hline
+		  \hline
+		   1 & 100\% absorbent & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+		   \hline
+		2 & 100\% reflecting & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		   \hline
+		107 & Concrete block, coarse\footnotemark & 0.36 & 0.36 & 0.44 & 0.31 & 0.29 & 0.39 & 0.25 & 0.25 \\
+		   \hline
+		3000 & Hollow wooden podium\footnotemark & 0.4 & 0.4 & 0.3 & 0.2 & 0.17 & 0.15 & 0.1 & 0.1 \\
+	     \hline
+	 \end{tabular}
+	\caption{Examples of absorption coefficient given in the onligne \textit{Odeon} database \cite{odeon}.}
+	 \label{tab_coeff_abs}
+\end{table}
+\addtocounter{footnote}{-1}
+\footnotetext{Harris, 1991}
+\addtocounter{footnote}{1}
+\footnotetext{Dalenback, CATT}
+%
+
 
 
 \subsection{Image-sources}
 
 
-
+~\\~\\
 
 \section{Implementation}
 \subsection{Standard algorithm}
@@ -720,28 +772,6 @@ The authors would particularly like to thank Fran\c{c}ois Alouges, Titien Bartet
 %\textbf{Figure S2.}
 %{The SST anomalies for GC2C calculated against the observations (OIsst).}
 
-
-\appendix
-
-\begin{table}[h]
-\centering
-	\begin{tabular}{| c | m{2.5cm} | *{8}{c|}}
-		\hline
-		Reference & material name & 62,5Hz & 125Hz & 250Hz & 500Hz & 1kHz & 2kHz & 4kHz & 8kHz \\
-		  \hline
-		  \hline
-		   1 & 100\% absorbent & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-		   \hline
-		2 & 100\%reflecting & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-		   \hline
-		107 & Concrete block, coarse & 0.36 & 0.36 & 0.44 & 0.31 & 0.29 & 0.39 & 0.25 & 0.25 \\
-		   \hline
-		3000 & Hollow wooden podium & 0.4 & 0.4 & 0.3 & 0.2 & 0.17 & 0.15 & 0.1 & 0.1 \\
-	     \hline
-	 \end{tabular}
-	\caption{Absorption coefficients exemple form the Odeon database}
-	\label{exempleOdeon}
-\end{table}
 
 %\section{Glossary\label{app1}}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  3 SEP 2018 15:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  4 SEP 2018 18:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1267,179 +1267,228 @@ File: schema_SI.png Graphic file (type png)
  <use schema_SI.png>
 Package pdftex.def Info: schema_SI.png used on input line 194.
 (pdftex.def)             Requested size: 203.00005pt x 222.38545pt.
+ [4 <./energie.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 243--243
+[]|\T1/stix/m/n/10.03749 Concrete block,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
+[]|\T1/stix/m/n/10.03749 Hollow wooden
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 252.
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
+
+ []
+
+[5 <./rays.png> <./schema_SI.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\begingroup' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\begingroup' on input line 229.
+(hyperref)                removing `\<let>-command' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<let>-command' on input line 229.
+(hyperref)                removing `\NAT@ctype' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\NAT@ctype' on input line 229.
+(hyperref)                removing `\z@' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 229.
+(hyperref)                removing `\let' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 229.
+(hyperref)                removing `\let' on input line 281.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\let' on input line 229.
+(hyperref)                removing `\new@ifnextchar' on input line 281.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 229.
-
-[4 <./energie.png (PNG copy)>] [5 <./rays.png> <./schema_SI.png>] [6] [7]
-<octree.png, id=124, 1204.5pt x 691.58376pt>
+[6] [7] <octree.png, id=143, 1204.5pt x 691.58376pt>
 File: octree.png Graphic file (type png)
  <use octree.png>
-Package pdftex.def Info: octree.png used on input line 400.
+Package pdftex.def Info: octree.png used on input line 452.
 (pdftex.def)             Requested size: 263.90625pt x 151.52628pt.
 
-<octreeSuzanne.png, id=125, 552.0625pt x 469.755pt>
+<octreeSuzanne.png, id=144, 552.0625pt x 469.755pt>
 File: octreeSuzanne.png Graphic file (type png)
  <use octreeSuzanne.png>
-Package pdftex.def Info: octreeSuzanne.png used on input line 405.
+Package pdftex.def Info: octreeSuzanne.png used on input line 457.
 (pdftex.def)             Requested size: 177.63084pt x 151.14897pt.
 
 [8 <./octree.png> <./octreeSuzanne.png>]
-<times.png, id=142, 801.99625pt x 412.54124pt>
+<times.png, id=163, 801.99625pt x 412.54124pt>
 File: times.png Graphic file (type png)
  <use times.png>
-Package pdftex.def Info: times.png used on input line 500.
+Package pdftex.def Info: times.png used on input line 552.
 (pdftex.def)             Requested size: 406.00784pt x 208.851pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./times.png>] <test1.png, id=156, 669.50125pt x 422.57875pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] <test1.png, id=178, 669.50125pt x 422.57875pt>
 File: test1.png Graphic file (type png)
-
-<use test1.png>
-Package pdftex.def Info: test1.png used on input line 553.
+ <use test1.png>
+Package pdftex.def Info: test1.png used on input line 605.
 (pdftex.def)             Requested size: 304.50781pt x 192.20915pt.
- [10 <./test1.png>]
-<test2RIR.png, id=167, 414.54875pt x 309.155pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10 <./times.png>] <test2RIR.png, id=189, 414.54875pt x 309.155pt>
 File: test2RIR.png Graphic file (type png)
- <use test2RIR.png>
-Package pdftex.def Info: test2RIR.png used on input line 577.
+
+<use test2RIR.png>
+Package pdftex.def Info: test2RIR.png used on input line 629.
 (pdftex.def)             Requested size: 228.37698pt x 170.31409pt.
-
-<test2SI.png, id=168, 1001.7425pt x 880.28876pt>
+ <test2SI.png, id=190, 1001.7425pt x 880.28876pt>
 File: test2SI.png Graphic file (type png)
- <use test2SI.png>
-Package pdftex.def Info: test2SI.png used on input line 583.
-(pdftex.def)             Requested size: 192.85547pt x 169.4729pt.
 
-<test2absair.png, id=171, 830.10126pt x 307.1475pt>
+<use test2SI.png>
+Package pdftex.def Info: test2SI.png used on input line 635.
+(pdftex.def)             Requested size: 192.85547pt x 169.4729pt.
+ <test2absair.png, id=193, 830.10126pt x 307.1475pt>
 File: test2absair.png Graphic file (type png)
- <use test2absair.png>
-Package pdftex.def Info: test2absair.png used on input line 594.
+
+<use test2absair.png>
+Package pdftex.def Info: test2absair.png used on input line 646.
 (pdftex.def)             Requested size: 304.50781pt x 112.66795pt.
 
-[11 <./test2RIR.png> <./test2SI.png> <./test2absair.png>]
-<test3_8.png, id=186, 579.16376pt x 233.87375pt>
-File: test3_8.png Graphic file (type png)
- <use test3_8.png>
-Package pdftex.def Info: test3_8.png used on input line 626.
-(pdftex.def)             Requested size: 248.68164pt x 100.42099pt.
 
-<test3_9.png, id=187, 511.9125pt x 227.85126pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11 <./test1.png>] <test3_8.png, id=209, 579.16376pt x 233.87375pt>
+File: test3_8.png Graphic file (type png)
+
+<use test3_8.png>
+Package pdftex.def Info: test3_8.png used on input line 678.
+(pdftex.def)             Requested size: 248.68164pt x 100.42099pt.
+ <test3_9.png, id=210, 511.9125pt x 227.85126pt>
 File: test3_9.png Graphic file (type png)
- <use test3_9.png>
-Package pdftex.def Info: test3_9.png used on input line 631.
+
+<use test3_9.png>
+Package pdftex.def Info: test3_9.png used on input line 683.
 (pdftex.def)             Requested size: 248.68164pt x 110.6885pt.
- [12 <./test3_8.png> <./test3_9.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 646--647
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12 <./test2RIR.png> <./test2SI.png> <./test2absair.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 698--699
 
  []
 
-<software.png, id=201, 565.11125pt x 187.70125pt>
+<software.png, id=222, 565.11125pt x 187.70125pt>
 File: software.png Graphic file (type png)
  <use software.png>
-Package pdftex.def Info: software.png used on input line 659.
+Package pdftex.def Info: software.png used on input line 711.
 (pdftex.def)             Requested size: 253.75394pt x 84.28148pt.
 
-<add-on.png, id=202, 828.09375pt x 459.7175pt>
+<add-on.png, id=223, 828.09375pt x 459.7175pt>
 File: add-on.png Graphic file (type png)
  <use add-on.png>
-Package pdftex.def Info: add-on.png used on input line 665.
+Package pdftex.def Info: add-on.png used on input line 717.
 (pdftex.def)             Requested size: 406.00784pt x 225.39682pt.
- [13 <./software.png> <./add-on.png>] <rir.png, id=216, 627.34375pt x 230.8625p
-t>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<rir.png, id=224, 627.34375pt x 230.8625pt>
 File: rir.png Graphic file (type png)
-
-<use rir.png>
-Package pdftex.def Info: rir.png used on input line 675.
+ <use rir.png>
+Package pdftex.def Info: rir.png used on input line 727.
 (pdftex.def)             Requested size: 355.25395pt x 130.73697pt.
- <theatre.png, id=219, 613.29124pt x 423.5825pt>
-File: theatre.png Graphic file (type png)
 
-<use theatre.png>
-Package pdftex.def Info: theatre.png used on input line 684.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13 <./test3_8.png> <./test3_9.png> <./software.png>]
+<theatre.png, id=241, 613.29124pt x 423.5825pt>
+File: theatre.png Graphic file (type png)
+ <use theatre.png>
+Package pdftex.def Info: theatre.png used on input line 736.
 (pdftex.def)             Requested size: 355.25395pt x 245.36131pt.
- [14 <./rir.png> <./theatre.png>]
-Overfull \hbox (13.0pt too wide) in paragraph at lines 724--724
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./add-on.png> <./rir.png>] (./IJNME_Gueguen.bbl [15 <./theatre.png>])
+[16]
+Overfull \hbox (13.0pt too wide) in paragraph at lines 826--826
 [] [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 737--737
-[]|\T1/stix/m/n/10.03749 Concrete block,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 739--739
-[]|\T1/stix/m/n/10.03749 Hollow wooden
- []
-
-(./IJNME_Gueguen.bbl [15]) [16]
 
 Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.)
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 796.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 796.
-(./IJNME_Gueguen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 796.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 796.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 826.
+[17
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 826.
+ (./IJNME_Gueguen.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 826.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 826.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 796.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 826.
  ) 
 Here is how much of TeX's memory you used:
- 18390 strings out of 493014
- 262824 string characters out of 6133351
- 422825 words of memory out of 5000000
- 21439 multiletter control sequences out of 15000+600000
- 102185 words of font info for 120 fonts, out of 8000000 for 9000
+ 18442 strings out of 493014
+ 263794 string characters out of 6133351
+ 423962 words of memory out of 5000000
+ 21481 multiletter control sequences out of 15000+600000
+ 127025 words of font info for 158 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
  46i,17n,77p,2118b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/stix/stix-t1.enc}</usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></
-usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.p
-fb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb><
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/
-local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/loc
-al/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/
-texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
-Output written on IJNME_Gueguen.pdf (16 pages, 1827365 bytes).
+pdfTeX warning (dest): name{table.caption.16} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/stix/stix-t1.enc}</usr/loca
+l/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/lo
+cal/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></us
+r/local/texlive/2016/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathbb.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathcal.pfb></usr
+/local/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/lo
+cal/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb>
+Output written on IJNME_Gueguen.pdf (17 pages, 1837607 bytes).
 PDF statistics:
- 404 PDF objects out of 1000 (max. 8388607)
- 339 compressed objects within 4 object streams
- 109 named destinations out of 1000 (max. 500000)
- 358 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 362 compressed objects within 4 object streams
+ 119 named destinations out of 1000 (max. 500000)
+ 350 words of extra memory for PDF output out of 10000 (max. 10000000)
 

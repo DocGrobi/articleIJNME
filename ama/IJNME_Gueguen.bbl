@@ -1,9 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{sabine}
-Sabine Wallace~C. {\it Architectural Acoustics}.
-\newblock Reprints of the American Architect; 1900.
-
 \bibitem{vitruve}
 Maufras M.~Ch.-L.. {\it Vitruve : De l'architecture}.
 \newblock Panckoucke; 1847.
@@ -18,18 +14,25 @@ Jouhaneau Jacques. {\it Acoustique des salles et sonorisation} Acoustique
   appliqu{\'e}e, vol. 3: .
 \newblock Conservatoire national des arts et m{\'e}tiers; 1997.
 
-\bibitem{cfa}
-Congr{\`e}s Fran{\c c}ais d'AcoustiqueGypsiLab, un nouvel outil d'auralisation
-  par lancer de rayon2018.
+\bibitem{fibonacci}
+Keinert Benjamin, Innmann Matthias, Sanger Michael, Stamminger Marc. Spherical
+  Fibonacci Mapping.  {\it ACM Transactions on Graphics. }2015;34.
+
+\bibitem{hautes_freq}
+Perrey-Debaina E., Yanga M., Nennigb B., Chazota J.-D.. Approximation par ondes
+  planes et son utilisation pour la m{\'e}thode des {\'e}l{\'e}ments finis.
+  In: ; 2016.
+
+\bibitem{odeon}
+Odeon . Odeon webpage .
+
+\bibitem{grasshopper}
+
 
 \bibitem{raytracing}
 Kulowski Andrzej. {\it Algorithmic representation of the ray tracing
   technique}.
 \newblock Applied Acoustics; 1985.
-
-\bibitem{fibonacci}
-Keinert Benjamin, Innmann Matthias, Sanger Michael, Stamminger Marc. Spherical
-  Fibonacci Mapping.  {\it ACM Transactions on Graphics. }2015;34.
 
 \bibitem{moller}
 M{\"o}ller Tomas, Trumbore Ben. Fast, minimum storage ray-triangle
