@@ -225,6 +225,7 @@ E_m(f) \approx  \frac{n}{N}(1 - \alpha(f)),
 generalizable to :
 \begin{equation}
 E_m(f) \approx  \frac{n}{N}\prod_{j=1}^{m}(1 - \alpha_j(f)),
+\label{eq_18}
 \end{equation}
 in the case of $m$ reflexions.
 
@@ -252,17 +253,30 @@ in the case of $m$ reflexions.
 \footnotetext{Harris, 1991}
 \addtocounter{footnote}{1}
 \footnotetext{Dalenback, CATT}
-%
-
 
 
 \subsection{Image-sources}
+Although the extended formulation (eq. \ref{eq_18}) may be sufficient to generate room acoustic data, we also construct images-sources from the path of \textit{rays}. To this end, when \textit{rays} intersect a measurement sphere and following the reverse return principle, they are retro-propagated along the last direction vector. Thus, from this measurement sphere, \textit{rays} focus on punctual images-sources (see fig. \ref{schema_SI}). Each image-source is then located relatively to the listener and carry an energy according to equation (\ref{eq_18}). By noting $(x_s)_{s \in [1, N_s]}$ the relative position of the $N_s$ image sources and $(E_s)_{s \in [1, N_s]}$ the associated energy, couples $(x_s;E_s(f))_{s \in [1, N_s]}$ contain many useful informations for room acoustic analysis and auralization. 
+
+First of all, relative distance of each source image $(d_s)_{s \in [1, N_s]}$ can be computed. This distances should be used to compute air absorption, adding a term in the equation (\ref{eq_18}) :
+\begin{equation}
+E_s(f) \approx  \frac{n}{N}  e^{-\beta(f) d_s}  \prod_{j=1}^{m}(1 - \alpha_j(f)),
+\label{eq_19}
+\end{equation}    
+with $\beta(f)$ a frequency dependent coefficient (ref norme). Furthermore, fixing the sound celerity $c$, room impulse response can be generated, converting each distances $d_s$ in time of arrival. Taking care to convert energy into sound pressure ($p = \sqrt{E}$), finite impulse response can be generated and analyzed using standard metrics (e.g. $T_{30}$, $C_{80}$, $D_{50}$, etc.). For auralization, this room impulse response is convolved with an audio signal in order to listen the acoustical rendering. In particular, this convolution can involve relative position of predominant images sources, in order to realize a spatialized auralization with multichannel or binaural renderers. Finally, to complete acoustic studies with visual analysis, images sources can be projected on the room used for computation to see where are located listened reflections (see last impact on fig. \ref{schema_SI}).
 
 
-~\\~\\
 
 \section{Implementation}
 \subsection{Standard algorithm}
+As standard principles are introduced, we focus now on the numerical implementation of an acoustic render by ray-tracing. Before any room acoustic computation, a numerical room has to be modelized with surfaces and materials.  that the model is meshed by flat triangularization.
+
+ using simplex triangulation,   
+
+
+~\\~\\
+beam not measurable anymore
+
 \subsection{Tree-base acceleration}
 
 \section{Numerical validation}
