@@ -40,7 +40,7 @@
 %\presentaddress{This is sample for present address text this is sample for present address text}
 
 \abstract[Summary]{
-This article presents new numerical simulation tools, both for Matlab and Blender CAD software. Available in open-source under GPL 3.0 license, it uses a ray tracing / image-sources hybrid method to calculate room acoustics for large meshes. Performances are optimized to solve significant size numerical problems (typically more than 100,000 surface elements and about a million of rays). For this purpose, a \textit{Divide and Conquer} approach with a recursive octree structure has been implemented to reduce the quadratic complexity of the ray/element interactions to near-linear. Thus, execution times are less sensitive to mesh density, which allows complex geometry simulations. After ray propagation, a hybrid method leads to image-sources format, which can be visually analyzed to localize sound map. Finally, impulse responses are constructed from the image-sources and FIR filters are proposed natively over 8 octave bands, taking into account material absorption properties and propagation medium. This algorithm is validated by various comparison with theoretical test cases. Furthermore, an exemple on a complex case with the ancient theater of Orange is presented. 
+This article presents new numerical simulation tools, both for Matlab and Blender CAD software. Available in open-source under GPL 3.0 license, it uses a ray tracing / image-sources hybrid method to calculate room acoustics for large meshes. Performances are optimized to solve significant size numerical problems (typically more than 100,000 surface elements and about a million of \textit{rays}). For this purpose, a \textit{Divide and Conquer} approach with a recursive octree structure has been implemented to reduce the quadratic complexity of the ray/element interactions to near-linear. Thus, execution times are less sensitive to mesh density, which allows complex geometry simulations. After ray propagation, a hybrid method leads to image-sources format, which can be visually analyzed to localize sound map. Finally, impulse responses are constructed from the image-sources and FIR filters are proposed natively over 8 octave bands, taking into account material absorption properties and propagation medium. This algorithm is validated by various comparison with theoretical test cases. Furthermore, an exemple on a complex case with the ancient theater of Orange is presented. 
 }
 
 \keywords{room acoustic, ray-tracing, image-sources, octree, Matlab, Blender, archeology, open-source}
@@ -67,7 +67,8 @@ This article presents new numerical simulation tools, both for Matlab and Blende
 %\gls{RT60}\\
 %\gls{orchestra} 
 
-\section{Introduction}\label{sec1}
+\section*{Introduction}
+\label{sec1}
 Today, digital technologies allow research to explore previously inaccessible areas, as virtual reality for archaeology. In this domain, many works focus on the visual restitution, but acoustic studies can reinforce researches to improve the understanding of the ancient world. For example, during the Roman Empire, architects have designed buildings also based on the sound propagation they wanted to achieve\cite{vitruve}. In this study, we focus on the ancient theater of Orange which has a significant size (100m wide), a complex geometry (decoration, gradins, colonnes, arcades ...) and which is open air. In a previous work, a complete mesh was designed using Blender CAD software (citer Blender), according to the most recent archeological knowledge \cite{theseRobin}. To be representative, this mesh has hundreds of thousands of elements (triangular faces), with complex shape (inserer figure maillage pour montrer la complexite). As this numerical model is now used by researchers to perform archeological hypothesis, we developed our own room acoustic software, directly integrated in the archeologists workflow. As the mesh size makes difficult the use of precise methods (FEM, BEM, ...), this software is based on a ray-tracing approximation, in order to compute fastly the full-band room impulse response (50 to 15000Hz). This tool has been developed following two steps. We first build a prototype using Gypsilab, an open source Matlab framework for fast prototyping (citer le papier gypsilab). This preliminary work was usefull to construct and validate ideas and algorithms. It conducts to the creation of a new toolbox, now added to the master branch of Gypsilab, and freely downloadable (citer adresse github). In a second step, all algorithms was retranscrypted in C++ using Qt Creator, leading to an autonomous library. A python interface was added, in order to use this library as a Blender plug'in. At the end, this plug'in allow archeologists to only work on Blender, modifying easily meshes and materials, run acoustic simulation and visualize results. \\
 After reminders on acoustical energy propagation represented by ray-tracing, this paper gives implementation details for fast computation for large meshes. At the end, validation test cases are given and application on our modelization of the ancient theater of Orange is performed. 
 
@@ -126,7 +127,7 @@ For example, with an omnidirectional source, \textit{rays} are given by :
 \item An uniform energy repartition ($E_i = \frac{4\pi}{N},~\forall i\in[1,N]$).
 \end{itemize}
 
-To complete this approach, we have to define a discrete measure of energy propagation. To this end, we consider a $r$-radius measurement sphere $S(x_m, r)$, centered on $x_m$.  We can then add the contributions of the n rays that intersect this sphere to calculate the acoustic energy $E_m$ at point $x_m$ :
+To complete this approach, we have to define a discrete measure of energy propagation. To this end, we consider a $r$-radius measurement sphere $S(x_m, r)$, centered on $x_m$.  We can then add the contributions of a $n$-\textit{rays}  beam that intersect this sphere to calculate the acoustic energy $E_m$ at point $x_m$ :
 
 \begin{equation}
 E_m \approx  \frac{1}{4\pi}  \sum_{i=1}^n E_i.
@@ -135,7 +136,7 @@ In the particular case of an omnidirectionnal source, we have :
 \begin{equation}
 E_m \approx  \frac{n}{N},
 \end{equation}
-which means that the measured energy $E_m$ is statistically represented by the ratio of the countered \textit{rays} to the total number of \textit{rays}.
+which means that the measured energy $E_m$ is statistically represented by the ratio between the number of \textit{rays} forming a beam to the total number of \textit{rays}.
 
 \begin{figure}[t]
 \centering
@@ -165,11 +166,12 @@ At the end,
 E_m \approx  \frac{n}{N} \approx  \frac{\pi r^2}{4\pi d^2}.
 \label{eq_12}
 \end{equation}
-To ensure the existence of this last approximation, at least one \textit{ray} have to be measured ($n\geq1$). Thus, fixing a measurement radius r, approximation (\ref{eq_12}) gives a maximum validity range of the discrete model :  
+To ensure the existence of this last approximation, beam has to be measurable and count at least one \textit{ray} ($n\geq1$). Thus, fixing a measurement radius r, approximation (\ref{eq_12}) gives a maximum validity range of the discrete model :  
 \begin{equation}
+\label{eq_13}
 	d \leq \frac{r}{2}\sqrt{\frac{N}{n}}.
 \end{equation}
-In addition, figure \ref{energie} shows how this modelization fills with distance between source and measures. The accuracy of the measurement depends strongly on the number of  \textit{rays} counted, then, the more $n$ increases, the more accurate will be the measurement. Nevertheless, in practice, values for a short distance between the source and the measurement sphere represent direct sound and first reflections, whereas long distances describe the diffuse field. Under this assumption, we can consider this model acceptable for all $n\geq1$. 
+In addition, figure \ref{energie} shows how this modelization fills with distance between source and measures. The accuracy of the measurement depends strongly on the number of  \textit{rays} counted, then, the more $n$ increases, the more accurate will be the measurement. Nevertheless, in practice, values for a short distance between the source and the measurement sphere represent direct sound and first reflections, whereas long distances describe the diffuse field. Under this assumption, we can consider this model acceptable for all beam such as $n\geq1$. 
 
 \begin{figure}[t]
 \centering
@@ -179,23 +181,11 @@ In addition, figure \ref{energie} shows how this modelization fills with distanc
 \end{figure}
 
 %
-\begin{figure}[b]
+\begin{figure}[t]
 	\centering
-	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[width=\textwidth]{rays}
-		\caption{Representation of \textit{rays} mesure by a receiver. }
-		\label{rays}
-	\end{subfigure}	
-	\qquad
-		\begin{subfigure}{0.4\textwidth}
-%		\includegraphics[width=\textwidth]{flux}
-%		\caption{Representation of the distribution of the energy flow in the propagation of a spherical wave.}
-%		\label{flux}
-	\includegraphics[width=\linewidth]{schema_SI}
-	\caption{Sketch of the creation of an image-source by successive reflections of a ray on the walls of a room}
+	\includegraphics[width=0.7\linewidth]{schema_SI}
+	\caption{Sketch of the creation of an image-source by successive reflections of a ray on the walls of a room.}
 	\label{schema_SI}
-	\end{subfigure}
-	\caption{Acoustic emission from a point source.}
 \end{figure}
 %Example for bibliography citations cite\cite{Taylor1937}, cites\cite{Knupp1999,Kamm2000}
 
@@ -210,6 +200,7 @@ with $k$ the wave number and $a$ the characteristical diameter of the room \cite
 
 Following the discrete model, when an incident \textit{ray} collides a flat surface, a reflected \textit{ray} is generated from the collision point. Noting $\overrightarrow{u_i}$ the direction vector of the incident  \textit{ray}, the reflected direction vector $\overrightarrow{u_r}$ is defined by :
 \begin{equation}
+\label{eq_15}
 \overrightarrow{u_r} = (\overrightarrow{u_i} \cdot \overrightarrow{T})\overrightarrow{T} - (\overrightarrow{u_i} \cdot \overrightarrow{n})\overrightarrow{n},
 \end{equation}
 with $\overrightarrow{T}$ the tangent basis and $\overrightarrow{n}$ the normal vector of the surface. Moreover, the energy of the reflected \textit{ray} is obtained by :
@@ -256,6 +247,7 @@ in the case of $m$ reflexions.
 
 
 \subsection{Image-sources}
+\label{is}
 Although the extended formulation (eq. \ref{eq_18}) may be sufficient to generate room acoustic data, we also construct images-sources from the path of \textit{rays}. To this end, when \textit{rays} intersect a measurement sphere and following the reverse return principle, they are retro-propagated along the last direction vector. Thus, from this measurement sphere, \textit{rays} focus on punctual images-sources (see fig. \ref{schema_SI}). Each image-source is then located relatively to the listener and carry an energy according to equation (\ref{eq_18}). By noting $(x_s)_{s \in [1, N_s]}$ the relative position of the $N_s$ image sources and $(E_s)_{s \in [1, N_s]}$ the associated energy, couples $(x_s;E_s(f))_{s \in [1, N_s]}$ contain many useful informations for room acoustic analysis and auralization. 
 
 First of all, relative distance of each source image $(d_s)_{s \in [1, N_s]}$ can be computed. This distances should be used to compute air absorption, adding a term in the equation (\ref{eq_18}) :
@@ -269,302 +261,60 @@ with $\beta(f)$ a frequency dependent coefficient (ref norme). Furthermore, fixi
 
 \section{Implementation}
 \subsection{Standard algorithm}
-As standard principles are introduced, we focus now on the numerical implementation of an acoustic render by ray-tracing. Before any room acoustic computation, a numerical room has to be modelized with surfaces and materials.  that the model is meshed by flat triangularization.
+As standard principles are introduced, we focus now on the numerical implementation of an acoustic renderer by ray-tracing. Before any acoustic computation, a numerical room has to be modelized with surfaces and materials. In our case, we use simplex representation with meshes composed of flat triangles. From it, geometrical intersection are computed between \textit{rays} (represented by oriented line $(L)$) and mesh elements (represented by piece of plan $(P)$), using parametric equations :
+\begin{eqnarray}
+(L) &:& a + \delta \overrightarrow{u}, \quad \delta \in \mathbb{R},  \\
+(P) &:& b + \lambda \overrightarrow{v} + \mu \overrightarrow{w}, \quad \lambda, \mu \in \mathbb{R}.
+\label{eq_20}
+\end{eqnarray}    
+The following conditions determine pairs (\textit{rays};elements)  with unicity : 
+\begin{itemize}
+\item $0 < \lambda \leq 1$ and $0 < \mu \leq 1$ to ensure that \textit{ray} is inside the triangle,
+\item $\delta > 0$ to respect the propagation direction,
+\item $\delta$ minimum not to go throught the mesh.
+\end{itemize}
+Practically, to find these pairs, we can solve directly underlying linear system with or use the Moller-Trumber algorithm \cite{moller}. For $N$ \textit{rays} and $M$ triangular elements, this process has a numerical cost quadratic proportional to $NM$, which is critical if both $N$ and $M$ are large (see section \ref{octree}). Once all pairs found, energy measurement has to be done in order to build images-sources (see section \ref{is}). To this end, \textit{rays} are intersected to the measurement sphere $S(x_m, r)$ using its cartesian representation :
+\begin{equation}
+(x-x_m)^2 - r^2 = 0, \quad \forall x \in  \mathbb{R^3},
+\end{equation} 
+which leads to a linear numerical cost proportional to $N$.
 
- using simplex triangulation,   
+%Finally, while distance travelled of a \textit{ray} verify condition (\ref{eq_13}), it is reflected according to equation (\ref{eq_15}) and propagated. 
 
+Finally, a \textit{ray} is reflected according to equation (\ref{eq_15}) and propagated while its distance travelled verify condition (\ref{eq_13}). This iterative strategy ensure the energy propagation by the elimination of all \textit{rays} that would be in non-measurable beams. In the particular case of an open-air room, \textit{rays} which don't encountered surface of the mesh are also eliminated. Once all \textit{rays} are eliminated, images-sources can be built and post-treated (room impulse response, auralization, etc.).
 
-~\\~\\
-beam not measurable anymore
 
 \subsection{Tree-base acceleration}
-
-\section{Numerical validation}
-\subsection{Shoes box (modele complet)}
-\subsection{Energy conservation (sphere reflechissante)}
-
-\section{Application to Orange theater}
-
-\section{Conclusion}
-
-
-
-
-
-\section{Hybride Ray-Tracing / Image-Source methode}\label{sec3}
-\subsection{Ray-tracing \cite{raytracing}}
-
-The method developed aims to propagate rays from a point source. A ray is define with the following equation (see fig .\ref{rays}) :
-\begin{equation}
-\overrightarrow{R}(d) = O + \overrightarrow{D}.d,
-\end{equation}
-where :
-\begin{itemize}
-\item $O$ is the origine of the ray,
-\item $\overrightarrow{D}$ is the unitary orientation vecteur.
-\end{itemize}
-
-
-Once convert into cartesian coordinates and normalized we can test the intersection with the triangles of the mesh. The mesh elements have to be triangle with normales directed towards the inside of the room. By using the Moller-Trumbore fast algorithm \cite{moller}, for  each ray we can find the points T intersecting triangles, such as :
-
-\begin{equation} \label{eq_2moller}
-T(u,v) = (1-u-v)V_0 + uV_1 + vV_2 = O + D.d,% \ \ \ \footnotemark
-\end{equation}
-%\citefnt[eq. 2]{moller}
-%
-with $(u,v)$ the barycentric coordinates such as :
-\begin{equation}
-   \left \{
-   \begin{array}{r c l}
-u & \geqslant & -\epsilon,  \\
-v & \geqslant & -\epsilon,  \\
-(u+v) & \leqslant & 1+\epsilon,
-   \end{array}
-   \right .
-\end{equation}
-where $\epsilon = 10^{-5}$ to avoid rounding errors due to machine precision (float). This can be written : 
-\begin{equation}
-	\begin{bmatrix}
- 	 d \\
-	 u \\
-	 v
-	\end{bmatrix}
-	=
-	\frac{1}{
- 	  (D \times E_2).E_1
-	}
-	\begin{bmatrix}
- 		  (T \times E_1).E_2
- \\ 
- 		  (D \times E_2).T
- \\
- 		  (T \times E_1).D
-	\end{bmatrix}	.
-\end{equation}
-with : 
-\begin{equation}
-   \left \{
-   \begin{array}{r c l}
-E_1 &=&  V_1-V_0,  \\
-E_2 &=&  V_2-V_0,  \\
-T &=& O - V_0.
-   \end{array}
-   \right .
-\end{equation}
-%
-The good intersection is the one whose the distance $d$ between the origin of the ray and the intersection point T is the shortest. The rays can then be reflected on the face as on a mirror to find the new orientation vector :%(see fig. \ref{rayRefl}) :
-\begin{equation}
-\overrightarrow{r} - \overrightarrow{i} = 2 \times (-\overrightarrow{i}.\overrightarrow{n})\overrightarrow{n}.
-\end{equation}
-with : 
-\begin{itemize}
-\item $\overrightarrow{r}$ : the reflected ray,
-\item $\overrightarrow{i}$ : the incident ray,
-\item $\overrightarrow{n}$ : the normal of the face.
-\end{itemize}
-
-%\begin{figure}
-%\centering
-%	\includegraphics[width=0.4\linewidth]{rayRefl}
-%	\caption{Calculation of a reflected ray from an incident ray and a normal ray}
-%	\label{rayRefl}
-%\end{figure}
-
-Once we know the elements met be each ray we can update their energies. Each triangle carries an an absorption coefficient $\alpha_i$ for every octave band from 62,5Hz to 8kHz (so 8 bands) (see exemple on table \ref{exempleOdeon}). Moreover, we take into account the atmospheric attenuation. The energy of a ray is :
-\begin{equation}
-E_{i} =  \frac{1}{N} \times \prod_{j=0}^{k}{(1-\alpha_{i,j})} \times e^{-m_i . d_{tot}},
-\end{equation}
-with : 
-\begin{itemize}
-\item $E_{i}$ : the energy carried by the ray on the i-th frequency band,
-\item $E_{0}$ : the total energy,
-\item $k$ : the total number of faces encountered by the rays during its propagation,
-\item $j$ : the index of the face encountered par the ray,
-\item $m_i$ : the air absorption coefficient in the i-th frequency band (according to the norm ISO-9613),
-\item $ d_{tot}$ : the total length of the ray from the source to the center of the receiver.
-\end{itemize}
-
-
-\subsection{Image-sources}
-
-At each ray bounce, we check if the rays intersect the receiver-sphere. First we check if the origine point $O$ of the ray is include in the R-center and r-radius receiver :
-\begin{equation}
-||\overrightarrow{OR}|| \leqslant r,
-\end{equation}
-%
-If not, we check the direction of the ray :
-\begin{equation}
-\cos{\alpha} \geqslant 0,
-\end{equation}
-with $\alpha$ the angle between the ray $\overrightarrow{D}$ and $\overrightarrow{OR}$. Then we check if the ray is long enough to reach the receiver :
-
-\begin{equation}
-||\overrightarrow{OR}|| \leqslant d,
-\end{equation}
-%
-To finish, we check if the ray intersect the receiver-sphere :
-
-\begin{align}
-\sin{\alpha} \times ||\overrightarrow{OR}||  \leqslant r 
-\quad \Rightarrow \quad
-\alpha  \leqslant \arcsin{\frac{r}{||\overrightarrow{OR}||}}
-\end{align}
-
-If the ray does indeed intersect the receiver, an image-source is generated (see fig. \ref{schema_SI}). This is the image of the sound source relative to all the walls encountered by the ray. The image-source $I_S$ is located in space by back-propagation of the ray from its last origin point O :
-
-\begin{equation}
-\overrightarrow{I_S O} = \overrightarrow{D}.d_{tot} \qquad \Rightarrow \qquad I_S = O - \overrightarrow{D}.d_{tot},
-\end{equation}
-where 
-\begin{itemize}
-\item $\overrightarrow{D}$ is the last unitary orientation vector of the ray,
-\item $d_{tot}$ is the total distance travelled by the ray from the original source S to the point O.
-\end{itemize}
-
-%\begin{figure}
-%\centering
-%	\includegraphics[width=0.3\linewidth]{schema_SI}
-%	\caption{Sketch of the creation of an image-source by successive reflections of a ray on the walls of a room}
-%	\label{schema_SI}
-%\end{figure}
-
-The positions of the image-sources allow to know the time it takes for the signal to arrive to the receiver :
-
-\begin{equation}
-t_{I_S} = \frac{||\overrightarrow{I_S O}|| + ||\overrightarrow{OR}||}{v}.
-\end{equation}
-with $v$ the sound speed in the medium (air : $v=340m/s$). The room impulse response can be generated for each octave band at a certain sampling frequency $f_s$ such as :
-
-\begin{align}
-E_{i} =  \sum{E_j},
-\end{align}
-with : 
-\begin{itemize}
-\item  the integer part of the product $(t_j \times f_s) = i$,
-\item$E_{i}$ : the energy of the $i^{th}$ sample,
-\item$E_j$ and $t_j$ : respectively the energy and travel time of the $j^{th}$ image-source.
-\end{itemize}
-
-
-
-%\newpage
-
-\section{Algorithm's optimisation}\label{sec4}
-\subsection{Presentation}
-
-The algorithm has iteration loops with different complexities. There are three main steps which depend on the number of mesh elements $M$ and the number of rays emitted $N$ :\begin{itemize}
-\item the mesh loading,
-\item the intersection between rays and faces,
-\item the image-sources creation.
-\end{itemize}
-
-The mesh loading depends only on the number of elements and is done only once at the beginning of the algorithm. The image-sources creation depends only on the number of rays and is done until the stop threshold is reached. The most critical stage is the intersection rays/faces because each ray has to be tested with each face and the loop is repeated until the stop threshold is reached. The complexity of this operation is quadratic in $O(N\times M)$. For a significant number of mesh elements ($>100~000$ for the Orange theater) and a lot of rays (necessary to make the measurement accurate) the calculation time is very long, which makes the tests tedious. To alleviate this problem we have developed a fast algorithm based on a "Divide and Conquer" approach based on Octree spatial cutting \cite{greengard}.
+\label{octree}
+The most critical stage of the standard algorithm is the research of intersections between  \textit{rays} and triangular elements, leading to a quadratic complexity $O(N\times M)$. Indeed, each \textit{ray} has to be tested with each face, for each iteration of the ray-tracing algorithm. For a large number of mesh elements (e.g. $M>10^5$ for the Orange theater) and a lot of \textit{rays} to ensure reasonable accuracy (typically $N>10^6$), the calculation time may be prohibitive. To alleviate this problem, a "Divide and Conquer" approach using binary trees is performed (ref cooley tuckey fft, hierarchical matrix hackbush). The general principle consists in creating a mother-box, containing all the mesh elements. This mother-box is then subdivided along the main dimension to create two daughter-boxes, each with the same number of elements (median spatial subdivision). This process is then applied recursively, until a stopping criterion is reached. In our case, we stop when leaves contain only one element (see fig. \ref{octreeSuzanne}). This hierarchical tree is completely mesh dependent, computed in $O(M\log M)$ operations, and gives a structure to fastly navigate inside the mesh. Thus, at each ray-tracing iteration, rather than face off all \textit{rays} against all elements, this structure is used to accelerate this process. 
 
 \begin{figure}[h]
 \centering
-\begin{subfigure}{0.52\textwidth}
-	\includegraphics[width=\linewidth]{octree}
-	\caption{Illustration of the Octree principle.}
-	\label{octree}
-	\end{subfigure}
-	\begin{subfigure}{0.35\textwidth}
-		\includegraphics[width=\linewidth]{octreeSuzanne}
-		\caption{Octree around an arbitrary mesh}
+		\includegraphics[width=0.5\linewidth]{octreeSuzanne}
+		\caption{Binary tree leaves of an arbitrary mesh from \textit{Blender}.}
 		\label{octreeSuzanne}
-	\end{subfigure}
-	\caption{Illustration of an Octree.}
 	%\label{octree}
 \end{figure}
 
-The general principle consists in creating a cubic box called a "mother-box" containing all the mesh elements, i.e. all the triangular faces. This mother-box is then subdivided to create eight "daughter-boxes" of identical size which themselves will be subdivided into eight daughter-boxes, etc. (see fig. \ref{octree}). Recursively, each mother-box element will be stored in the daughter-box that contains it. In this way, you descend into the tree structure until a stop condition is reached. Typically, the octree stops when no more daughter-boxes contain more than $n$ items. The boxes are therefore refined in the same way as the mesh (see fig. \ref{octreeSuzanne}) since empty boxes do not generate daughter-boxes.
-
-If we name \textit{item} a ray or a triangular face of the mesh and \textit{operation} the storage in a box, we can calculate the number of \textit{operations} to have only one \textit{item} per box. We place ourselves in the case where the \textit{items} are distributed in a uniform way in space. At level-0 all the $N$ \textit{items} are in the root-box. At level-1 we test each daughter-box with each \textit{item} and we have $8N$ \textit{operations}. At the next level each daughter-box become a mother-box and we can apply the same calculation to obtain :
-\begin{center}
-$8\times 8\times \frac{N}{8}$ = $8N$ \textit{operations}.
-\end{center}
-because each mother-box only count $\frac{N}{8}$ \textit{items}. Then, at level-p we will need  :
-%
-\begin{equation} \label{operation}
-8^p\frac{N}{8^{p-1}} = 8N \ \textit{operations}.
-\end{equation}
-%
-and the total number of \textit{operations} is $p\times 8N$.
-
-Moreover we said that their is only one \textit{item} per box, so there are as many boxes as there are \textit{items}. We can write :
-%
-\begin{align}  \label{nbEtage}
-8^p &= N \nonumber, \\
-p.\ln{8} &= \ln{N} \nonumber, \\
-p &= \frac{1}{\ln{8}}\ln{N}.
-\end{align}
-%
-The total number of operation is then :
+More precisely, we first initialize the ray-sorting considering a bounding box, containing all \textit{rays} and all elements. After the first median subdivision, we have to distribute \textit{rays} inside the two new boxes. This stage is done in $O(N)$ operations using W.Amy \textit{et al.} algorithm \cite{AABB}. Each box has $N_1$ and $N_2$ \textit{rays}, such as $N = N_1 + N_2$. Assuming this subdivision performed recursively to the $p$-level, each box contains $(N_i)$ \textit{rays} such as: 
 \begin{equation}
-C = p.8N = \frac{8N}{\ln8}\ln{N}.
-\end{equation}
-%
-Within the algorithm, instead of testing all rays with all faces, we test N times one ray with one face. The number of linear operations is :
+N = \sum_{i=1}^{2^p} N_i.
+\end{equation}  
+Then, ray sorting at the $(p+1)$-level also conducts to $O(N)$ operations. To reach the leaves-level, we have to perform $O(N \log M)$ operations, where $\log M$ is close to the depth of the binary tree. At the end, as we have only one element per box, the ray-element intersection only needs $O(N)$ operations. Finally, instead of $O(N M)$ operations, we compute ray-tracing algorithm in~: 
 \begin{equation}
-C_{tot} =  \frac{8N}{\ln8}\ln{N} + N.
-\end{equation}
-which is faster than $N^2$ for $N>>1$.
+O(M\log M) + O(N \log M) + O(N),
+\end{equation}  
+witch is quasi-linear and computationaly faster (see table \ref{tabComplexite} and fig. \ref{times}).  More over, if binary tree is precomputed, each iteration of ray-tracing stand for :
+\begin{equation}
+O(N \log M) + O(N).
+\end{equation}.  
+ 
 
-In practice we will be able to stop the octree before arriving at only one element per box. Typically, if we stop the octree at $n$ elements per box the total number of operation become :
-\begin{align}
-C_{tot} &= \frac{8N}{\ln8}\ln{N} - \frac{\ln n }{\ln8}8N + n^2, \\
- &= aN\ln{N} +bN + c. \nonumber
-\end{align}
-with (a, b, c) some constants. So $n$ needs to be very small in front of $N$ to preserve the performance.
-
-Note that when the distribution of items is not uniform the demonstration is more complicated but the calculation times remain substantially similar.
-
-\subsection{Implementation}
-
-
-To store the triangular faces in the box we test if the center of the face belongs to the box. Once each center has been store in the leaves of the octree (i.e the last boxes of the branches) we resize the leaves to embody the whole faces they contains. To test if a ray cross a box we use a pass/fail algorithm conceived for Axis-Aligned-Bounding-Box \cite{AABB}. This kind of box allow to simplify a lot the computation. 
-%can be defined by six plans $\left[ X_{min}, X_{max}, Y_{min}, Y_{max}, Z_{min}, Z_{max} \right] $. If the ray equation is :
-%\begin{equation}
-%f(t) = D \times t + O
-%\end{equation}
-%with :
-%\begin{itemize}
-%\item $D$ : the orientation vector of the whose coordinates are $(D_x ; D_y ; D_z)$,
-%\item $O$ : the origin point of the ray whose coordinates are $(O_x ; O_y ; O_z)$,
-%\end{itemize}
-%we can express the intersection point by this following system :
-%\begin{align*}
-%X_{min} &= x_0 \times D_x + O_x 	& \Rightarrow 	& &	 x_0 = \frac{X_{min} - O_x}{D_x}, \\
-%X_{max} &= x_1 \times D_x + O_x 	& \Rightarrow 	& &	x_1 = \frac{X_{max} - O_x}{D_x}, \\
-%Y_{min} &= y_0 \times D_y + O_y 	& \Rightarrow	& &	y_0 = \frac{Y_{min} - O_y}{D_y}, \\
-%Y_{max} &= y_1 \times D_y + O_y 	& \Rightarrow	& &	y_1 = \frac{Y_{max} - O_y}{D_y}, \\
-%Z_{min} &= z_0 \times D_z + O_z	& \Rightarrow 	& &	z_0 = \frac{Z_{min} - O_z}{D_z}, \\
-%Z_{max} &= z_1 \times D_z + O_z 	& \Rightarrow 	& &	z_1 = \frac{Z_{max} - O_z}{D_z}. 
-%\end{align*}
-%%
-%\begin{figure}
-%\centering
-%	\begin{subfigure}{0.4\textwidth}
-%		\includegraphics[width=\linewidth]{AABB}
-%		\caption{Ray/box intersection in 2D}
-%		\label{AABB}
-%	\end{subfigure}
-%	\qquad
-%	\begin{subfigure}{0.4\textwidth}
-%		\includegraphics[width=\linewidth]{AABB2}
-%		\caption{No intersection}
-%		\label{AABB2}
-%	\end{subfigure}
-%	\caption{Illustrations of the ray/box intersection in 2D}
-%\end{figure}
-%%
-%We understand from the figures \ref{AABB} and \ref{AABB2} that we will be able to determine if a ray intersects a box by comparing the coordinates of the points of intersection with the planes. Notably, if $x_0 > y_1$ or $y_0 > x_1$ the ray will not intersect the box (see fig. \ref{AABB2}). Otherwise, the same principle will apply on $z$. There will then be no intersection if $max(x_0 ; y_0) > z_1$ or $ z_0 > min(x_1 ; y_1)$. Note that if the ray is directed in the opposite direction, the $\alpha_0$ and $\alpha_1$ have to be inverted ($\alpha$ corresponding to the coordinates $x,y,z$).
-
-We can can then measure the computation time of one iteration (i.e all rays are intersecting a triangle) by increasing the number of rays and the number of faces in the mesh. As we can see in the figure \ref{times} the complexity of the algorithm is almost linear by using the octree method. This allows to treat large meshes with millions of rays by maintaining a low computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 rays and faces the computation time is divided by 1000 by using the octree. 
 
 \begin{figure}[h]
 \centering
 	\includegraphics[width=0.8\linewidth]{times}
-	\caption{Computation time for one iteration and $N = M$ (log scale)}
+	\caption{Computation time for one iteration of ray-tracing in function of the number of face and rays, such as $N = M$ (log~scale). An omnidirectional source is located at the center of a mesh of a unitary tetrahedral.}
 	\label{times}
 \end{figure}
 %
@@ -572,7 +322,7 @@ We can can then measure the computation time of one iteration (i.e all rays are 
 \centering
 	\begin{tabular}{| c | c | c |}
 		\hline
-		Number of faces and rays & Time \textbf{without} Octree (s) & Time \textbf{with} Octree (s)\\
+		Number of faces and \textit{rays} & Time \textbf{without} Octree (s) & Time \textbf{with} Octree (s)\\
 		  \hline
 		  \hline
 		   $2^{10}$ (=1~024) & 0,26 &	0,2 \\
@@ -600,9 +350,27 @@ We can can then measure the computation time of one iteration (i.e all rays are 
 		%$2^{21}$ (=2~097~152) & X & 45,83 \\
 		%\hline
 	 \end{tabular}
-	\caption{Computation time for one iteration and $N = M$}
+	\caption{Computation time of fig. \ref{times}.}
 	\label{tabComplexite}
 \end{table}
+
+
+
+\section{Numerical validation}
+\subsection{Shoes box (modele complet)}
+\subsection{Energy conservation (sphere reflechissante)}
+
+\section{Application to Orange theater}
+
+\section{Conclusion}
+
+\subsection{Implementation}
+
+
+To store the triangular faces in the box we test if the center of the face belongs to the box. Once each center has been store in the leaves of the octree (i.e the last boxes of the branches) we resize the leaves to embody the whole faces they contains. To test if a ray cross a box we use a pass/fail algorithm conceived for Axis-Aligned-Bounding-Box \cite{AABB}. This kind of box allow to simplify a lot the computation. 
+
+
+We can can then measure the computation time of one iteration (i.e all \textit{rays} are intersecting a triangle) by increasing the number of \textit{rays} and the number of faces in the mesh. As we can see in the figure \ref{times} the complexity of the algorithm is almost linear by using the octree method. This allows to treat large meshes with millions of \textit{rays} by maintaining a low computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 \textit{rays} and faces the computation time is divided by 1000 by using the octree. 
 
 
 \newpage
@@ -612,31 +380,31 @@ We can can then measure the computation time of one iteration (i.e all rays are 
 In order to validate our approach and our method we compare the experimental results with theoretical results. 
 
 \subsection{Quadratic decrease}
-First, to validate the quadratic decrease of the energy (see section \ref{sec2}) we observe the room impulse response of a cubic room whose all walls are 100\% absorbant except the walls on the x-axis (this may remind a Fabry-P\'erot interferometer). This particular room stands for a free space simulation where the distance between the source and the receiver is regularly increased. Furthermore, since the rays spread on the x-axis and -x-axis and return in phase, the number of rays received is twice the number of rays in free space.
+First, to validate the quadratic decrease of the energy (see section \ref{sec2}) we observe the room impulse response of a cubic room whose all walls are 100\% absorbant except the walls on the x-axis (this may remind a Fabry-P\'erot interferometer). This particular room stands for a free space simulation where the distance between the source and the receiver is regularly increased. Furthermore, since the \textit{rays} spread on the x-axis and -x-axis and return in phase, the number of \textit{rays} received is twice the number of \textit{rays} in free space.
 %
 \begin{figure}[h]
 \centering
 	\includegraphics[width=0.6\linewidth]{test1}
-	\caption{RIR in a Fabry-P\'erot-like configuration for 3 millions of rays (blue) sampled at 100Hz and $f(x)=\frac{2}{x^2}$ (red)}
+	\caption{RIR in a Fabry-P\'erot-like configuration for 3 millions of \textit{rays} (blue) sampled at 100Hz and $f(x)=\frac{2}{x^2}$ (red)}
 	\label{test1}
 \end{figure}
 %
-The room impulse response (see fig. \ref{test1}) follows the function $f(x)=\frac{2}{x^2}$ which is the expected behavior. In free space, the number of rays collected stands for the surfaces ratio and the quadratic decrease :
+The room impulse response (see fig. \ref{test1}) follows the function $f(x)=\frac{2}{x^2}$ which is the expected behavior. In free space, the number of \textit{rays} collected stands for the surfaces ratio and the quadratic decrease :
 \begin{equation}
 \frac{n}{N} = \frac{\int_s dS}{\int_{\sigma} dS} = \frac{\pi r^2}{4\pi d^2},
 \end{equation}
 with :
 \begin{itemize}
-\item$n$ : the number of rays collected,
-\item$N$ : the total number of rays,
-\item$s$ : the constant surface of the receiver (disk) collecting rays,
+\item$n$ : the number of \textit{rays} collected,
+\item$N$ : the total number of \textit{rays},
+\item$s$ : the constant surface of the receiver (disk) collecting \textit{rays},
 \item$\sigma$ : the emission sphere surface,
 \item$r$ : the constant radius of the receiver,
 \item$d$ : the emission sphere radius (i.e the distance between the source and the receiver).
 \end{itemize}
 
 \subsection {Energy conservation}
-The second test allows to simulate the conservation of the energy. We use a 100\% reflecting sphere (2m radius) pretty well refined (300~000 faces) and position the source and the receiver in the center. At each iteration all the rays refocus in the center of the sphere and then are captured by the receiver.
+The second test allows to simulate the conservation of the energy. We use a 100\% reflecting sphere (2m radius) pretty well refined (300~000 faces) and position the source and the receiver in the center. At each iteration all the \textit{rays} refocus in the center of the sphere and then are captured by the receiver.
 \begin{figure}[h]
 \centering
 	\begin{subfigure}{0.45\textwidth}
@@ -698,7 +466,7 @@ We can also add some absorption coefficient on the walls and take into account t
 		\caption{Infinity norm error}
 		\label{test3_9}
 	\end{subfigure}
-	\caption{Error for each image-sources with walls and air absorption - 1~000~000 rays}
+	\caption{Error for each image-sources with walls and air absorption - 1~000~000 \textit{rays}}
 \end{figure}
 
 
@@ -712,7 +480,7 @@ The room acoustic tool is available in two forms.
 First a Matlab library \cite{gypsilab} ... \\
 
 \subsection{Blender add-on}
-In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting rays or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
+In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
 
 
 %\begin{figure}
@@ -743,7 +511,7 @@ In a second hand the tool is also available as a Blender add-on. The user can wo
 	\label{rir}
 \end{figure}
 
-The acoustic simulation can be done on the ancient theater of Orange. Because it is an open room the software automatically add a 100\% absorbant box around the building to be sure to always count all rays. We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials. Indeed, archeologists want to explore some architecture hypothesis from missing part of the theatre. An acoustical analysis can allow to understand some behaviors like : the influence of the position of the spectators in the bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. With a 600~000 faces theatre (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million rays (see fig. \ref{rir}). Each iteration is done in 25s so it really depends on the materials chosen. We can note that the more details of the mesh are refined the more we can simulate diffraction effect. Indeed, in high frequency, small detail elements will be able to reflect the rays in different directions which can resemble diffraction effects. In the theater it will be really interesting to study where the reflection come from. Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{theatre}).
+The acoustic simulation can be done on the ancient theater of Orange. Because it is an open room the software automatically add a 100\% absorbant box around the building to be sure to always count all \textit{rays}. We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials. Indeed, archeologists want to explore some architecture hypothesis from missing part of the theatre. An acoustical analysis can allow to understand some behaviors like : the influence of the position of the spectators in the bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. With a 600~000 faces theatre (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million \textit{rays} (see fig. \ref{rir}). Each iteration is done in 25s so it really depends on the materials chosen. We can note that the more details of the mesh are refined the more we can simulate diffraction effect. Indeed, in high frequency, small detail elements will be able to reflect the \textit{rays} in different directions which can resemble diffraction effects. In the theater it will be really interesting to study where the reflection come from. Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{theatre}).
 
 \begin{figure}[h]
 \centering
@@ -755,7 +523,7 @@ The acoustic simulation can be done on the ancient theater of Orange. Because it
 
 \section{Conclusions}
 
-We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes linear to the product number of mesh elements/number of rays. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections. Furthermore, a sound signal could be heard in three dimensions thanks to binaural filters and steering control can be done with "Head Tracker" mounted on a headset.
+We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes linear to the product number of mesh elements/number of \textit{rays}. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections. Furthermore, a sound signal could be heard in three dimensions thanks to binaural filters and steering control can be done with "Head Tracker" mounted on a headset.
 
 However, there are many opportunities for improvement that remain under consideration for this type of software tool. First, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Secondly, from the point of view of the analysis results, there are many possible improvements at the graphic level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray tracing? Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases, and in particular, of the use made in Orange at the theatre origin. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
 
