@@ -9,6 +9,8 @@
 \raggedbottom
 \usepackage{subcaption}
 \captionsetup[subfigure]{font=normalsize}
+\usepackage{matlab-prettifier}
+\usepackage{amsmath, amsfonts, amssymb}
 
 \usepackage{glossaries}
 \makeglossaries
@@ -62,10 +64,10 @@ This article presents new numerical simulation tools, both for Matlab and Blende
 %\newacronym{RT60}{$RT_{60}$}{\emph{Reveberation Time at $-60dB$}}
 %\newacronym{orchestra}{\textit{orchestra}}{\emph{Semicircular (Roman) or circular (Greek) space between the stage and the first tier}}
 %
-%\gls{CAD}\\
-%\gls{rir}\\
-%\gls{RT60}\\
-%\gls{orchestra} 
+%CAD}\\
+%rir}\\
+%RT60}\\
+%orchestra} 
 
 \section*{Introduction}
 \label{sec1}
@@ -88,6 +90,7 @@ with $E_0$ the initial energy and $\overrightarrow{I}(t)$ the acoustical intensi
 %
 \begin{equation} 
 \int_{S(t)} \overrightarrow{I}(t).\overrightarrow{ds} = 1 \qquad \forall t > 0.
+\label{eq_2}
 \end{equation}
 %
 After integration on the spherical surface $S(t)$, the infinitesimal acoustic intensity is written :
@@ -135,6 +138,7 @@ E_m \approx  \frac{1}{4\pi}  \sum_{i=1}^n E_i.
 In the particular case of an omnidirectionnal source, we have : 
 \begin{equation}
 E_m \approx  \frac{n}{N},
+\label{eq_7}
 \end{equation}
 which means that the measured energy $E_m$ is statistically represented by the ratio between the number of \textit{rays} forming a beam to the total number of \textit{rays}.
 
@@ -175,7 +179,7 @@ In addition, figure \ref{energie} shows how this modelization fills with distanc
 
 \begin{figure}[t]
 \centering
-	\includegraphics[width=0.8\linewidth]{energie.png}
+	\includegraphics[width=0.65\linewidth]{energie.png}
 	\caption{Measured energy (dB) in function of distance between $x_s$ and $x_m$ in meter for $r = 0.36$m and $N = 10^6$. Blue crosses stand for the statistical measure $f(r) = \frac{n(r)}{N}$ and red ligne the analytic function $f(r) = \frac{\pi r^2}{4\pi d^2}$.}
 	\label{energie}
 \end{figure}
@@ -183,7 +187,7 @@ In addition, figure \ref{energie} shows how this modelization fills with distanc
 %
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.7\linewidth]{schema_SI}
+	\includegraphics[width=0.5\linewidth]{schema_SI}
 	\caption{Sketch of the creation of an image-source by successive reflections of a ray on the walls of a room.}
 	\label{schema_SI}
 \end{figure}
@@ -220,7 +224,7 @@ E_m(f) \approx  \frac{n}{N}\prod_{j=1}^{m}(1 - \alpha_j(f)),
 \end{equation}
 in the case of $m$ reflexions.
 
-\begin{table}
+\begin{table}[t]
 %\footnotesize
 \centering
 	\begin{tabular}{| c | m{2.5cm} | *{8}{c|}}
@@ -288,9 +292,9 @@ Finally, a \textit{ray} is reflected according to equation (\ref{eq_15}) and pro
 \label{octree}
 The most critical stage of the standard algorithm is the research of intersections between  \textit{rays} and triangular elements, leading to a quadratic complexity $O(N\times M)$. Indeed, each \textit{ray} has to be tested with each face, for each iteration of the ray-tracing algorithm. For a large number of mesh elements (e.g. $M>10^5$ for the Orange theater) and a lot of \textit{rays} to ensure reasonable accuracy (typically $N>10^6$), the calculation time may be prohibitive. To alleviate this problem, a "Divide and Conquer" approach using binary trees is performed (ref cooley tuckey fft, hierarchical matrix hackbush). The general principle consists in creating a mother-box, containing all the mesh elements. This mother-box is then subdivided along the main dimension to create two daughter-boxes, each with the same number of elements (median spatial subdivision). This process is then applied recursively, until a stopping criterion is reached. In our case, we stop when leaves contain only one element (see fig. \ref{octreeSuzanne}). This hierarchical tree is completely mesh dependent, computed in $O(M\log M)$ operations, and gives a structure to fastly navigate inside the mesh. Thus, at each ray-tracing iteration, rather than face off all \textit{rays} against all elements, this structure is used to accelerate this process. 
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
-		\includegraphics[width=0.5\linewidth]{octreeSuzanne}
+		\includegraphics[width=0.4\linewidth]{octreeSuzanne}
 		\caption{Binary tree leaves of an arbitrary mesh from \textit{Blender}.}
 		\label{octreeSuzanne}
 	%\label{octree}
@@ -304,25 +308,26 @@ Then, ray sorting at the $(p+1)$-level also conducts to $O(N)$ operations. To re
 \begin{equation}
 O(M\log M) + O(N \log M) + O(N),
 \end{equation}  
-witch is quasi-linear and computationaly faster (see table \ref{tabComplexite} and fig. \ref{times}).  More over, if binary tree is precomputed, each iteration of ray-tracing stand for :
+witch is a quasi-linear complexity. More over, if binary tree is precomputed, each iteration of ray-tracing just stands for :
 \begin{equation}
 O(N \log M) + O(N).
-\end{equation}.  
+\end{equation}
  
+To evaluate numerically complexities with or without binary tree acceleration, we measure the computation time of one iteration by increasing the number of \textit{rays} and the number of faces in the mesh ($N=M$). As we can see in figure \ref{times}, the complexity of the algorithm is therefor quite linear by using tree-based method. This allows to treat large meshes with millions of \textit{rays}, by maintaining a weak computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 \textit{rays} and faces the computation time is divided by a factor of a thousand. 
 
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 	\includegraphics[width=0.8\linewidth]{times}
-	\caption{Computation time for one iteration of ray-tracing in function of the number of face and rays, such as $N = M$ (log~scale). An omnidirectional source is located at the center of a mesh of a unitary tetrahedral.}
+	\caption{Computation time for one iteration of ray-tracing in function of the number of face and rays, such as $N = M$ (log~scale). An omnidirectional source is located at the center of a mesh of a unitary tetrahedral. (corriger octree et of one sur la figure)}
 	\label{times}
 \end{figure}
 %
-\begin{table}[h]
+\begin{table}[t]
 \centering
 	\begin{tabular}{| c | c | c |}
 		\hline
-		Number of faces and \textit{rays} & Time \textbf{without} Octree (s) & Time \textbf{with} Octree (s)\\
+		Number of faces and \textit{rays} & Time \textbf{without} tree (s) & Time \textbf{with} tree (s)\\
 		  \hline
 		  \hline
 		   $2^{10}$ (=1~024) & 0,26 &	0,2 \\
@@ -357,169 +362,118 @@ O(N \log M) + O(N).
 
 
 \section{Numerical validation}
-\subsection{Shoes box (modele complet)}
-\subsection{Energy conservation (sphere reflechissante)}
+To evaluate and validate methods and algorithms, several non-regression tests has been implemented. In this study, we focus only on two examples, that we hope will be the most significant. For more details, readers can refers to R. Gueguen PhD manuscript (ref de these Robin) or Gypsilab implementations (site gypsilab).   
+
+\subsection{Energy conservation by reflecting sphere}
+Firstly, we want to prove that statistical approach combined to fast algorithm is able to conserve acoustical energy (eq. \ref{eq_2}). To do this, we consider an academic problem, where the room is a $100\%$ reflecting unit sphere, containing punctual source and measure located at the center. If we consider only specular reflections with no air-absorption, it is expected that energy measurement takes out a Dirac comb, two meters spaced.
+Numerically, as we discretize the sphere with flat triangles, this focusing property clearly depend of the mesh refinement. As shown on figure \ref{test2RIR}, numerical diffusion appears in function of the distance.  At the end, only the $10^5$ elements mesh is able to maintain a pulsed energy in the range given, and this computation needs fast methods. Practically, this problem is representative of curved surfaces in rooms, which need high refinement to ensure a good propagation of the acoustic energy.
+
+\begin{figure}[t]
+\centering
+		\includegraphics[width=0.6\linewidth]{sphere}
+		\caption{Energy measured according to equation \ref{eq_7} for a 100\% reflecting unit sphere, with punctual source and measure located at the center (in percent). This result is given after six iterations of the tree-based algorithm, and we note as expected a two meters distance between pulses. $10^4$ \textit{rays} have been used. (legende en anglais)}
+		\label{test2RIR}
+\end{figure}
+
+\subsection{Analytical comparison by shoes box model}
+Secondly, numerical computation is compared to the analytical shoes box model, introduced by S. McGovern \textit{et al.} \cite{mcgovern}. This model gives image-sources positions at any reflection order, in function of punctual source and measure located inside a the box. Originally, the energy associated to each image-source is given by :
+\begin{itemize}
+\item Quadratic decrease $1/d^2$, where d stands for image sources distances to measurement point,  
+\item Absorption coefficients $\alpha$ for each wall, with no frequency dependance.
+\end{itemize}
+To use this model for our validation process, we add to McGovern solutions a frequency dependance for wall absorption, and the atmospherical impact in function of the distance. This extended model gives the energy as equation (19, ref), but the statistical counting is there replaced by the distance quadratic decrease.
+
+To compare analytical extended model and numerical ray-tracing computation, we use a simple triangular mesh of $M=12$ triangular elements building a $[5,4,3]$ meters box. A randomly location is given for source ($x_s = [4,2,1.7]$ m) and an arbitrary measurement sphere is fixed ($x_s = [2,2,1.7]$ m and $r=0.2$ m). Wall absorption coefficients are chosen randomly in the Odeon database (ref Odeon), and atmospheric model is used following the norm iso machin (ref). $N = 10^ 5$ rays were used and iterations were stopped according to criterion (ref critere d'arret, code source en annexe). As a results, figure \ref{sourcesImages} show images sources computed which fit exactly to analytic positions (machine accuracy). As tri-dimensional representation is really confusing, we only represent images sources in the plan $z = 1.7$ m. Furthermore, energy value is given in decibel on the color bar, in order to visually see the distance decrease. More precisely, figure \ref{boite} shows a comparison of the energy in decibel, in function of the distance of source images. As expected, a good matching is reached for direct sound and early reflections and diffuse field seems well approached. 
+ 
+\begin{figure}[t]
+\centering
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{sourcesImages}
+		\caption{}
+		\label{sourcesImages}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\linewidth]{boite}
+		\caption{}
+		\label{boite}
+	\end{subfigure}
+	\caption{}
+\end{figure}
+
 
 \section{Application to Orange theater}
 
-\section{Conclusion}
+The fast ray-tracing algorithm allows acoustical computation for complex rooms as the ancient theater of Orange. Indeed, using a virtual model, archeologists can explore many architecture hypothesis. In particular, acoustical analysis allows to understand some behaviors like : the influence of the position of spectators in bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. Moreover, it is interesting to study where reflections come from, and more generally how the theater responds to acoustical sources in various location.     
 
-\subsection{Implementation}
+Figure 8 : Introducttion du maillage et de sa complexité (nombre de face, materiaux)
 
+Resolution du problème, nb de ray (temps de calcul, machine)
 
-To store the triangular faces in the box we test if the center of the face belongs to the box. Once each center has been store in the leaves of the octree (i.e the last boxes of the branches) we resize the leaves to embody the whole faces they contains. To test if a ray cross a box we use a pass/fail algorithm conceived for Axis-Aligned-Bounding-Box \cite{AABB}. This kind of box allow to simplify a lot the computation. 
+Post traitement : 
 
+ - Impact des sources images, comparaison a -30 et -60 dB (figure 8)
+ - Sortie de la RIR multibande
+ - Indices perceptifs avec comparaison Odeon
 
-We can can then measure the computation time of one iteration (i.e all \textit{rays} are intersecting a triangle) by increasing the number of \textit{rays} and the number of faces in the mesh. As we can see in the figure \ref{times} the complexity of the algorithm is almost linear by using the octree method. This allows to treat large meshes with millions of \textit{rays} by maintaining a low computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 \textit{rays} and faces the computation time is divided by 1000 by using the octree. 
+~\\~\\
 
+Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{SItheater}).
+With a 600~000 faces theater (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million \textit{rays} (see fig. \ref{rirTheatreAvecDecor}). Each iteration is done in 25s so it really depends on the materials chosen. 
 
-\newpage
+We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials
 
-\section{Validation}\label{sec5}
-
-In order to validate our approach and our method we compare the experimental results with theoretical results. 
-
-\subsection{Quadratic decrease}
-First, to validate the quadratic decrease of the energy (see section \ref{sec2}) we observe the room impulse response of a cubic room whose all walls are 100\% absorbant except the walls on the x-axis (this may remind a Fabry-P\'erot interferometer). This particular room stands for a free space simulation where the distance between the source and the receiver is regularly increased. Furthermore, since the \textit{rays} spread on the x-axis and -x-axis and return in phase, the number of \textit{rays} received is twice the number of \textit{rays} in free space.
-%
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
-	\includegraphics[width=0.6\linewidth]{test1}
-	\caption{RIR in a Fabry-P\'erot-like configuration for 3 millions of \textit{rays} (blue) sampled at 100Hz and $f(x)=\frac{2}{x^2}$ (red)}
-	\label{test1}
+		\includegraphics[width=0.9\linewidth]{soft}
+		\caption{Modelization of a restituted Theater of Orange \cite{theseRobin} in \textit{Blender} showing the ray-tracing add-on on the left and the material interface on the right.}
+		\label{soft}
 \end{figure}
-%
-The room impulse response (see fig. \ref{test1}) follows the function $f(x)=\frac{2}{x^2}$ which is the expected behavior. In free space, the number of \textit{rays} collected stands for the surfaces ratio and the quadratic decrease :
-\begin{equation}
-\frac{n}{N} = \frac{\int_s dS}{\int_{\sigma} dS} = \frac{\pi r^2}{4\pi d^2},
-\end{equation}
-with :
-\begin{itemize}
-\item$n$ : the number of \textit{rays} collected,
-\item$N$ : the total number of \textit{rays},
-\item$s$ : the constant surface of the receiver (disk) collecting \textit{rays},
-\item$\sigma$ : the emission sphere surface,
-\item$r$ : the constant radius of the receiver,
-\item$d$ : the emission sphere radius (i.e the distance between the source and the receiver).
-\end{itemize}
 
-\subsection {Energy conservation}
-The second test allows to simulate the conservation of the energy. We use a 100\% reflecting sphere (2m radius) pretty well refined (300~000 faces) and position the source and the receiver in the center. At each iteration all the \textit{rays} refocus in the center of the sphere and then are captured by the receiver.
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
-	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\linewidth]{test2RIR}
-		\caption{RIR for a 100\% reflecting sphere - 12 iterations}
-		\label{test2RIR}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}{0.38\textwidth}
-		\includegraphics[width=\linewidth]{test2SI}
-		\caption{Position of the images-sources - 4 iterations}
-		\label{test2SI}
-	\end{subfigure}
-	\caption{100\% reflecting sphere}
+\includegraphics[width=0.6\linewidth]{rirTheatreAvecDecor}
+\caption{Energy measured with a 2m-radius sphere (Listener) in a restituted theater of Orange \cite{theseRobin}. One million \textit{rays} are propagated.}
+\label{rirTheatreAvecDecor}
 \end{figure}
-%
-We observe the expected result as the room impulse response is a Dirac comb (see fig. \ref{test2RIR}) and the image-sources are positioned on spheres whose radius doubles at each iteration (see fig. \ref{test2SI}).
-%
-\begin{figure}[h]
-\centering
-	\includegraphics[width=0.6\linewidth]{test2absair}
-	\caption{RIR for a 100\% reflecting sphere with air absorption - 30 iterations}
-	\label{test2absair}
-\end{figure}
-%
-By adding the air absorption (see fig. \ref{test2absair}) we can observe that the highest frequencies decrease faster than the lowest which reflect the nature behavior.
 
-\subsection{Shoe box case}
-To finalize the validation algorithm we compare the results of a shoe box type room with an analytic computation. The image-sources can be positioned in space with the following formula \cite{mcgovern} :
-\begin{align}
-P_{is} = i \times D + P_s \times (-1)^i,
-\end{align}
-with : 
-\begin{itemize}
-\item$i \in (-n, n)$ and $n \in \mathbb{N}$,
-\item$P_{is}$ : the image-source position coordinate on X, Y or Z,
-\item$P_s$ : the source position coordinate on X, Y or Z,
-\item$D$ : the room dimension on X, Y or Z.
-\end{itemize}
-The energy of each image-source is $\frac{1}{d^2}$ where $d$ is the distance between the image-source avec the receiver. If we compare the position of these theoretical image-sources with the image-sources obtained with the algorithm, we get the exact same result to the float precision ($10^{-6}m$). Concerning the energy, we compare two kind of errors : the relative error such as :
-\begin{align}
-\epsilon_{rel} = \frac{|E_{exp}-E_{theo}|}{E_{theo}},
-\end{align}
-and the infinity norm error which express the fact that the further away the image-source is from the receiver, the less important the error will be for the final result.
-\begin{align}
-\epsilon_{\infty} = \frac{|E_{exp}-E_{theo}|}{\max(E_{theo})}.
-\end{align}
-We can also add some absorption coefficient on the walls and take into account the air absorption. We can see in the figure \ref{test3_8} that the relative error of the energy image-source per image-source remains always below 5\%. In the same way we see in the figure \ref{test3_9} that the infinity norm error is below $0,3\%$ for all frequencies.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 	\begin{subfigure}{0.49\textwidth}
-		\includegraphics[width=\linewidth]{test3_8}
-		\caption{Relative error}
-		\label{test3_8}
+		\includegraphics[width=\linewidth]{SIsansDec}
+		\caption{}	
 	\end{subfigure}
 	\begin{subfigure}{0.49\textwidth}
-		\includegraphics[width=\linewidth]{test3_9}
-		\caption{Infinity norm error}
-		\label{test3_9}
+		\includegraphics[width=\linewidth]{SI60dB}
+		\caption{}
 	\end{subfigure}
-	\caption{Error for each image-sources with walls and air absorption - 1~000~000 \textit{rays}}
-\end{figure}
-
-
-\newpage
-
-\section{Developed softwares }\label{sec6}
-
-The room acoustic tool is available in two forms. 
-
-\subsection{Matlab library}
-First a Matlab library \cite{gypsilab} ... \\
-
-\subsection{Blender add-on}
-In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
-
-
-%\begin{figure}
-%	\includegraphics[width=\linewidth]{add-on}
-%	\caption{Add-on Blender}
-%\end{figure}
-
-\begin{figure}[h]
-\centering
-	\includegraphics[width=0.5\linewidth]{software}
-	\caption{Software architecture}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-	\includegraphics[width=0.8\linewidth]{add-on}
-	\caption{Add-on Blender for exporting/importing meshes and running computation tool}
-	\label{add-on}
-\end{figure}
-
-
-\section{Application to the antic theatre of Orange}\label{sec7}
-
-\begin{figure}[h]
-\centering
-	\includegraphics[width=0.7\linewidth]{rir}
-	\caption{Room impulse response of the antic theater of Orange}
-	\label{rir}
-\end{figure}
-
-The acoustic simulation can be done on the ancient theater of Orange. Because it is an open room the software automatically add a 100\% absorbant box around the building to be sure to always count all \textit{rays}. We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials. Indeed, archeologists want to explore some architecture hypothesis from missing part of the theatre. An acoustical analysis can allow to understand some behaviors like : the influence of the position of the spectators in the bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. With a 600~000 faces theatre (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million \textit{rays} (see fig. \ref{rir}). Each iteration is done in 25s so it really depends on the materials chosen. We can note that the more details of the mesh are refined the more we can simulate diffraction effect. Indeed, in high frequency, small detail elements will be able to reflect the \textit{rays} in different directions which can resemble diffraction effects. In the theater it will be really interesting to study where the reflection come from. Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{theatre}).
-
-\begin{figure}[h]
-\centering
-	\includegraphics[width=0.7\linewidth]{theatre}
 	\caption{Images-sources projected on the theatre of Orange}
-	\label{theatre}
+	\label{SItheater}
 \end{figure}
 
+\begin{table}[h]
+\centering
+ \begin{tabular}{| *{3}{c|}} 
+ \hline 
+ Perceptive factor & Orange theater (on Ray-tracing add-on) & Orange theater (on \textit{Odeon} software \cite{odeon})   \\ 
+ \hline 
+ \hline 
+  EDT (s)& 1.85& 2.1 \\ 
+ \hline 
+$T_{30}$ (s)& 3.59&  2.73\\ 
+ \hline 
+SPL (dB) &-32 & -32.4\\ 
+ \hline 
+$C_{80}$ (dB)& 1.12&1.5  \\ 
+ \hline 
+$D_{50}$ (\%)&47 & 52 \\ 
+ \hline 
+$T_s$ (ms)&117 & 105 \\ 
+ \hline 
+\end{tabular} 
+ \caption{Comparaison of perceptive factors of the Orange theater between our Blender ray-tracing add-on and \textit{Odeon} software. The measure is done on the 500-1000Hz band.}
+ \label{tab_rindel} 
+ \end{table}
 
 \section{Conclusions}
 
@@ -527,10 +481,19 @@ We presented the problems raised by an acoustic study of an ancient monument. Th
 
 However, there are many opportunities for improvement that remain under consideration for this type of software tool. First, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Secondly, from the point of view of the analysis results, there are many possible improvements at the graphic level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray tracing? Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases, and in particular, of the use made in Orange at the theatre origin. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
 
+%\subsection{Blender add-on}
+%In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
+%
+%
+%\section{Application to the antic theatre of Orange}\label{sec7}
+%
+%
+%The acoustic simulation can be done on the ancient theater of Orange. Because it is an open room the software automatically add a 100\% absorbant box around the building to be sure to always count all \textit{rays}. We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials. Indeed, archeologists want to explore some architecture hypothesis from missing part of the theatre. An acoustical analysis can allow to understand some behaviors like : the influence of the position of the spectators in the bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. With a 600~000 faces theatre (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million \textit{rays} (see fig. \ref{rir}). Each iteration is done in 25s so it really depends on the materials chosen. We can note that the more details of the mesh are refined the more we can simulate diffraction effect. Indeed, in high frequency, small detail elements will be able to reflect the \textit{rays} in different directions which can resemble diffraction effects. In the theater it will be really interesting to study where the reflection come from. Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{theatre}).
+
 
 
 \section*{Acknowledgments}
-The authors would particularly like to thank Fran\c{c}ois Alouges, Titien Bartet, Pascal Frey and Emmanuelle Rosso for all the help they each provided at the different stages of this project. Thanks also to Jean-Dominique Polack for his wise advice on architectural acoustics.
+Authors particularly thanks Fran\c{c}ois Alouges, Titien Bartet, Pascal Frey and Emmanuelle Rosso for all the help they each provided at the different stages of this project. Thanks also to Jean-Dominique Polack for advices on architectural acoustics and Martin Lesellier for various contributions. This work is part of R. Gueguen PhD thesis founded by Sorbonne Universit\'e.
 
 %\subsection*{Author contributions}
  
