@@ -123,7 +123,7 @@ To numerically represent the energy propagation, we have to discretize basis $(\
 \item An energy value $E_i$.
 \end{itemize}
 
-For example, with an omnidirectional source, \textit{rays} are given by :
+For example, with an omnidirectional source \footnote{For a directional source, a non-uniform spatial sampling may be used.}, \textit{rays} are given by :
 \begin{itemize}
 \item The source coordinate ($x_i = x_s,~\forall i\in[1,N]$),
 \item A unit sphere uniform sampling (e.g.~icosahedre subdivision, Fibonacci's rule \cite{fibonacci}, etc.),
@@ -313,7 +313,7 @@ witch is a quasi-linear complexity. More over, if binary tree is precomputed, ea
 O(N \log M) + O(N).
 \end{equation}
  
-To evaluate numerically complexities with or without binary tree acceleration, we measure the computation time of one iteration by increasing the number of \textit{rays} and the number of faces in the mesh ($N=M$). As we can see in figure \ref{times}, the complexity of the algorithm is therefor quite linear by using tree-based method. This allows to treat large meshes with millions of \textit{rays}, by maintaining a weak computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 \textit{rays} and faces the computation time is divided by a factor of a thousand. 
+To evaluate numerically complexities with or without binary tree acceleration, we measure the computation time of one iteration by increasing the number of \textit{rays} and the number of faces in the mesh ($N=M$). As we can see in figure \ref{times}, the complexity of the algorithm is therefor quite linear by using tree-based method. This allows to treat large meshes with millions of \textit{rays}, by maintaining a weak computation time. In particular, we can see in the table \ref{tabComplexite} that for 250~000 \textit{rays} and faces the computation time is divided by a factor of a thousand. It's important to precise that no parallelization strategy has been employed, all results are obtained in single core computation on a standard laptop (2.7 GHz core and 8 Go ram).
 
 
 \begin{figure}[t]
@@ -355,7 +355,7 @@ To evaluate numerically complexities with or without binary tree acceleration, w
 		%$2^{21}$ (=2~097~152) & X & 45,83 \\
 		%\hline
 	 \end{tabular}
-	\caption{Computation time of fig. \ref{times}.}
+	\caption{Computation time of fig. \ref{times} on a standard laptop (2.7 GHz core and 8 Go ram).}
 	\label{tabComplexite}
 \end{table}
 
@@ -405,9 +405,20 @@ To compare analytical extended model and numerical ray-tracing computation, we u
 
 The fast ray-tracing algorithm allows acoustical computation for complex rooms as the ancient theater of Orange. Indeed, using a virtual model, archeologists can explore many architecture hypothesis. In particular, acoustical analysis allows to understand some behaviors like : the influence of the position of spectators in bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. Moreover, it is interesting to study where reflections come from, and more generally how the theater responds to acoustical sources in various location.     
 
-Figure 8 : Introducttion du maillage et de sa complexité (nombre de face, materiaux)
+First of all, a restituted version of the Orange theater has been meshed on the software Blender (fig. \ref{soft}), according to the archeological surveys performed by l'Institut de Recherche sur l'Architecture Antique (IRAA) \cite{orangeTxt}. As this mesh just have to fill the geometry, there is no need of Delaunay properties, but the architecture complexity however conduct to a 300~000 faces triangulation. In particular, this monument is mainly composed by :
+\begin{itemize}
+ \item \textit{Postscaenium} (stage wall) partially ornamented with two basilicas on either side,
+ \item \textit{Pulpitum} (stage),
+ \item \textit{Orchestra},
+ \item \textit{Cavea} (bleachers) with \textit{Porticus} at the top (column gallery),
+  \item Various covers (stage roof, \textit{velum}, etc.).
+\end{itemize}
+Several materials are assigned to each part, in order to define specific absorption coefficients taken from Odeon database \cite{odeon} (see fig. \ref{soft}). The ray-tracing solver is then used to compute the spatial impulse response. To reach the reverberation time close to -60dB ($RT_{60}$), we fix one million \textit{rays} and a 2m-radius measurement sphere. The result is obtained in few minutes on a standard laptop (2.7 GHz core and 8 Go ram). At the end, all sources-images positions are generated as well as the associated multi-band acoustical energy (i.e. couple $(x_s;E_s(f))_{s \in [1, N_s]}$, see section \ref{is}). From it, multi-outputs are analyzed in order to study the acoustical behavior of the theater.
 
-Resolution du problème, nb de ray (temps de calcul, machine)
+The following results are obtained with a source located at the front stage, at 1,60 m high (position of the mouth of an average actor). The listener is on the same axis in the bleachers. On figure \ref{rirTheatre20}, we see the multi-band impulse response of the theater until the maximum distance determined by equation \ref{eq_13}. Primary reflections appear on the first 400 ms and diffuse field decreases according to the frequency. This difference is due to atmospheric absorption and materials properties and only frequencies above 1kHz reach $RT_{60}$. Furthermore, the projected images-sources represented on figure \ref{isTheatre20} illustrate a spatial diffusion. Indeed, even if some areas carries a lot of images-sources, reflections seem to surround the listener. For a better understanding, we zoom on the top of the signal. Figure \ref{RIR20dB} displays energy measured on a 20dB range which highlight where beams reflect on. We can then notice a significant contribution of the orchestra
+
+
+
 
 Post traitement : 
 
@@ -417,37 +428,46 @@ Post traitement :
 
 ~\\~\\
 
-Thus, we project the image-sources on the wall of the theater to understand what wall is the main contributor to the energy received (see fig. \ref{SItheater}).
-With a 600~000 faces theater (i.e including decoration elements of the stage wall), the RIR at $RT_{60}$ is generated in 20 minutes for one million \textit{rays} (see fig. \ref{rirTheatreAvecDecor}). Each iteration is done in 25s so it really depends on the materials chosen. 
-
-We can then calculate the image-sources and the RIR for different configurations of the theatre or different materials
 
 \begin{figure}[t]
 \centering
 		\includegraphics[width=0.9\linewidth]{soft}
-		\caption{Modelization of a restituted Theater of Orange \cite{theseRobin} in \textit{Blender} showing the ray-tracing add-on on the left and the material interface on the right.}
+		\caption{Modelization of restituted Theater of Orange \cite{theseRobin} in \textit{Blender} showing the ray-tracing add-on on the left and the material interface on the right.}
 		\label{soft}
 \end{figure}
 
+
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.6\linewidth]{rirTheatreAvecDecor}
-\caption{Energy measured with a 2m-radius sphere (Listener) in a restituted theater of Orange \cite{theseRobin}. One million \textit{rays} are propagated.}
-\label{rirTheatreAvecDecor}
+	\begin{subfigure}{0.6\textwidth}
+		\includegraphics[width=\linewidth]{rirTheatreAvecDecor}
+		\caption{Impulse response in dB.}
+		\label{rirTheatre20}
+	\end{subfigure}
+	\begin{subfigure}{0.37\textwidth}
+\includegraphics[width=\linewidth]{SI60dB}
+		\caption{Images-sources projected on the mesh.}
+		\label{isTheatre20}
+	\end{subfigure}
+	\caption{Ray-tracing outputs for one million \textit{rays} and a 2m-radius sphere (listener) on restituted theater of Orange.}
+	\label{SI60dB}
 \end{figure}
 
 
+
 \begin{figure}[t]
 \centering
-	\begin{subfigure}{0.49\textwidth}
-		\includegraphics[width=\linewidth]{SIsansDec}
-		\caption{}	
+	\begin{subfigure}{0.63\textwidth}
+		\includegraphics[width=\linewidth]{rirTheatre20}
+		\caption{Impulse response of the first reflections over 20dB range.}	
+		\label{RIR20dB}
 	\end{subfigure}
-	\begin{subfigure}{0.49\textwidth}
-		\includegraphics[width=\linewidth]{SI60dB}
-		\caption{}
+	\begin{subfigure}{0.36\textwidth}
+		\includegraphics[width=\linewidth]{SI30dB}
+		\caption{Images-sources of the first reflections over 30dB range, projected on the mesh.}
+		\label{SI30dB}
 	\end{subfigure}
-	\caption{Images-sources projected on the theatre of Orange}
+	\caption{Zooming on the first reflections of fig. \ref{SI60dB}.}
 	\label{SItheater}
 \end{figure}
 
@@ -477,9 +497,13 @@ $T_s$ (ms)&117 & 105 \\
 
 \section{Conclusions}
 
-We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes linear to the product number of mesh elements/number of \textit{rays}. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections. Furthermore, a sound signal could be heard in three dimensions thanks to binaural filters and steering control can be done with "Head Tracker" mounted on a headset.
+In this paper, a full-chain engineering process is given, leading by an acoustical study of an imposing ancient monument. From archaeological needs, a fine mesh of the monument was constructed, associated to a complete room acoustic application suite, both for Matlab and Blender. The high complexity provided by this type of architecture and its ornaments leads to approximate calculation methods. Indeed, by only simulating specular reflections and wall absorption, energy propagation and measurement can be simulated by beams, carried by ray-tracing. From this representation basis, it is possible to generate a multi-band impulse response, while respecting the laws of high-frequency acoustics. Moreover, a fast algorithm with a quasi-linear complexity has been implemented, allowing users to quickly evaluate architectural assumptions, modifying their meshes regardless of the number of elements. At the end, various post-treatment has been added, as the Room Impulse Response generation, the source-image visualization, the classical perceptive factors and an auralization process.
 
-However, there are many opportunities for improvement that remain under consideration for this type of software tool. First, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Secondly, from the point of view of the analysis results, there are many possible improvements at the graphic level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray tracing? Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases, and in particular, of the use made in Orange at the theatre origin. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
+Even if current versions of proposed softwares (Gypsilab \cite{githubGypsi} and openNiqueTaMere) are complete enough to be used for various studies, there are many opportunities of improvement. First of all, as image-sources positions are known, a spatial audio renderer should be added to improve current auralization tool (e.g. binaural or multichannel, eventually with trackers). Secondly, as virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Finally, as ray-tracing modelization is an high-frequency approximation of waves phenomena, diffraction effects should be added in order to get a better fit with the physics equations. 
+%
+%We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes linear to the product number of mesh elements/number of \textit{rays}. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections. Furthermore, a sound signal could be heard in three dimensions thanks to binaural filters and steering control can be done with "Head Tracker" mounted on a headset.
+%
+%However, there are many opportunities for improvement that remain under consideration for this type of software tool. First, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Secondly, from the point of view of the analysis results, there are many possible improvements at the graphic level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray tracing? Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases, and in particular, of the use made in Orange at the theatre origin. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
 
 %\subsection{Blender add-on}
 %In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
