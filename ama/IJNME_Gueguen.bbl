@@ -4,10 +4,20 @@
 Maufras M.~Ch.-L.. {\it Vitruve : De l'architecture}.
 \newblock Panckoucke; 1847.
 
+\bibitem{doc_blender}
+Blender . {\it Manuel \textit{{B}lender}. } 2017.
+
 \bibitem{theseRobin}
 Gueguen Robin. Virtualisation visuelle et auditive du th{\'e}{\^a}tre antique
   d'Orange.
 \newblock PhD thesisSorbonne Universit{\'e}2018.
+
+\bibitem{gypsilab}
+GypsiLab, un nouvel outil de calcul FEM/BEM pour l'acoustique num{\'e}rique.(Le
+  Havres)Actes du Congr{\`e}s Fran{\c c}ais d'Acoustique2018.
+
+\bibitem{githubGypsi}
+Aussal Matthieu. Gypsilab .
 
 \bibitem{jouhaneau}
 Jouhaneau Jacques. {\it Acoustique des salles et sonorisation} Acoustique
@@ -27,7 +37,7 @@ Perrey-Debaina E., Yanga M., Nennigb B., Chazota J.-D.. Approximation par ondes
 Odeon . Odeon webpage .
 
 \bibitem{grasshopper}
-
+Robinson Philip. Acoustic Raytracer - Buzz Plug-in .
 
 \bibitem{moller}
 M{\"o}ller Tomas, Trumbore Ben. Fast, minimum storage ray-triangle
@@ -41,6 +51,10 @@ Williams Amy, Barrus Steve, Morley R.Keith, Shirley Peter. An Efficient and
 McGovern Stephen. Fast image method for impulse response calculations of
   box-shaped rooms.  {\it Applied Acoustics. }2009;70(1).
 
+\bibitem{iso}
+ISO-9613-1 . {\it Acoustics - Attenuation of sound during propagation outdoors.
+  } 1993.
+
 \bibitem{orangeTxt}
 Badie Alain, Fincker Myriam, Moretti Jean-Charles, Rabatel Liliane, Rosso
   Emmanuelle, Tardy Dominique. {\it LE TH{\'E}{\^A}TRE D'{O}RANGE - {R}apport
@@ -48,7 +62,8 @@ Badie Alain, Fincker Myriam, Moretti Jean-Charles, Rabatel Liliane, Rosso
 \newblock PACA Vaucluse, Orange Th{\'e}{\^a}tre antique 84 087 0031 -
   Patriarche 9827 n2012-203.
 
-\bibitem{githubGypsi}
-
+\bibitem{acoustique}
+Krauss G{\'e}rard, Yezou Ren{\'e}, Kuznik Fr{\'e}d{\'e}ric. Acoustique du
+  batiment  Cours-Institut national des sciences appliqu{\'e}es de Lyon2009.
 
 \end{thebibliography}

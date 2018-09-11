@@ -42,10 +42,10 @@
 %\presentaddress{This is sample for present address text this is sample for present address text}
 
 \abstract[Summary]{
-This article presents new numerical simulation tools, both for Matlab and Blender CAD software. Available in open-source under GPL 3.0 license, it uses a ray tracing / image-sources hybrid method to calculate room acoustics for large meshes. Performances are optimized to solve significant size numerical problems (typically more than 100,000 surface elements and about a million of \textit{rays}). For this purpose, a \textit{Divide and Conquer} approach with a recursive octree structure has been implemented to reduce the quadratic complexity of the ray/element interactions to near-linear. Thus, execution times are less sensitive to mesh density, which allows complex geometry simulations. After ray propagation, a hybrid method leads to image-sources format, which can be visually analyzed to localize sound map. Finally, impulse responses are constructed from the image-sources and FIR filters are proposed natively over 8 octave bands, taking into account material absorption properties and propagation medium. This algorithm is validated by various comparison with theoretical test cases. Furthermore, an exemple on a complex case with the ancient theater of Orange is presented. 
+This article presents new numerical simulation tools, both for Matlab and \textit{Blender} CAD software. Available in open-source under GPL 3.0 license, it uses a ray tracing / image-sources hybrid method to calculate room acoustics for large meshes. Performances are optimized to solve significant size numerical problems (typically more than 100,000 surface elements and about a million of \textit{rays}). For this purpose, a \textit{Divide and Conquer} approach with a recursive octree structure has been implemented to reduce the quadratic complexity of the ray/element interactions to near-linear. Thus, execution times are less sensitive to mesh density, which allows complex geometry simulations. After ray propagation, a hybrid method leads to image-sources format, which can be visually analyzed to localize sound map. Finally, impulse responses are constructed from the image-sources and FIR filters are proposed natively over 8 octave bands, taking into account material absorption properties and propagation medium. This algorithm is validated by various comparison with theoretical test cases. Furthermore, an exemple on a complex case with the ancient theater of Orange is presented. 
 }
 
-\keywords{room acoustic, ray-tracing, image-sources, octree, Matlab, Blender, archeology, open-source}
+\keywords{room acoustic, ray-tracing, image-sources, octree, Matlab, \textit{Blender}, archeology, open-source}
 
 \jnlcitation{\cname{%
 \author{M. Aussal}, and
@@ -71,9 +71,15 @@ This article presents new numerical simulation tools, both for Matlab and Blende
 
 \section*{Introduction}
 \label{sec1}
-Today, digital technologies allow research to explore previously inaccessible areas, as virtual reality for archaeology. In this domain, many works focus on the visual restitution, but acoustic studies can reinforce researches to improve the understanding of the ancient world. For example, during the Roman Empire, architects have designed buildings also based on the sound propagation they wanted to achieve\cite{vitruve}. In this study, we focus on the ancient theater of Orange which has a significant size (100m wide), a complex geometry (decoration, gradins, colonnes, arcades ...) and which is open air. In a previous work, a complete mesh was designed using Blender CAD software (citer Blender), according to the most recent archeological knowledge \cite{theseRobin}. To be representative, this mesh has hundreds of thousands of elements (triangular faces), with complex shape (inserer figure maillage pour montrer la complexite). As this numerical model is now used by researchers to perform archeological hypothesis, we developed our own room acoustic software, directly integrated in the archeologists workflow. As the mesh size makes difficult the use of precise methods (FEM, BEM, ...), this software is based on a ray-tracing approximation, in order to compute fastly the full-band room impulse response (50 to 15000Hz). This tool has been developed following two steps. We first build a prototype using Gypsilab, an open source Matlab framework for fast prototyping (citer le papier gypsilab). This preliminary work was usefull to construct and validate ideas and algorithms. It conducts to the creation of a new toolbox, now added to the master branch of Gypsilab, and freely downloadable (citer adresse github). In a second step, all algorithms was retranscrypted in C++ using Qt Creator, leading to an autonomous library. A python interface was added, in order to use this library as a Blender plug'in. At the end, this plug'in allow archeologists to only work on Blender, modifying easily meshes and materials, run acoustic simulation and visualize results. \\
+Today, digital technologies allow research to explore previously inaccessible areas, as virtual reality for archaeology. In this domain, many works focus on the visual restitution, but acoustic studies can reinforce researches to improve the understanding of the ancient world. For example, during the Roman Empire, architects have designed buildings also based on the sound propagation they wanted to achieve\cite{vitruve}. In this study, we focus on the ancient theater of Orange which has a significant size (100m wide), a complex geometry (ornements, bleachers, columns, arches, etc.) and which is open-air. In a previous work, a complete mesh was designed using \textit{Blender} CAD software \cite{doc_blender}, according to the most recent archeological knowledge \cite{theseRobin}. To be representative, this mesh has hundreds of thousands of elements (triangular faces), with complex shape (see fig. \ref{maillage}). As this numerical model is now used by researchers to perform archeological hypothesis, we developed our own room acoustic software, directly integrated in the archeologists workflow. As the mesh size makes difficult the use of precise methods (FEM, BEM, ...), this software is based on a ray-tracing approximation, in order to compute fastly the full-band room impulse response (50 to 15000Hz). This tool has been developed following two steps. We first build a prototype using \textit{Gypsilab}, an open source Matlab framework for fast prototyping \cite{gypsilab}. This preliminary work was usefull to construct and validate ideas and algorithms. It conducts to the creation of a new toolbox, \textit{openRay}, now added to the master branch of \textit{Gypsilab} and freely downloadable \cite{githubGypsi}. In a second step, all algorithms were retranscrypted in C++ using Qt Creator, leading to an autonomous library \textit{Just4RIR}. A python interface was added, in order to use this library as a \textit{Blender} plug'in. At the end, this plug'in allow archeologists to only work on \textit{Blender}, modifying easily meshes and materials, run acoustic simulation and visualize results. \\
 After reminders on acoustical energy propagation represented by ray-tracing, this paper gives implementation details for fast computation for large meshes. At the end, validation test cases are given and application on our modelization of the ancient theater of Orange is performed. 
 
+\begin{figure}[t]
+\centering
+	\includegraphics[width=0.5\linewidth]{maillage}
+	\caption{Mesh of restituted theater of Orange modelized on \textit{Blender} (436~000 triangles).}
+	\label{maillage}
+\end{figure}
 
 
 
@@ -180,7 +186,7 @@ In addition, figure \ref{energie} shows how this modelization fills with distanc
 \begin{figure}[t]
 \centering
 	\includegraphics[width=0.65\linewidth]{energie.png}
-	\caption{Measured energy (dB) in function of distance between $x_s$ and $x_m$ in meter for $r = 0.36$m and $N = 10^6$. Blue crosses stand for the statistical measure $f(r) = \frac{n(r)}{N}$ and red ligne the analytic function $f(r) = \frac{\pi r^2}{4\pi d^2}$.}
+	\caption{Measured energy (dB) in function of distance between $x_s$ and $x_m$ in meter for $r = 0.36$m and $N = 10^6$. Blue crosses stand for the statistical measure $f(r) = \frac{n(r)}{N}$ and red ligne the analytic function $f(r) = \frac{\pi r^2}{4\pi d^2}$. (computed on \textit{Gypsilab})}
 	\label{energie}
 \end{figure}
 
@@ -200,7 +206,7 @@ For the case of acoustic propagation in presence of an obstacle, we choose to on
 \begin{equation}
 ka \gg 1, 
 \end{equation}
-with $k$ the wave number and $a$ the characteristical diameter of the room \cite{hautes_freq}. This approach is currently used by room acoustic softwares (e.g. \textit{Odeon} \cite{odeon}, \textit{Grasshopper} \cite{grasshopper}, etc.) regarding to audible frequency range (62,5 to 15000Hz). In particular, as the Theater of Orange has a characteristical diameter about 50 meters, the high frequency approximation is reached. 
+with $k$ the wave number and $a$ the characteristical diameter of the room \cite{hautes_freq}. This approach is currently used by room acoustic softwares (e.g. \textit{Odeon} \cite{odeon}, \textit{Grasshopper} \cite{grasshopper}, etc.) regarding to audible frequency range (62,5 to 15000Hz). In particular, as the theater of Orange has a characteristical diameter about 50 meters, the high frequency approximation is reached. 
 
 Following the discrete model, when an incident \textit{ray} collides a flat surface, a reflected \textit{ray} is generated from the collision point. Noting $\overrightarrow{u_i}$ the direction vector of the incident  \textit{ray}, the reflected direction vector $\overrightarrow{u_r}$ is defined by :
 \begin{equation}
@@ -211,7 +217,7 @@ with $\overrightarrow{T}$ the tangent basis and $\overrightarrow{n}$ the normal 
 \begin{equation}
 E_r(f) = E_i(f)(1 - \alpha(f)),
 \end{equation}
-with $\alpha(f)$  the absorption coefficient of the surface, function of the frequency $f$. Practically, the absorption coefficients are often given per octave bands and can be found in various databases. In Gypsilab and ..., both use the open access \textit{Odeon} database \cite{odeon} defined on eight octave bands (see table \ref{tab_coeff_abs}). 
+with $\alpha(f)$  the absorption coefficient of the surface, function of the frequency $f$. Practically, the absorption coefficients are often given per octave bands and can be found in various databases. In \textit{Gypsilab} and \textit{Just4RIR}, both use the open access \textit{Odeon} database \cite{odeon} defined on eight octave bands (see table \ref{tab_coeff_abs}). 
 
 Finally, considering wall absorption, energy measured statistically (eq. \ref{eq_12}) is extended by :
 \begin{equation}
@@ -295,7 +301,7 @@ The most critical stage of the standard algorithm is the research of intersectio
 \begin{figure}[t]
 \centering
 		\includegraphics[width=0.4\linewidth]{octreeSuzanne}
-		\caption{Binary tree leaves of an arbitrary mesh from \textit{Blender}.}
+		\caption{Binary tree leaves of an arbitrary mesh from \textit{Blender}. (computed on \textit{Just4RIR})}
 		\label{octreeSuzanne}
 	%\label{octree}
 \end{figure}
@@ -319,7 +325,7 @@ To evaluate numerically complexities with or without binary tree acceleration, w
 \begin{figure}[t]
 \centering
 	\includegraphics[width=0.8\linewidth]{times}
-	\caption{Computation time for one iteration of ray-tracing in function of the number of face and rays, such as $N = M$ (log~scale). An omnidirectional source is located at the center of a mesh of a unitary tetrahedral. (corriger octree et of one sur la figure)}
+	\caption{Computation time for one iteration of ray-tracing in function of the number of face and rays, such as $N = M$ (log~scale). An omnidirectional source is located at the center of a mesh of a unitary tetrahedral. (computed on \textit{Just4RIR})}
 	\label{times}
 \end{figure}
 %
@@ -362,7 +368,7 @@ To evaluate numerically complexities with or without binary tree acceleration, w
 
 
 \section{Numerical validation}
-To evaluate and validate methods and algorithms, several non-regression tests has been implemented. In this study, we focus only on two examples, that we hope will be the most significant. For more details, readers can refers to R. Gueguen PhD manuscript (ref de these Robin) or Gypsilab implementations (site gypsilab).   
+To evaluate and validate methods and algorithms, several non-regression tests has been implemented. In this study, we focus only on two examples, that we hope will be the most significant. For more details, readers can refers to R. Gueguen PhD manuscript \cite{theseRobin} or \textit{Gypsilab} source code \cite{githubGypsi}.   
 
 \subsection{Energy conservation by reflecting sphere}
 Firstly, we want to prove that statistical approach combined to fast algorithm is able to conserve acoustical energy (eq. \ref{eq_2}). To do this, we consider an academic problem, where the room is a $100\%$ reflecting unit sphere, containing punctual source and measure located at the center. If we consider only specular reflections with no air-absorption, it is expected that energy measurement takes out a Dirac comb, two meters spaced.
@@ -371,7 +377,7 @@ Numerically, as we discretize the sphere with flat triangles, this focusing prop
 \begin{figure}[t]
 \centering
 		\includegraphics[width=0.6\linewidth]{sphere}
-		\caption{Energy measured according to equation \ref{eq_7} for a 100\% reflecting unit sphere, with punctual source and measure located at the center (in percent). This result is given after six iterations of the tree-based algorithm, and we note as expected a two meters distance between pulses. $10^4$ \textit{rays} have been used. (legende en anglais)}
+		\caption{Energy measured according to equation \ref{eq_7} for a 100\% reflecting unit sphere, with punctual source and measure located at the center (in percent). This result is given after six iterations of the tree-based algorithm, and we note as expected a two meters distance between pulses. $10^4$ \textit{rays} have been used. (computed on \textit{Gypsilab})}
 		\label{test2RIR}
 \end{figure}
 
@@ -381,23 +387,23 @@ Secondly, numerical computation is compared to the analytical shoes box model, i
 \item Quadratic decrease $1/d^2$, where d stands for image sources distances to measurement point,  
 \item Absorption coefficients $\alpha$ for each wall, with no frequency dependance.
 \end{itemize}
-To use this model for our validation process, we add to McGovern solutions a frequency dependance for wall absorption, and the atmospherical impact in function of the distance. This extended model gives the energy as equation (19, ref), but the statistical counting is there replaced by the distance quadratic decrease.
+To use this model for our validation process, we add to McGovern solutions a frequency dependance for wall absorption, and the atmospherical impact in function of the distance. This extended model gives the energy as equation (\ref{eq_19}), but the statistical counting is there replaced by the distance quadratic decrease.
 
-To compare analytical extended model and numerical ray-tracing computation, we use a simple triangular mesh of $M=12$ triangular elements building a $[5,4,3]$ meters box. A randomly location is given for source ($x_s = [4,2,1.7]$ m) and an arbitrary measurement sphere is fixed ($x_s = [2,2,1.7]$ m and $r=0.2$ m). Wall absorption coefficients are chosen randomly in the Odeon database (ref Odeon), and atmospheric model is used following the norm iso machin (ref). $N = 10^ 5$ rays were used and iterations were stopped according to criterion (ref critere d'arret, code source en annexe). As a results, figure \ref{sourcesImages} show images sources computed which fit exactly to analytic positions (machine accuracy). As tri-dimensional representation is really confusing, we only represent images sources in the plan $z = 1.7$ m. Furthermore, energy value is given in decibel on the color bar, in order to visually see the distance decrease. More precisely, figure \ref{boite} shows a comparison of the energy in decibel, in function of the distance of source images. As expected, a good matching is reached for direct sound and early reflections and diffuse field seems well approached. 
+To compare analytical extended model and numerical ray-tracing computation, we use a simple triangular mesh of $M=12$ triangular elements building a $[5,4,3]$ meters box. A randomly location is given for source ($x_s = [4,2,1.7]$ m) and an arbitrary measurement sphere is fixed ($x_s = [2,2,1.7]$ m and $r=0.2$ m). Wall absorption coefficients are chosen randomly in the Odeon database \cite{odeon}, and atmospheric model is used following the norm ISO-9613-1\cite{iso}. $N = 10^ 5$ rays were used and iterations were stopped according to criterion (\ref{eq_13}). As a results, figure \ref{sourcesImages} show images sources computed which fit exactly to analytic positions (machine accuracy). As tri-dimensional representation is really confusing, we only represent images sources in the plan $z = 1.7$ m. Furthermore, energy value is given in decibel on the color bar, in order to visually see the distance decrease. More precisely, figure \ref{boite} shows a comparison of the energy in decibel, in function of the distance of source images. As expected, a good matching is reached for direct sound and early reflections and diffuse field seems well approached. 
  
 \begin{figure}[t]
 \centering
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{sourcesImages}
-		\caption{}
+		\caption{Image sources in the plan z = 1.7 m and associated energy (dB). Analytical and numerical solutions are the same, to the precision of the machine.}
 		\label{sourcesImages}
 	\end{subfigure}
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{boite}
-		\caption{}
+		\caption{Energy impulse response in dB. Even if accuracy decreases with the distance, far solutions remain acceptable to describe the diffuse field. }
 		\label{boite}
 	\end{subfigure}
-	\caption{}
+	\caption{Numerical solutions from ray-tracing inside a shoes box model. Comparisons with analytical solutions. (computed on \textit{Gypsilab})}
 \end{figure}
 
 
@@ -405,7 +411,7 @@ To compare analytical extended model and numerical ray-tracing computation, we u
 
 The fast ray-tracing algorithm allows acoustical computation for complex rooms as the ancient theater of Orange. Indeed, using a virtual model, archeologists can explore many architecture hypothesis. In particular, acoustical analysis allows to understand some behaviors like : the influence of the position of spectators in bleachers, the shape of the roof, the materials of the \textit{orchestra}, etc. Moreover, it is interesting to study where reflections come from, and more generally how the theater responds to acoustical sources in various location.     
 
-First of all, a restituted version of the Orange theater has been meshed on the software Blender (fig. \ref{soft}), according to the archeological surveys performed by l'Institut de Recherche sur l'Architecture Antique (IRAA) \cite{orangeTxt}. As this mesh just have to fill the geometry, there is no need of Delaunay properties, but the architecture complexity however conduct to a 300~000 faces triangulation. In particular, this monument is mainly composed by :
+First of all, a restituted version of the Orange theater has been meshed on the software \textit{Blender} (fig. \ref{soft}), according to the archeological surveys performed by l'Institut de Recherche sur l'Architecture Antique (IRAA) \cite{orangeTxt}. As this mesh just have to fill the geometry, there is no need of Delaunay properties, but the architecture complexity however conduct to a 436~000 faces triangulation (see fig. \ref{maillage}). In particular, this monument is mainly composed by :
 \begin{itemize}
  \item \textit{Postscaenium} (stage wall) partially ornamented with two basilicas on either side,
  \item \textit{Pulpitum} (stage),
@@ -415,24 +421,13 @@ First of all, a restituted version of the Orange theater has been meshed on the 
 \end{itemize}
 Several materials are assigned to each part, in order to define specific absorption coefficients taken from Odeon database \cite{odeon} (see fig. \ref{soft}). The ray-tracing solver is then used to compute the spatial impulse response. To reach the reverberation time close to -60dB ($RT_{60}$), we fix one million \textit{rays} and a 2m-radius measurement sphere. The result is obtained in few minutes on a standard laptop (2.7 GHz core and 8 Go ram). At the end, all sources-images positions are generated as well as the associated multi-band acoustical energy (i.e. couple $(x_s;E_s(f))_{s \in [1, N_s]}$, see section \ref{is}). From it, multi-outputs are analyzed in order to study the acoustical behavior of the theater.
 
-The following results are obtained with a source located at the front stage, at 1,60 m high (position of the mouth of an average actor). The listener is on the same axis in the bleachers. On figure \ref{rirTheatre20}, we see the multi-band impulse response of the theater until the maximum distance determined by equation \ref{eq_13}. Primary reflections appear on the first 400 ms and diffuse field decreases according to the frequency. This difference is due to atmospheric absorption and materials properties and only frequencies above 1kHz reach $RT_{60}$. Furthermore, the projected images-sources represented on figure \ref{isTheatre20} illustrate a spatial diffusion. Indeed, even if some areas carries a lot of images-sources, reflections seem to surround the listener. For a better understanding, we zoom on the top of the signal. Figure \ref{RIR20dB} displays energy measured on a 20dB range which highlight where beams reflect on. We can then notice a significant contribution of the orchestra
-
-
-
-
-Post traitement : 
-
- - Impact des sources images, comparaison a -30 et -60 dB (figure 8)
- - Sortie de la RIR multibande
- - Indices perceptifs avec comparaison Odeon
-
-~\\~\\
+The following results are obtained with a source located at the front stage, at 1,60 m high (position of the mouth of an average actor). The listener is on the same axis in the bleachers. On figure \ref{rirTheatre20}, we see the multi-band impulse response of the theater until the maximum distance determined by equation \ref{eq_13}. Primary reflections appear on the first 400 ms and diffuse field decreases according to the frequency. This difference is due to atmospheric absorption and materials properties and only frequencies above 1kHz reach $RT_{60}$. Furthermore, the projected images-sources represented on figure \ref{isTheatre20} illustrate a spatial diffusion. Indeed, even if some areas carries a lot of images-sources, reflections seem to surround the listener. For a better understanding, we zoom on the top of the signal in figure \ref{SItheater} to display energy on a smaller range, which highlight where beams reflect on. We can notice high contribution of the \textit{orchestra}, the wall-stage, the stage and the roof, as F. Canac demonstrated in the 60' \cite{canac}. To finish, perceptive factors were computed from the energy impulse responses, and given in table \ref{tab_rindel}. Results correspond to a room adapted for musical playback (e.g. clarty $C_{80}$ and reverberation time $T_{30}$), more than a speach transmission \cite{acoustique}. This results are confirmed by an equivalent simulation in the Odeon software, using same mesh and parameters.
 
 
 \begin{figure}[t]
 \centering
 		\includegraphics[width=0.9\linewidth]{soft}
-		\caption{Modelization of restituted Theater of Orange \cite{theseRobin} in \textit{Blender} showing the ray-tracing add-on on the left and the material interface on the right.}
+		\caption{Modelization of restituted theater of Orange \cite{theseRobin} in \textit{Blender} showing the ray-tracing add-on on the left and the material interface on the right.}
 		\label{soft}
 \end{figure}
 
@@ -449,7 +444,7 @@ Post traitement :
 		\caption{Images-sources projected on the mesh.}
 		\label{isTheatre20}
 	\end{subfigure}
-	\caption{Ray-tracing outputs for one million \textit{rays} and a 2m-radius sphere (listener) on restituted theater of Orange.}
+	\caption{Ray-tracing outputs for one million \textit{rays} and a 2m-radius sphere (listener) on restituted theater of Orange.  (computed on \textit{Just4RIR})}
 	\label{SI60dB}
 \end{figure}
 
@@ -467,7 +462,7 @@ Post traitement :
 		\caption{Images-sources of the first reflections over 30dB range, projected on the mesh.}
 		\label{SI30dB}
 	\end{subfigure}
-	\caption{Zooming on the first reflections of fig. \ref{SI60dB}.}
+	\caption{Zooming on the first reflections of fig. \ref{SI60dB}. (computed on \textit{Just4RIR})}
 	\label{SItheater}
 \end{figure}
 
@@ -475,7 +470,7 @@ Post traitement :
 \centering
  \begin{tabular}{| *{3}{c|}} 
  \hline 
- Perceptive factor & Orange theater (on Ray-tracing add-on) & Orange theater (on \textit{Odeon} software \cite{odeon})   \\ 
+ Perceptive factors & \textit{Just4RIR} & \textit{Odeon} \\ 
  \hline 
  \hline 
   EDT (s)& 1.85& 2.1 \\ 
@@ -491,22 +486,22 @@ $D_{50}$ (\%)&47 & 52 \\
 $T_s$ (ms)&117 & 105 \\ 
  \hline 
 \end{tabular} 
- \caption{Comparaison of perceptive factors of the Orange theater between our Blender ray-tracing add-on and \textit{Odeon} software. The measure is done on the 500-1000Hz band.}
+ \caption{Perceptive factors obtained for the Orange theater, comparison between \textit{Just4RIR} and \textit{Odeon} software \cite{odeon}. The measure is done on the 500-1000Hz band.}
  \label{tab_rindel} 
  \end{table}
 
 \section{Conclusions}
 
-In this paper, a full-chain engineering process is given, leading by an acoustical study of an imposing ancient monument. From archaeological needs, a fine mesh of the monument was constructed, associated to a complete room acoustic application suite, both for Matlab and Blender. The high complexity provided by this type of architecture and its ornaments leads to approximate calculation methods. Indeed, by only simulating specular reflections and wall absorption, energy propagation and measurement can be simulated by beams, carried by ray-tracing. From this representation basis, it is possible to generate a multi-band impulse response, while respecting the laws of high-frequency acoustics. Moreover, a fast algorithm with a quasi-linear complexity has been implemented, allowing users to quickly evaluate architectural assumptions, modifying their meshes regardless of the number of elements. At the end, various post-treatment has been added, as the Room Impulse Response generation, the source-image visualization, the classical perceptive factors and an auralization process.
+In this paper, a full-chain engineering process is given, leading by an acoustical study of an imposing ancient monument. From archaeological needs, a fine mesh of the monument was constructed, associated to a complete room acoustic application suite, both for Matlab and \textit{Blender}. The high complexity provided by this type of architecture and its ornaments leads to approximate calculation methods. Indeed, by only simulating specular reflections and wall absorption, energy propagation and measurement can be simulated by beams, carried by ray-tracing. From this representation basis, it is possible to generate a multi-band impulse response, while respecting the laws of high-frequency acoustics. Moreover, a fast algorithm with a quasi-linear complexity has been implemented, allowing users to quickly evaluate architectural assumptions, modifying their meshes regardless of the number of elements. At the end, various post-treatment has been added, as the Room Impulse Response generation, the source-image visualization, the classical perceptive factors and an auralization process.
 
-Even if current versions of proposed softwares (Gypsilab \cite{githubGypsi} and openNiqueTaMere) are complete enough to be used for various studies, there are many opportunities of improvement. First of all, as image-sources positions are known, a spatial audio renderer should be added to improve current auralization tool (e.g. binaural or multichannel, eventually with trackers). Secondly, as virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Finally, as ray-tracing modelization is an high-frequency approximation of waves phenomena, diffraction effects should be added in order to get a better fit with the physics equations. 
+Even if current versions of proposed softwares (Gypsilab \cite{githubGypsi} and \textit{Just4RIR}) are complete enough to be used for various studies, there are many opportunities of improvement. First of all, as image-sources positions are known, a spatial audio renderer should be added to improve current auralization tool (e.g. binaural or multichannel, eventually with trackers). Secondly, as virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Finally, as ray-tracing modelization is an high-frequency approximation of waves phenomena, diffraction effects should be added in order to get a better fit with the physics equations. 
 %
 %We presented the problems raised by an acoustic study of an ancient monument. The complex geometry of this type of building and their colossal size requires the use of approximate calculation methods. Thus, by simulating the reflections and absorptions of the walls, it is possible to study the reverberation of a room. Despite the inevitable approximations of the model, we have proved that the laws of physics are respected. A fast algorithm has been implemented to allow users to easily and quickly test their architectural assumptions. Thus, the calculation time becomes linear to the product number of mesh elements/number of \textit{rays}. The algorithm developed allows the study of the temporal graph of reverberation of the building as well as the position in space of the various sound reflections. Furthermore, a sound signal could be heard in three dimensions thanks to binaural filters and steering control can be done with "Head Tracker" mounted on a headset.
 %
 %However, there are many opportunities for improvement that remain under consideration for this type of software tool. First, in a context where virtual reality is becoming more and more important in today's applications, we could consider moving the listener in real time and thus, allow a complete virtual tour of the building. Secondly, from the point of view of the analysis results, there are many possible improvements at the graphic level. That raises some questions. How to view acoustic calculation results? What information is essential for an archaeologist wishing to study the acoustics of a monument? Similarly, is it essential to add diffraction effects to the model? If so, what is the best method? Could certain acoustic behaviours be treated locally and then inserted into the model by ray tracing? Finally, it would also be interesting to use sources whose directivity is not uniform. This would be more representative of the real cases, and in particular, of the use made in Orange at the theatre origin. The sounds were then emitted by musical instruments or by the human voice possibly amplified by a mask.
 
 %\subsection{Blender add-on}
-%In a second hand the tool is also available as a Blender add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form Blender and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using Blender is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
+%In a second hand the tool is also available as a \textit{Blender} add-on. The user can work on the CAD software to model the room under test, positioning the sources and the receiver and assign materials to the walls. By clicking on the "Run" button, the mesh is exported, the materials are linked to eight absorption coefficients (extracted from a data base) and the acoustic calculation tool is launched. This is an executable C++ complied software which treats information form \textit{Blender} and generates the room impulse response. The communication between the CAD and the executable is done thanks to an .obj file, so using \textit{Blender} is not necessary. Different options allow to analyse the results by reimporting \textit{rays} or image-sources on the CAD software. It is also possible to listen an audio file convolved to the RIR to listen the reverberate sound.
 %
 %
 %\section{Application to the antic theatre of Orange}\label{sec7}
@@ -517,7 +512,188 @@ Even if current versions of proposed softwares (Gypsilab \cite{githubGypsi} and 
 
 
 \section*{Acknowledgments}
-Authors particularly thanks Fran\c{c}ois Alouges, Titien Bartet, Pascal Frey and Emmanuelle Rosso for all the help they each provided at the different stages of this project. Thanks also to Jean-Dominique Polack for advices on architectural acoustics and Martin Lesellier for various contributions. This work is part of R. Gueguen PhD thesis founded by Sorbonne Universit\'e.
+Authors particularly thanks Fran\c{c}ois Alouges, Titien Bartette, Pascal Frey and Emmanuelle Rosso for all the help they each provided at the different stages of this project. Thanks also to Jean-Dominique Polack for advices on architectural acoustics and Martin Lesellier for various contributions. This work is part of R. Gueguen PhD thesis founded by Sorbonne Universit\'e.
+
+\bibliography{Biblio}%
+
+\clearpage
+
+\section*{Annexe}
+
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\footnotesize]
+
+%+========================================================================+
+%|                                                                        |
+%|            This script uses the \textit{Gypsilab} toolbox for Matlab            |
+%|                                                                        |
+%| COPYRIGHT : Matthieu Aussal (c) 2017-2018.                             |
+%| PROPERTY  : Centre de Mathematiques Appliquees, Ecole polytechnique,   |
+%| route de Saclay, 91128 Palaiseau, France. All rights reserved.         |
+%| LICENCE   : This program is free software, distributed in the hope that|
+%| it will be useful, but WITHOUT ANY WARRANTY. Natively, you can use,    |
+%| redistribute and/or modify it under the terms of the GNU General Public|
+%| License, as published by the Free Software Foundation (version 3 or    |
+%| later,  http://www.gnu.org/licenses). For private use, dual licencing  |
+%| is available, please contact us to activate a "pay for remove" option. |
+%| CONTACT   : matthieu.aussal@polytechnique.edu                          |
+%| WEBSITE   : www.cmap.polytechnique.fr/~aussal/gypsilab                 |
+%|                                                                        |
+%| Please acknowledge the \textit{Gypsilab} toolbox in programs or publications in |
+%| which you use it.                                                      |
+%|________________________________________________________________________|
+%|   '&`   |                                                              |
+%|    #    |   FILE       : nrtRayCube.m                                  |
+%|    #    |   VERSION    : 0.41                                          |
+%|   _#_   |   AUTHOR(S)  : Matthieu Aussal                               |
+%|  ( # )  |   CREATION   : 14.03.2017                                    |
+%|  / 0 \  |   LAST MODIF : 01.04.2018                                    |
+%| ( === ) |   SYNOPSIS   : Ray tracing with absorbing cube               |
+%|  `---'  |                                                              |
+%+========================================================================+
+
+% Cleaning
+clear all
+close all
+clc
+
+% Library path
+addpath('../../openMsh')
+addpath('../../openRay')
+
+% Parameters
+L     = [5 4 3]
+Xsrc  = [4 2 1.7];
+Xmes  = [2 2 1.7];
+Nray  = 1e5
+rad   = 0.2
+
+% Read mesh
+mesh = msh('cube1e1.mesh');
+
+% Mesh reshape to feat dimensions in L
+mesh.vtx = 0.5 .* (1 + mesh.vtx);
+mesh.vtx = (ones(size(mesh.vtx,1),1)*L) .* mesh.vtx;
+
+% Initialize ray
+ray = ray(mesh,Xsrc,Nray);
+
+% Graphical sphere
+[X,Y,Z] = sphere(50);
+X = Xmes(1) + rad*X; Y = Xmes(2) + rad*Y; Z = Xmes(3) + rad*Z; 
+
+% Graphical representation
+figure
+plot(mesh)
+hold on
+surf(X,Y,Z,ones(size(X)))
+axis equal;
+xlabel('X');   ylabel('Y');   zlabel('Z');
+alpha(0.3)
+colorbar
+
+% Material properties (http://www.odeon.dk/material-manufactures)
+ray.msh.col(mesh.col==1) = 10;    % X = 1
+ray.msh.col(mesh.col==2) = 20;    % Y = 1
+ray.msh.col(mesh.col==3) = 30;    % X = 0
+ray.msh.col(mesh.col==4) = 40;    % Y = 0
+ray.msh.col(mesh.col==5) = 50;    % Z = 0
+ray.msh.col(mesh.col==6) = 60;    % Z = 1
+% ray.msh.col(:) = 60;
+
+% Maximum distances 
+r1000 = rad/2 * sqrt(Nray/1000);
+r100  = rad/2 * sqrt(Nray/100);
+r10   = rad/2 * sqrt(Nray/10);
+rMax  = rad/2 * sqrt(Nray/2);
+
+% Ray-tracing
+tic
+ray = ray.tracer(100,rMax);
+toc
+
+% Images sources
+tic
+[img,nrg] = ray.image(Xmes,rad,rMax);
+toc
+
+% Graphical representation for images
+n   = size(img,1);
+tmp = ones(n,1)*Xmes + img;
+tmp = msh(tmp,(1:n)');
+plot(tmp,10*log10(nrg(:,1)));
+axis equal
+colorbar
+
+% Analytical solution
+load('odeon.mat')
+num = [30 ; % X = 0
+    10 ;    % X = 1
+    40 ;    % Y = 0
+    20 ;    % Y = 1
+    50 ;    % Z = 0
+    60];    % Z = 1
+mat = odeon.mat(num,:);
+rhm = 30;
+air = 5.5 * (50/rhm) .* (odeon.frq/1000).^1.7 * 1e-4;
+tic
+[imgRef,nrgRef] = rayCubeAnalytic(L,mat,air,Xsrc,Xmes,rMax);
+toc
+
+% Graphical representation
+plot3(imgRef(:,1)+Xmes(1),imgRef(:,2)+Xmes(2),imgRef(:,3)+Xmes(3),'ok')
+
+% Data
+r    = sqrt(sum(img.^2,2));
+rRef = sqrt(sum(imgRef.^2,2));
+sol  = mean(nrg,2);
+ref  = mean(nrgRef,2);
+
+% Energy error in dB
+figure
+plot(rRef,10*log10(ref),'or',r,10*log10(sol),'+b')
+hold on
+plot([r1000 r1000],[-60,0],'k--')
+text(r1000,-55,' n = 1000')
+plot([r100 r100],[-60,0],'k--')
+text(r100,-57,' n = 100')
+plot([r10 r10],[-60,0],'k--')
+text(r10,-55,' n = 10')
+plot([rMax rMax],[-60,0],'k--')
+text(rMax,-55,' n = 1')
+xlabel('Distance source mesure')
+ylabel('Energie mesuree (dB)')
+title('Energie mesuree selon la distance de mesure')
+legend({'Analytique','Statistique'})
+grid on
+
+% Audio file
+[audio,fs] = audioread('anechoicVoice.wav');
+
+% Fir from images
+T = floor(r/340*fs) + 1;
+for i = 1:size(nrg,2)
+    fir8(:,i) = accumarray(T,nrg(:,i),[max(T) 1]);
+end
+
+% Bank filtering
+dir8 = ray.bank(256,fs);
+rir  = 0;
+abs(sum(sum(dir8,2)) - 1)
+for i = 1:size(dir8,2)
+    rir = rir + fftfilt(dir8(:,i),fir8(:,i));
+end
+
+% Graphical representation
+figure
+plot(rir)
+
+% Audio rendering (5 seconds)
+out = fftfilt(rir,audio(1:5*fs));
+sound(out,fs)
+
+disp('~~> Michto \textit{Gypsilab} !')
+
+\end{lstlisting}
 
 %\subsection*{Author contributions}
  
@@ -583,9 +759,7 @@ Authors particularly thanks Fran\c{c}ois Alouges, Titien Bartet, Pascal Frey and
 
 
 %\nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
-\bibliography{Biblio}%
 
-\clearpage
 
 %\section*{Author Biography}
 

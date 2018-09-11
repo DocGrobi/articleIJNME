@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  10 SEP 2018 19:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.18)  11 SEP 2018 16:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1352,125 +1352,133 @@ Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 \openout4 = `IJNME_Gueguen.ist'.
 
 ]
+<maillage.png, id=24, 1447.4075pt x 984.67876pt>
+File: maillage.png Graphic file (type png)
+ <use maillage.png>
+Package pdftex.def Info: maillage.png used on input line 79.
+(pdftex.def)             Requested size: 253.75394pt x 172.62186pt.
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <10.03749> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <12> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 81.
-LaTeX Font Info:    Try loading font information for TS1+stix on input line 121
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 87.
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 123.
+ [2 <./maillage.png>]
+LaTeX Font Info:    Try loading font information for TS1+stix on input line 127
 .
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ts1stix.fd
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 126.
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 130.
- [2]
-<schema_rayon.png, id=39, 372.39125pt x 226.8475pt>
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 132.
+
+<schema_rayon.png, id=47, 372.39125pt x 226.8475pt>
 File: schema_rayon.png Graphic file (type png)
  <use schema_rayon.png>
-Package pdftex.def Info: schema_rayon.png used on input line 147.
+Package pdftex.def Info: schema_rayon.png used on input line 153.
 (pdftex.def)             Requested size: 304.50781pt x 185.5004pt.
-LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <10.03749> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 148.
 
-[3 <./schema_rayon.png>] <energie.png, id=61, 449.68pt x 337.26pt>
+[3 <./schema_rayon.png>] <energie.png, id=66, 449.68pt x 337.26pt>
 File: energie.png Graphic file (type png)
 
 <use energie.png>
-Package pdftex.def Info: energie.png used on input line 182.
+Package pdftex.def Info: energie.png used on input line 188.
 (pdftex.def)             Requested size: 329.87701pt x 247.41739pt.
- <schema_SI.png, id=62, 486.81876pt x 446.66875pt>
+ <schema_SI.png, id=67, 486.81876pt x 446.66875pt>
 File: schema_SI.png Graphic file (type png)
 
 <use schema_SI.png>
-Package pdftex.def Info: schema_SI.png used on input line 190.
+Package pdftex.def Info: schema_SI.png used on input line 196.
 (pdftex.def)             Requested size: 253.75394pt x 232.82796pt.
- [4 <./energie.png (PNG copy)> <./schema_SI.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 239--239
+ [4 <./energie.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []|\T1/stix/m/n/10.03749 Concrete block,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 []|\T1/stix/m/n/10.03749 Hollow wooden
  []
 
-[5] [6] <octreeSuzanne.png, id=121, 552.0625pt x 469.755pt>
+[5 <./schema_SI.png>] [6] <octreeSuzanne.png, id=132, 552.0625pt x 469.755pt>
 File: octreeSuzanne.png Graphic file (type png)
 
 <use octreeSuzanne.png>
-Package pdftex.def Info: octreeSuzanne.png used on input line 297.
+Package pdftex.def Info: octreeSuzanne.png used on input line 303.
 (pdftex.def)             Requested size: 203.00005pt x 172.73862pt.
- <times.png, id=125, 801.99625pt x 412.54124pt>
-File: times.png Graphic file (type png)
-
-<use times.png>
-Package pdftex.def Info: times.png used on input line 321.
-(pdftex.def)             Requested size: 406.00784pt x 208.851pt.
  [7 <./octreeSuzanne.png>]
-<sphere.png, id=144, 441.65pt x 335.654pt>
+<times.png, id=148, 801.99625pt x 412.54124pt>
+File: times.png Graphic file (type png)
+ <use times.png>
+Package pdftex.def Info: times.png used on input line 327.
+(pdftex.def)             Requested size: 406.00784pt x 208.851pt.
+ [8 <./times.png>] <sphere.png, id=163, 441.65pt x 335.654pt>
 File: sphere.png Graphic file (type png)
  <use sphere.png>
-Package pdftex.def Info: sphere.png used on input line 373.
+Package pdftex.def Info: sphere.png used on input line 379.
 (pdftex.def)             Requested size: 304.50781pt x 231.4376pt.
- [8 <./times.png>]
-<sourcesImages.png, id=158, 449.68pt x 337.26pt>
+ [9 <./sphere.png>] <sourcesImages.png, id=184, 449.68pt x 337.26pt>
 File: sourcesImages.png Graphic file (type png)
  <use sourcesImages.png>
-Package pdftex.def Info: sourcesImages.png used on input line 391.
+Package pdftex.def Info: sourcesImages.png used on input line 397.
 (pdftex.def)             Requested size: 248.68164pt x 186.51251pt.
 
-<boite.png, id=159, 449.68pt x 337.26pt>
+<boite.png, id=185, 449.68pt x 337.26pt>
 File: boite.png Graphic file (type png)
  <use boite.png>
-Package pdftex.def Info: boite.png used on input line 396.
+Package pdftex.def Info: boite.png used on input line 402.
 (pdftex.def)             Requested size: 248.68164pt x 186.51251pt.
- [9 <./sphere.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 429--430
-
- []
+LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <7.0262> not available
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 424.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--430
+Package natbib Warning: Citation `canac' on page 10 undefined on input line 424
+.
 
- []
-
-<soft.png, id=177, 1088.065pt x 430.60875pt>
+[10 <./sourcesImages.png (PNG copy)> <./boite.png>]
+<soft.png, id=206, 1088.065pt x 430.60875pt>
 File: soft.png Graphic file (type png)
  <use soft.png>
-Package pdftex.def Info: soft.png used on input line 434.
+Package pdftex.def Info: soft.png used on input line 429.
 (pdftex.def)             Requested size: 456.75398pt x 180.76244pt.
- [10 <./sourcesImages.png (PNG copy)> <./boite.png (PNG copy)>]
-<rirTheatreAvecDecor.png, id=188, 655.44875pt x 346.29375pt>
+
+<rirTheatreAvecDecor.png, id=209, 655.44875pt x 346.29375pt>
 File: rirTheatreAvecDecor.png Graphic file (type png)
 
 <use rirTheatreAvecDecor.png>
-Package pdftex.def Info: rirTheatreAvecDecor.png used on input line 443.
+Package pdftex.def Info: rirTheatreAvecDecor.png used on input line 438.
 (pdftex.def)             Requested size: 304.50781pt x 160.88225pt.
- <SI60dB.png, id=189, 810.02625pt x 677.53125pt>
+ <SI60dB.png, id=210, 810.02625pt x 677.53125pt>
 File: SI60dB.png Graphic file (type png)
 
 <use SI60dB.png>
-Package pdftex.def Info: SI60dB.png used on input line 448.
+Package pdftex.def Info: SI60dB.png used on input line 443.
 (pdftex.def)             Requested size: 187.77542pt x 157.05916pt.
- <rirTheatre20.png, id=190, 780.9175pt x 330.23375pt>
+ <rirTheatre20.png, id=211, 780.9175pt x 330.23375pt>
 File: rirTheatre20.png Graphic file (type png)
 
 <use rirTheatre20.png>
-Package pdftex.def Info: rirTheatre20.png used on input line 461.
+Package pdftex.def Info: rirTheatre20.png used on input line 456.
 (pdftex.def)             Requested size: 319.73244pt x 135.20522pt.
- <SI30dB.png, id=191, 881.2925pt x 759.83875pt>
+ <SI30dB.png, id=212, 881.2925pt x 759.83875pt>
 File: SI30dB.png Graphic file (type png)
 
 <use SI30dB.png>
-Package pdftex.def Info: SI30dB.png used on input line 466.
+Package pdftex.def Info: SI30dB.png used on input line 461.
 (pdftex.def)             Requested size: 182.70314pt x 157.51866pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [11 <./soft.png> <./rirTheatreAvecDecor.png> <./SI60dB.png>]
-(./IJNME_Gueguen.bbl [12 <./rirTheatre20.png> <./SI30dB.png>]) [13]
-Overfull \hbox (13.0pt too wide) in paragraph at lines 595--595
+(./IJNME_Gueguen.bbl [12 <./rirTheatre20.png> <./SI30dB.png>]) [13] [14
+
+]
+[15]
+
+Package natbib Warning: There were undefined citations.
+
+
+Overfull \hbox (13.0pt too wide) in paragraph at lines 769--769
 [] [] 
  []
 
@@ -1479,24 +1487,26 @@ Package glossaries Warning: No \printglossary or \printglossaries found.
 (Remove \makeglossaries if you don't want any glossaries.)
 This document will not have a glossary.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 595.
-[14
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 595.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 769.
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 769.
  (./IJNME_Gueguen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 595.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 595.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 769.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 769.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 769.
  ) 
 Here is how much of TeX's memory you used:
- 19006 strings out of 493014
- 273875 string characters out of 6133351
- 429446 words of memory out of 5000000
- 22056 multiletter control sequences out of 15000+600000
- 123207 words of font info for 176 fonts, out of 8000000 for 9000
+ 19408 strings out of 493014
+ 279327 string characters out of 6133351
+ 671627 words of memory out of 5000000
+ 22278 multiletter control sequences out of 15000+600000
+ 129032 words of font info for 179 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
- 46i,16n,77p,2118b,618s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,120p,2164b,1926s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1517,10 +1527,10 @@ exlive/2016/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on IJNME_Gueguen.pdf (14 pages, 1945685 bytes).
+Output written on IJNME_Gueguen.pdf (16 pages, 2150670 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 274 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 575 PDF objects out of 1000 (max. 8388607)
+ 509 compressed objects within 6 object streams
+ 258 named destinations out of 1000 (max. 500000)
+ 223 words of extra memory for PDF output out of 10000 (max. 10000000)
 
