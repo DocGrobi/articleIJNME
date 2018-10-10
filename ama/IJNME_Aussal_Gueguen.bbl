@@ -38,9 +38,21 @@ Odeon . Odeon webpage - https://odeon.dk/ .
 Robinson Philip. Acoustic Raytracer - Buzz Plug-in.
   https://www.grasshopper3d.com/forum/topics/acoustic-raytracer-buzz-plug-in.2013.
 
+\bibitem{iso}
+ISO-9613-1.  Acoustics - Attenuation of sound during propagation outdoors.1993.
+
 \bibitem{moller}
 M{\"o}ller Tomas, Trumbore Ben. Fast, minimum storage ray-triangle
   intersection.  Journal of Graphics Tools, vol 2, p21-28.1997.
+
+\bibitem{fft}
+Cooley James~W., Tukey John~W.. An Algorithm for the Machine Calculation of
+  Complex Fourier Series.  Mathematics of Computation, vol 19(90),
+  p.297-301.1965.
+
+\bibitem{matrix}
+Hackbusch Wolfgang. Hierarchical Matrices: Algorithms and Analysis.  Springer
+  Series in Computational Mathematics.2015.
 
 \bibitem{AABB}
 Williams Amy, Barrus Steve, Morley R.Keith, Shirley Peter. An Efficient and
@@ -49,9 +61,6 @@ Williams Amy, Barrus Steve, Morley R.Keith, Shirley Peter. An Efficient and
 \bibitem{mcgovern}
 McGovern Stephen. Fast image method for impulse response calculations of
   box-shaped rooms.  Applied Acoustics, vol 70.2009.
-
-\bibitem{iso}
-ISO-9613-1.  Acoustics - Attenuation of sound during propagation outdoors.1993.
 
 \bibitem{orangeTxt}
 Badie Alain, Fincker Myriam, Moretti Jean-Charles, Rabatel Liliane, Rosso
